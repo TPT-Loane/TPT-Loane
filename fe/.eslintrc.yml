@@ -44,7 +44,7 @@ rules:
     - as-needed
   max-len:
     - error
-    - code: 200
+    - code: 135
   no-empty-function: warn
   no-empty: warn
   "@typescript-eslint/no-empty-function": warn
