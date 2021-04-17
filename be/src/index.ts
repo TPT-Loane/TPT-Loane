@@ -18,6 +18,7 @@ const main = async () => {
   };
   try {
     await createConnection({ ...config });
+    // const conn = await createConnection({ ...config });
     // await conn.runMigrations();
   } catch (error) {
     console.log("Error while connecting to the database", error);
