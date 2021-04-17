@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "tsc",
     "watch": "tsc -w",
     "dev": "nodemon dist/index.js",
     "genenv": "gen-env-types .env -o src/env.d.ts -e ."
