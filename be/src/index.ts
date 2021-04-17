@@ -17,7 +17,7 @@ const main = async () => {
     entities: [Hello],
   };
   try {
-    let conn = await createConnection({ ...config });
+    await createConnection({ ...config });
     // await conn.runMigrations();
   } catch (error) {
     console.log("Error while connecting to the database", error);
