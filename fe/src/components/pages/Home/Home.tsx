@@ -1,5 +1,6 @@
 import React from 'react';
 import logo from '../../../assets/logo.svg';
+import AppLink from './AppLink';
 import styles from './Home.module.scss';
 
 function Home(): JSX.Element {
@@ -14,14 +15,7 @@ function Home(): JSX.Element {
           {' '}
           and save to reload.
         </p>
-        <a
-          className={styles.homeLink}
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <AppLink />
       </header>
     </div>
   );
