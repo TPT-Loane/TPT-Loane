@@ -1,8 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Home } from './components/pages/Home/index';
-import { About } from './components/pages/About/index';
-import { Error } from './components/pages/Error/index';
+import { About } from './pages/About/index';
+import { Error } from './pages/Error/index';
+import { Home } from './pages/Home/index';
 
 function App(): JSX.Element {
   return (

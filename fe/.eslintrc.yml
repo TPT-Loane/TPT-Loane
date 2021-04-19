@@ -31,7 +31,7 @@ rules:
   import/prefer-default-export:
     - "off"
     - extensions:
-      - ".ts"
+        - ".ts"
   react/jsx-filename-extension:
     - "off"
     - extensions:
@@ -57,4 +57,3 @@ rules:
   react-hooks/rules-of-hooks: off
   react/require-default-props: off
   react/jsx-props-no-spreading: off
-  
