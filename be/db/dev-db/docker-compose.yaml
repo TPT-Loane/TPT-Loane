@@ -1,7 +1,7 @@
 version: '3.1'
 services:
   db:
-    image: postgres:latest
+    image: postgres:13 # Uses Debian, use 'postgres:13-alpine' for lighter version
     restart: always
     environment:
       - POSTGRES_USER=postgres
