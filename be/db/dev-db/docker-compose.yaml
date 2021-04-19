@@ -14,3 +14,8 @@ services:
       - ./sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
         # copies SQL script to fill example tables
       - ./sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
+  andminer: # adminer, so you don't have to install a database manager
+    image: adminer:4.8.0
+    restart: always
+    ports:
+      - 8080:8080

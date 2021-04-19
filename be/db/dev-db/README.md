@@ -1,12 +1,17 @@
 # Development database
 
 This folder contains the nessecary files needed to launch a docker instance with
-postgresql and example data that can be accessed with a database manager such as
+postgresql and example data that can be accessed with a database manager such
+as:
+
 [dbeaver](https://dbeaver.io/)
 
 [dbeaver github](https://github.com/dbeaver/dbeaver)
 
-## Database variables
+## Accessing the database
+
+Access the database using adminer at: 'localhost:8080'. Make sure to select
+'postgreSQL' from the dropdown menu!
 
 Host machine port to access database: 5432
 
@@ -14,12 +19,16 @@ User for database: 'postgres'
 
 Pass for database: 'postgres'
 
+database in database: 'postgres'
+
 ## Running the development database in docker
 
 ```bash
 cd TPT-Loane/be/db/dev-db/       # navigate into this directory
 docker-compose up --build -d     # run it in a detached docker container
-# <access it with a database manager or similar>
+
+# connect to localhost:8080 to use with adminer or
+# access it with a database manager
 ```
 
 ## Stopping the development database
