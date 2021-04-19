@@ -13,7 +13,7 @@ as:
 Access the database using adminer at: 'localhost:8080'. Make sure to select
 'postgreSQL' from the dropdown menu!
 
-Host machine port to access database: 5432
+Host machine port to access database: 7842
 
 User for database: 'postgres'
 
