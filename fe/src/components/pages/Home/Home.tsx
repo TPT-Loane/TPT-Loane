@@ -1,12 +1,12 @@
 import React from 'react';
 import logo from '../../../assets/logo.svg';
-import './Home.css';
+import styles from './Home.module.scss';
 
 function Home(): JSX.Element {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <div className={styles.home}>
+      <header className={styles.homeHeader}>
+        <img src={logo} className={styles.homeLogo} alt="logo" />
         <p>
           Edit
           {' '}
@@ -15,7 +15,7 @@ function Home(): JSX.Element {
           and save to reload.
         </p>
         <a
-          className="App-link"
+          className={styles.homeLink}
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
