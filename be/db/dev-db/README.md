@@ -24,8 +24,9 @@ database in database: 'postgres'
 ## Running the development database in docker
 
 ```bash
-cd TPT-Loane/be/db/dev-db/       # navigate into this directory
-docker-compose up --build -d     # run it in a detached docker container
+cd TPT-Loane/be/db/dev-db/                          # navigate into this directory
+docker-compose up --build -d                        # run it in a detached docker container (without adminer)
+docker-compose --profile adminer up --build -d      # run it in a detached docker container (with adminer)
 
 # connect to localhost:8080 to use with adminer or
 # access it with a database manager
