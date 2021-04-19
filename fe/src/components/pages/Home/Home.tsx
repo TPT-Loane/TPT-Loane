@@ -1,29 +1,30 @@
+import {
+  Box, Code, Image, Text,
+} from '@chakra-ui/react';
 import React from 'react';
 import logo from '../../../assets/logo.svg';
 import './Home.css';
 
 function Home(): JSX.Element {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
+    <Box className="App">
+      <Text className="App-header">
+        <Image src={logo} className="App-logo" alt="logo" />
+        <Text>
           Edit
-          {' '}
-          <code>src/Home.tsx</code>
-          {' '}
+          <Code>src/Home.tsx</Code>
           and save to reload.
-        </p>
-        <a
+        </Text>
+        <Text
           className="App-link"
           href="https://reactjs.org"
           target="_blank"
           rel="noopener noreferrer"
         >
           Learn React
-        </a>
-      </header>
-    </div>
+        </Text>
+      </Text>
+    </Box>
   );
 }
 
