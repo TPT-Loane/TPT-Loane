@@ -3,27 +3,23 @@ import {
 } from '@chakra-ui/react';
 import React from 'react';
 import logo from '../../../assets/logo.svg';
-import './Home.css';
+import AppLink from './AppLink';
+import styles from './Home.module.scss';
 
 function Home(): JSX.Element {
   return (
-    <Box className="App">
-      <Text className="App-header">
-        <Image src={logo} className="App-logo" alt="logo" />
+    <Box className={styles.home}>
+      <Box className={styles.homeHeader}>
+        <Image src={logo} className={styles.homeLogo} alt="logo" />
         <Text>
           Edit
-          <Code>src/Home.tsx</Code>
+          {' '}
+          <code>src/Home.tsx</code>
+          {' '}
           and save to reload.
         </Text>
-        <Text
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </Text>
-      </Text>
+        <AppLink />
+      </Box>
     </Box>
   );
 }
