@@ -1,12 +1,13 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { TestResolver } from './resolvers/test.resolver';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { from } from 'rxjs';
+import { TestModel } from './models/test.model';
+import { AppController } from './app.controller';
+import { TestModule } from './service/test.module';
 
 @Module({
   imports: [
+    TestModule,
     GraphQLModule.forRoot({
       debug: false,
       playground: true,
@@ -16,14 +17,14 @@ import { from } from 'rxjs';
       type: 'postgres',
       host: 'localhost',
       port: 5432,
-      username: '*',
-      password: '*',
+      username: 'postgres',
+      password: 'docker',
       database: 'test',
-      entities: ['dist/**/*.model.js'],
-      synchronize: false,
+      entities: ['dist/**/*.model.js', TestModel],
+      synchronize: true,
     }),
+    
   ],
   controllers: [AppController],
-  providers: [TestResolver],
 })
 export class AppModule {}

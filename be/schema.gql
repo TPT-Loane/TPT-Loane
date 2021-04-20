@@ -2,6 +2,15 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type TestModel {
+  name: String!
+}
+
 type Query {
-  sayHello: String!
+  item(id: String!): TestModel!
+  items: [TestModel!]!
+}
+
+type Mutation {
+  createItem(name: String!): TestModel!
 }
