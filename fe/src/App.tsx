@@ -8,8 +8,8 @@ function App(): JSX.Element {
   return (
     <Router>
       <Switch>
-        <Route exact path='/' component={Home} />
-        <Route path='/about' component={About} />
+        <Route exact path="/" component={Home} />
+        <Route path="/about" component={About} />
         <Route component={Error} />
       </Switch>
     </Router>

@@ -1,8 +1,6 @@
-import {
-  Box, Code, Image, Text,
-} from '@chakra-ui/react';
+import { Box, Image, Text } from '@chakra-ui/react';
 import React from 'react';
-import logo from '../../../assets/logo.svg';
+import logo from '../../assets/logo.svg';
 import AppLink from './AppLink';
 import styles from './Home.module.scss';
 
