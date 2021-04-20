@@ -32,6 +32,13 @@ docker-compose --profile adminer up --build -d      # run it in a detached docke
 # access it with a database manager
 ```
 
+If you get error
+```bash
+docker.errors.DockerException: Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')
+```
+then your docker engine isn't running
+
+
 ## Stopping the development database
 
 ```bash
