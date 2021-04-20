@@ -1,5 +1,5 @@
 import {
-  Box, Code, Image, Text,
+  Box, Image, Text,
 } from '@chakra-ui/react';
 import React from 'react';
 import logo from '../../../assets/logo.svg';

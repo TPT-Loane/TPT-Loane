@@ -33,6 +33,16 @@ rules:
     - "off"
     - extensions:
       - ".ts"
+  import/no-internal-modules: [
+    "error",
+    {
+      "allow": [
+        "**/assets/*",
+        "**/components/*/*",
+        "**/components/**/index"
+      ]
+    }
+  ]
   react/jsx-filename-extension:
     - "off"
     - extensions:
