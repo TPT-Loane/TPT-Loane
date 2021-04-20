@@ -8,6 +8,18 @@ as:
 
 [dbeaver github](https://github.com/dbeaver/dbeaver)
 
+## Table of contents
+
+- [Accessing the database](#accessing-the-database)
+
+- [Running the development database in docker](#running-the-development-database-in-docker)
+
+- [Stopping the development database](#stopping-the-development-database)
+
+- [Adding example data and tables](#adding-example-data-and-tables)
+
+- [Troubleshooting](#troubleshooting)
+
 ## Accessing the database
 
 Access the database using adminer at: 'localhost:8080'. Make sure to select
@@ -47,6 +59,7 @@ Modify the sql files included in the 'sql' folder. Make sure to remove any
 leftover databases from previous dev runs using the command above.
 
 ## Troubleshooting
+
 If you get error (on windows)...
 
 ```bash
