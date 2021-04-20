@@ -1,10 +1,17 @@
 # TPT-Loane Backend
 
+
 ## Installation
 
 ```bash
 $ npm install
 ```
+## Database migrations 
+
+Generate migrations:  ```npm run gen-migration <ModelName>```
+
+Run migrations: ```npm run migrate```
+
 
 ## Running the app
 
