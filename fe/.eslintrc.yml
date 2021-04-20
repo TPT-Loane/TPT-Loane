@@ -29,6 +29,7 @@ rules:
   linebreak-style: 'off'
   import/no-unresolved: 'off'
   import/extensions: 'off'
+  react/react-in-jsx-scope: 'off'
   import/no-extraneous-dependencies:
     [
       'error',
