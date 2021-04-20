@@ -29,6 +29,15 @@ rules:
   linebreak-style: "off"
   import/no-unresolved: "off"
   import/extensions: "off"
+    import/no-extraneous-dependencies:
+    [
+      "error",
+      {
+        "devDependencies": true,
+        "optionalDependencies": true,
+        "peerDependencies": true,
+      },
+    ]
   import/prefer-default-export:
     - "off"
     - extensions:
