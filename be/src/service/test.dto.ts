@@ -1,5 +1,3 @@
-
-
 export interface TestDTO {
-    name: string;
+  name: string;
 }

@@ -11,19 +11,18 @@ import { TestModule } from './service/test.module';
     GraphQLModule.forRoot({
       debug: false,
       playground: true,
-      autoSchemaFile: 'schema.gql'
+      autoSchemaFile: 'schema.gql',
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: 'localhost',
       port: 5432,
       username: 'postgres',
-      password: 'docker',
+      password: 'postgres',
       database: 'test',
       entities: ['dist/**/*.model.js', TestModel],
       synchronize: true,
     }),
-    
   ],
   controllers: [AppController],
 })

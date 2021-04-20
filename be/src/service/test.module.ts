@@ -6,8 +6,8 @@ import { TestService } from './test.service';
 import { TestResolver } from '../resolvers/test.resolver';
 
 @Module({
-    imports: [TypeOrmModule.forFeature([TestModel])],
-    providers: [TestService, TestResolver],
-    exports: [TestService]
+  imports: [TypeOrmModule.forFeature([TestModel])],
+  providers: [TestService, TestResolver],
+  exports: [TestService],
 })
 export class TestModule {}
