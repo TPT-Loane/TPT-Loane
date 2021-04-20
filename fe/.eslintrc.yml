@@ -33,6 +33,16 @@ rules:
     - "off"
     - extensions:
       - ".ts"
+  import/no-internal-modules: [
+    "error",
+    {
+      "allow": [
+        "**/assets/*",
+        "**/components/*/*",
+        "**/components/**/index"
+      ]
+    }
+  ]
   react/jsx-filename-extension:
     - "off"
     - extensions:
@@ -58,5 +68,3 @@ rules:
   react-hooks/rules-of-hooks: off
   react/require-default-props: off
   react/jsx-props-no-spreading: off
-
-  
