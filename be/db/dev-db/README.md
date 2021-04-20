@@ -32,13 +32,6 @@ docker-compose --profile adminer up --build -d      # run it in a detached docke
 # access it with a database manager
 ```
 
-If you get error
-```bash
-docker.errors.DockerException: Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')
-```
-then your docker engine isn't running
-
-
 ## Stopping the development database
 
 ```bash
@@ -52,3 +45,12 @@ rm -rf postgres-data             # destroy any data that persists (simply
 
 Modify the sql files included in the 'sql' folder. Make sure to remove any
 leftover databases from previous dev runs using the command above.
+
+## Troubleshooting
+If you get error (on windows)...
+
+```bash
+docker.errors.DockerException: Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')
+```
+
+...then your docker engine isn't running
