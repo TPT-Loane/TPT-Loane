@@ -1,8 +1,7 @@
-import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './components/pages/Home';
-import About from './components/pages/About';
-import Error from './components/pages/Error';
+import Home from './pages/Home/index';
+import About from './pages/About/index';
+import Error from './pages/Error/index';
 
 function App(): JSX.Element {
   return (

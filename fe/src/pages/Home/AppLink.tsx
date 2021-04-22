@@ -1,5 +1,3 @@
-import React from 'react';
-
 const AppLink = (): JSX.Element => (
   <a
     className="App-link"
