@@ -1,7 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.module.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import customTheme from './theme';
