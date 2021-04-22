@@ -22,10 +22,13 @@ as:
 
 ## Accessing the database
 
-Access the database using adminer at: 'localhost:8080'. Make sure to select
-'postgreSQL' from the dropdown menu!
+Access the database using adminer at:
+'[localhost:8080](http://localhost:8080/?pgsql=db&username=postgres&db=postgres)'.
+Make sure to select 'PostgreSQL' from the dropdown menu!
 
 Host machine port to access database: 7842
+
+Server for database: 'db'
 
 User for database: 'postgres'
 
