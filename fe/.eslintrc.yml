@@ -46,7 +46,15 @@ rules:
   import/no-internal-modules:
     [
       'error',
-      { 'allow': ['**/assets/*', '**/components/*/*', '**/pages/**/index'] },
+      {
+        'allow':
+          [
+            '**/assets/*',
+            '**/components/*/*',
+            '**/components/**/*',
+            '**/pages/**/index.ts',
+          ],
+      },
     ]
   react/jsx-filename-extension:
     - 'off'
