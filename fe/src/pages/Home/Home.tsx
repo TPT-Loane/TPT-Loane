@@ -1,6 +1,4 @@
-import {
-  Box, Code, Image, Text,
-} from '@chakra-ui/react';
+import { Box, Code, Image, Text } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.svg';
 import AppLink from './AppLink';
@@ -12,11 +10,7 @@ function Home(): JSX.Element {
       <Box className={styles.homeHeader}>
         <Image src={logo} className={styles.homeLogo} alt="logo" />
         <Text>
-          Edit
-          {' '}
-          <Code>src/Home.tsx</Code>
-          {' '}
-          and save to reload.
+          Edit <Code>src/Home.tsx</Code> and save to reload.
         </Text>
         <Text>
           <Link to="/about">About</Link>
