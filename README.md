@@ -2,7 +2,7 @@
 
 Loan and borrow!
 
-## Table of contents
+## Quick links
 
 - [Front end](./be/)
 
