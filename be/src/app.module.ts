@@ -4,10 +4,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TestModel } from './models/test.model';
 import { AppController } from './app.controller';
 import { TestModule } from './service/test.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
   imports: [
     TestModule,
+    ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       debug: false,
       playground: true,
@@ -15,11 +17,11 @@ import { TestModule } from './service/test.module';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'postgres',
-      database: 'test',
+      host: process.env.IP,
+      port: parseInt(process.env.PORT),
+      username: process.env.DATABASE_USER,
+      password: process.env.PASSWORD,
+      database: process.env.DATABASE,
       entities: ['dist/**/*.model.js', TestModel],
       synchronize: true,
     }),
