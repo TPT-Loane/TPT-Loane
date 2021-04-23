@@ -3,6 +3,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Error from './pages/Error';
 import Header from './components/layouts/Header';
+import Footer from './components/layouts/Footer';
 
 function App(): JSX.Element {
   return (
@@ -15,6 +16,7 @@ function App(): JSX.Element {
           <Route component={Error} />
         </Switch>
       </Router>
+      <Footer />
     </>
   );
 }
