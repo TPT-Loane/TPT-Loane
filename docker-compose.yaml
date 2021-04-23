@@ -1,18 +1,20 @@
 version: '3.9'
 services:
   www-dev:
-    profiles:
-      - www-dev
     # front end development server
+    profiles:
+      - all
+      - www-dev
     build:
       context: ./fe/
       dockerfile: docker/www-dev.dockerfile
     ports:
       - 3000:3000
   db-dev:
-    profiles:
-      - db-dev
     # development database
+    profiles:
+      - all
+      - db-dev
     image: postgres:13 # Uses Debian, use 'postgres:13-alpine' for lighter version
     restart: always
     environment:
@@ -26,8 +28,10 @@ services:
       - ./be/db/dev-db/sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
         # copies SQL script to fill example tables
       - ./be/db/dev-db/sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
-  adminer: # adminer, so you don't have to install a database manager
+  adminer:
+    # adminer, so you don't have to install a database manager
     profiles:
+      - all
       - adminer # include '--profile adminer' in your docker command to launch adminer alongside db
     image: adminer:4.8.0
     restart: always
