@@ -1,6 +1,6 @@
 {
   "eslint.workingDirectories": [
-    { "directory": "fe", "changeProcessCWD": true }
-    // { "directory": "be", "changeProcessCWD": true }
+    { "directory": "fe", "changeProcessCWD": true },
+    { "directory": "be", "changeProcessCWD": true }
   ]
 }
