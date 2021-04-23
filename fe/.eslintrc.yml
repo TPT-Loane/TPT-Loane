@@ -50,9 +50,8 @@ rules:
         'allow':
           [
             '**/assets/*',
-            '**/components/*/*',
-            '**/components/**/*',
-            '**/pages/**/index.ts',
+            '**/components/layouts/*',
+            '**/pages/*',
           ],
       },
     ]
