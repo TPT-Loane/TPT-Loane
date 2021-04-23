@@ -10,14 +10,15 @@ jobs:
       script:
         - echo "Running linter"
         - "cd fe"
+#        - "npm i"
         - "npm run lint"
     - stage: build
       script: skip
     - stage: test
       script: skip
 
-#install:
-# - npm install
+install:
+  - npm install
 
 stages:
   - linter
