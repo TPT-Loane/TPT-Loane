@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from './pages/Home/index';
-import About from './pages/About/index';
-import Error from './pages/Error/index';
+import Home from './pages/Home';
+import About from './pages/About';
+import Error from './pages/Error';
 import Header from './components/layouts/Header';
 
 function App(): JSX.Element {
