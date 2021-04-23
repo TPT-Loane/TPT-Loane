@@ -17,4 +17,4 @@ RUN npm i
 COPY public/ ./public/
 COPY src/ ./src/
 
-CMD npm run start
+CMD npm run dev
