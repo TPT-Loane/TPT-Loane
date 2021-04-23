@@ -1,7 +1,9 @@
 # TPT-Loane
+
 Loan and borrow!
 
-## Table of contents
+## Quick links
 
-* [FE](https://github.com/TPT-Loane/TPT-Loane/tree/main/fe)
-* [BE](https://github.com/TPT-Loane/TPT-Loane/tree/main/be)
+- [Front end](./be/)
+
+- [Back end](./fe/)
