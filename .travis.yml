@@ -18,7 +18,7 @@ jobs:
       script: skip
 
 install:
-  - npm install
+  - "cd fe ; npm install; cd .."
 
 stages:
   - linter
