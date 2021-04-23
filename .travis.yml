@@ -1,0 +1,15 @@
+dist: trusty
+language: node_js
+node_js:
+- node
+- 'lts/*'
+
+jobs:
+  include:
+    - stage: linter
+      script:
+        - echo "Running linter"
+        - "cd fe"
+        - "npm run lint"
+
+cache: npm
