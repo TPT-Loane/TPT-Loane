@@ -14,15 +14,15 @@ jobs:
     - stage: build
       script: skip
     - stage: test
-      script: 
+      script: skip
 
-install:
- - npm install
+#install:
+# - npm install
 
 stages:
   - linter
-cache: 
-  - npm
-  - directories:
-    - "fe/node_modules"
+#cache: 
+#  - npm
+#  - directories:
+#    - "fe/node_modules"
 
