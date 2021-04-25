@@ -1,4 +1,6 @@
-dist: trusty
+dist: 
+  - trusty
+  - Precise
 language: node_js
 node_js:
 - node
@@ -6,24 +8,30 @@ node_js:
 
 jobs:
   include:
-    - stage: linter
+    - stage: front-end 
+      name: linter
       script:
+        - "cd fe"  # opens front end folder
+#        - "npm install" # installs node modules
         - echo "Running linter"
+        - "npm run lint" # Runs front end linter
+        - "cd .."
+      name: tests
+      script:
         - "cd fe"
-#        - "npm i"
-        - "npm run lint"
+        - "npm run test"
+        - "cd .."
     - stage: build
       script: skip
     - stage: test
       script: skip
 
 install:
-  - "cd fe ; npm i; cd .."
-
+  - "cd fe ; npm install; npm .."
+  
 stages:
-  - linter
+  - front-end
 cache: 
-#  - npm
-  - directories:
+  directories:
     - "fe/node_modules"
 
