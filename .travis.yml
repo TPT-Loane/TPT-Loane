@@ -12,14 +12,9 @@ jobs:
       name: linter
       script:
         - "cd fe"  # opens front end folder
-#        - "npm install" # installs node modules
+        - "npm install eslint" # installs node modules
         - echo "Running linter"
         - "npm run lint" # Runs front end linter
-        - "cd .."
-      name: tests
-      script:
-        - "cd fe"
-        - "npm run test"
         - "cd .."
     - stage: build
       script: skip
@@ -27,7 +22,7 @@ jobs:
       script: skip
 
 install:
-  - "cd fe ; npm install; cd .."
+#  - "cd fe ; npm install; cd .."
   
 stages:
   - front-end
