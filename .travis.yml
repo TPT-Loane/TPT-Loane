@@ -11,14 +11,14 @@ jobs:
     - stage: front-end 
       install:
         - "cd fe ; npm install; cd .."
-      name: linter
-      script:
-        - "cd fe"  # opens front end folder
-        - "npm run lint" # Runs front end linter
-      name: build
-      script:
-        - "cd fe"
-        - "npm run build" 
+      - name: "lint"
+        script:
+          - "cd fe"  # opens front end folder
+          - "npm run lint" # Runs front end linter
+      - name: "build"
+        script:
+          - "cd fe"
+          - "npm run build" # builds front end
     - stage: build
       script: skip
     - stage: test
