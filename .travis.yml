@@ -21,9 +21,12 @@ jobs:
     - stage: test # If not here, will run 'make tests' in the root folder.
       script: skip 
 
-  
+install:
+  - "cd fe; npm install; cd .."
+
 stages:
   - front-end
+  - test
 cache: 
   directories:
     - "fe/node_modules"
