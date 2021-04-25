@@ -9,21 +9,18 @@ node_js:
 jobs:
   include:
     - stage: front-end 
-      install:
-        - "cd fe ; npm install; cd .."
-      - script:
+      name: "lint"
+      script:
         - "cd fe"  # opens front end folder
         - "npm run lint" # Runs front end linter
-        name: "lint"
-      - script:
-        - "cd fe"
-        - "npm run build" # builds front end
-        name: "build"
+    - script:
+      - "cd fe"
+      - "npm run build" # builds front end
+      name: "build"
     - stage: build
       script: skip
     - stage: test
       script: skip
-
 
   
 stages:
