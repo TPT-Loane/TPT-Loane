@@ -2,27 +2,29 @@ dist:
   - trusty
   - Precise
 language: node_js
-node_js: 11.10.0
-
+node_js:
+- 11
 # latest 11.x node version , newer ones cause conflict with node-sass module
 
 jobs:
   include:
     - stage: front-end 
+      install:
+        - "cd fe ; npm install; cd .."
       name: linter
       script:
         - "cd fe"  # opens front end folder
- #       - "npm install eslint" # installs node modules
-        - echo "Running linter"
         - "npm run lint" # Runs front end linter
-        - "cd .."
+      name: build
+      script:
+        - "cd fe"
+        - "npm run build" 
     - stage: build
       script: skip
     - stage: test
       script: skip
 
-install:
-  - "cd fe ; npm install; cd .."
+
   
 stages:
   - front-end
