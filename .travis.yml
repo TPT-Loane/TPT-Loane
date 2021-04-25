@@ -27,7 +27,7 @@ jobs:
       script: skip
 
 install:
-  - "cd fe ; npm install; npm .."
+  - "cd fe ; npm install; cd .."
   
 stages:
   - front-end
