@@ -17,10 +17,9 @@ jobs:
       - "cd fe"
       - "npm run build" # builds front end
       name: "build"
-    - stage: build
-      script: skip
-    - stage: test
-      script: skip
+
+    - stage: test # If not here, will run 'make tests' in the root folder.
+      script: skip 
 
   
 stages:
