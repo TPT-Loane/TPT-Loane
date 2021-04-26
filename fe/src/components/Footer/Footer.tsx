@@ -11,6 +11,9 @@ import { ExternalLinkIcon } from '@chakra-ui/icons';
 export default function Footer(): JSX.Element {
   return (
     <Box
+      position="absolute"
+      bottom="0"
+      w="100%"
       bg={useColorModeValue('gray.50', 'gray.900')}
       color={useColorModeValue('gray.700', 'gray.200')}
     >
