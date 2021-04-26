@@ -1,10 +1,12 @@
 import {
   Box,
   Container,
+  Link,
   Stack,
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
+import { ExternalLinkIcon } from '@chakra-ui/icons';
 
 export default function Footer(): JSX.Element {
   return (
@@ -22,6 +24,12 @@ export default function Footer(): JSX.Element {
         align={{ base: 'center', md: 'center' }}
       >
         <Text>© 2021 Tallinn Polytechnic School. All rights reserved</Text>
+        <Stack direction="row" spacing={6}>
+          <Link href="https://www.tptlive.ee/" isExternal>
+            Tallinn Polytechnic School
+            <ExternalLinkIcon mx="2px" />
+          </Link>
+        </Stack>
       </Container>
     </Box>
   );
