@@ -11,7 +11,7 @@ Fixes # (issue)
 
 ## Pull request
 
-Always have at least one or two people review your code.
+Always have at least two people review your code.
 
 ### If review is sent back
 
