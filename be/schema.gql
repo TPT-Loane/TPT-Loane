@@ -6,11 +6,19 @@ type TestModel {
   name: String!
 }
 
+type UserModel {
+  name: String!
+  email: String!
+}
+
 type Query {
   item(id: String!): TestModel!
   items: [TestModel!]!
+  user(id: String!): UserModel!
+  users: [UserModel!]!
 }
 
 type Mutation {
   createItem(name: String!): TestModel!
+  createUser(email: String!, password: String!, name: String!): UserModel!
 }
