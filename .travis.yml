@@ -1,0 +1,38 @@
+dist: trusty
+language: node_js
+node_js:
+  - 11
+# latest 11.x node version , newer ones cause conflict with node-sass module
+
+jobs:
+  include:
+    - stage: install-cache #Installs dependencies needed in cache so they wouldn't be repeated several times, to lessen run time.
+      name: "front-end npm"
+      script:
+        - "cd fe"
+        - "npm ci"
+
+    - stage: front-end
+      name: "lint"
+      script:
+        - "cd fe"
+        - "npm run lint" # Runs front end linter
+    - script:
+        - "cd fe"
+        - "npm run build" # builds front end
+      name: "build"
+
+    - stage: test # If not here, will run 'make tests' in the root folder.
+      script: skip
+
+# install:
+#  - "cd fe; npm install; cd .."
+
+stages:
+  - install-cache
+  - front-end
+  - test
+
+cache:
+  directories:
+    - "fe/node_modules"
