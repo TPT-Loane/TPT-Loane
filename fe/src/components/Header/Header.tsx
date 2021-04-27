@@ -20,10 +20,6 @@ const NAV_ITEMS = [
     label: 'About',
     href: '/about',
   },
-  {
-    label: 'Login',
-    href: '/Login',
-  },
 ];
 
 export default function Header(): JSX.Element {
