@@ -6,11 +6,47 @@ type TestModel {
   name: String!
 }
 
+type Item {
+  id: Int!
+  name: String!
+  desc: String!
+  loanId: Int
+  loan: [Loan!]
+}
+
+type Loan {
+  id: Int!
+  dateFrom: DateTime!
+  dateTo: DateTime!
+  items: [Item!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
   item(id: String!): TestModel!
-  items: [TestModel!]!
+  items: [Item!]!
+  getItem(id: Int!): Item!
+  loans: [Loan!]!
+  loan(id: Int!): Loan!
 }
 
 type Mutation {
-  createItem(name: String!): TestModel!
+  createItem(createItemInput: CreateItemInput!): Item!
+  createLoan(createLoanInput: CreateLoanInput!): Loan!
+  removeLoan(id: Int!): Loan!
+}
+
+input CreateItemInput {
+  name: String!
+  desc: String!
+  loanId: Int!
+}
+
+input CreateLoanInput {
+  dateFrom: DateTime!
+  dateTo: DateTime!
 }

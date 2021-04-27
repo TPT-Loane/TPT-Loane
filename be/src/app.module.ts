@@ -5,6 +5,8 @@ import { TestModel } from './models/test.model';
 import { AppController } from './app.controller';
 import { TestModule } from './service/test.module';
 import { ConfigModule } from '@nestjs/config';
+import { ItemsModule } from './loanitems/items.module';
+import { LoansModule } from './loans/loans.module';
 
 @Module({
   imports: [
@@ -22,9 +24,10 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: ['dist/**/*.model.js', TestModel],
-      synchronize: true,
+      entities: ['dist/**/*.model.js', TestModel, 'dist/**/*.entity{.ts,.js}'],
     }),
+    ItemsModule,
+    LoansModule,
   ],
   controllers: [AppController],
 })
