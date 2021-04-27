@@ -15,7 +15,7 @@ export default function Default({
         <Header />
         <Flex position="sticky" flexDirection="row" pb={14}>
           <Sidebar />
-          <Flex w="100%">{children}</Flex>
+          <Box w="100%">{children}</Box>
         </Flex>
         <Footer />
       </Box>

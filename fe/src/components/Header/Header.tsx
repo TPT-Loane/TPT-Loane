@@ -3,21 +3,12 @@ import {
   Flex,
   Heading,
   HStack,
-  Link,
   useColorModeValue,
+  Text,
 } from '@chakra-ui/react';
-import Drawerbar from '../Drawerbar';
-
-const NAV_ITEMS = [
-  {
-    label: 'Home',
-    href: '/',
-  },
-  {
-    label: 'About',
-    href: '/about',
-  },
-];
+import { Link as RouteLink } from 'react-router-dom';
+import { NAV_ITEMS } from '../../utils/nav';
+import Drawerbar from '../Sidebar/Drawerbar';
 
 export default function Header(): JSX.Element {
   return (
@@ -36,19 +27,19 @@ export default function Header(): JSX.Element {
           </Heading>
           <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
             {NAV_ITEMS.map(navItem => (
-              <Link
-                key={navItem.href}
-                px={2}
-                py={1}
-                rounded="md"
-                _hover={{
-                  textDecoration: 'none',
-                  bg: useColorModeValue('gray.200', 'gray.700'),
-                }}
-                href={navItem.href}
-              >
-                {navItem.label}
-              </Link>
+              <RouteLink key={navItem.href} to={navItem.href}>
+                <Box
+                  px={2}
+                  py={1}
+                  rounded="md"
+                  _hover={{
+                    textDecoration: 'none',
+                    bg: useColorModeValue('gray.200', 'gray.700'),
+                  }}
+                >
+                  <Text fontSize="xl">{navItem.label}</Text>
+                </Box>
+              </RouteLink>
             ))}
           </HStack>
         </HStack>

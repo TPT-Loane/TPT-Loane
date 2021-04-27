@@ -23,7 +23,7 @@ const Drawerbar: React.FC = () => {
         variant="ghost"
         size="md"
         onClick={onOpen}
-        display={{ base: 'inline-flex', xl: 'none' }}
+        display={{ base: 'inline-flex', md: 'none' }}
       />
       <Drawer isOpen={isOpen} onClose={onClose} placement="left" size="xs">
         <DrawerOverlay />

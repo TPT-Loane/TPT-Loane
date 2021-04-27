@@ -16,8 +16,6 @@
     "@chakra-ui/react": "^1.5.1",
     "@emotion/react": "^11.1.5",
     "@emotion/styled": "^11.3.0",
-    "@react-icons/all-files": "^4.1.0",
-    "@testing-library/react": "^11.2.6",
     "framer-motion": "^4.1.5",
     "node-sass": "^5.0.0",
     "react": "^17.0.2",
@@ -29,6 +27,7 @@
     "web-vitals": "^1.1.1"
   },
   "devDependencies": {
+    "@testing-library/react": "^11.2.6",
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/user-event": "^12.8.3",
     "@types/jest": "^26.0.22",

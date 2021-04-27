@@ -1,27 +1,26 @@
-import { Button, Link } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import React, { ReactElement } from 'react';
 
-interface SidebarItemLinkProps {
+interface SidebarItemButtonProps {
   icon: ReactElement<string | undefined>;
   title: string;
-  where:string;
+  active?: boolean;
 }
 
-export const SidebarItemLink: React.FC<SidebarItemLinkProps> = ({
+export const SidebarItemButton: React.FC<SidebarItemButtonProps> = ({
   icon,
+  active,
   title,
-  where,
 }) => (
   <Button
-    as={Link}
     borderRadius={0}
     variant="ghost"
     justifyContent="flex-start"
     leftIcon={icon}
+    isActive={active}
     iconSpacing="1.5em"
     pl="1.5em"
     fontSize="md"
-    href={where}
   >
     {title}
   </Button>

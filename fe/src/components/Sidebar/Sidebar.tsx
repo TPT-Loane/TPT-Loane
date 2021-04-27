@@ -1,13 +1,13 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
-import { SidebarContent } from './SidebarContent';
+import { SidebarContent } from './SidebarElements/SidebarContent';
 
 const Sidebar: React.FC = () => (
   <>
     <Box
-      display={{ base: 'none', xl: 'block' }}
+      display={{ base: 'none', md: 'block' }}
       w="14.5em"
-      minW="14.5em"
+      minW="20em"
       maxH="93.5vh"
       top="4em"
       bottom="3.5em"

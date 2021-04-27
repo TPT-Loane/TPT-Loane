@@ -7,15 +7,15 @@ import Default from './components/layouts/Default';
 function App(): JSX.Element {
   return (
     <>
-      <Default>
-        <Router>
+      <Router>
+        <Default>
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
             <Route component={Error} />
           </Switch>
-        </Router>
-      </Default>
+        </Default>
+      </Router>
     </>
   );
 }
