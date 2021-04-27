@@ -12,6 +12,7 @@ export const SidebarItemButton: React.FC<SidebarItemButtonProps> = ({
   active,
   title,
 }) => (
+  /* <Link to="/about">About</Link> */
   <Button
     borderRadius={0}
     variant="ghost"

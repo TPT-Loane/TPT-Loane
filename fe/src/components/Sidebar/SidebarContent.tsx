@@ -9,10 +9,13 @@ export const SidebarContent: React.FC = () => (
   <Flex direction="column">
     <SidebarItemButton icon={<IoHome size={22} />} active title="Home" />
     <SidebarItem>
-      <Box boxSizing="border-box" my="1em" mx="1.5em">
-        <Box marginBottom={2}>
-          <Text fontSize="sm">blabla</Text>
-        </Box>
+      <Box
+        position="absolute"
+        bottom={0}
+        boxSizing="border-box"
+        my="1em"
+        mx="1.5em"
+      >
         <Box>
           <Text color="gray.400" fontSize="sm">
             © 2021 TPT Loane
