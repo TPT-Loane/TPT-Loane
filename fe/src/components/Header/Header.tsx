@@ -10,6 +10,7 @@ import {
   Stack,
 } from '@chakra-ui/react';
 import { HamburgerIcon, CloseIcon } from '@chakra-ui/icons';
+import Drawerbar from '../Drawerbar';
 
 const NAV_ITEMS = [
   {
@@ -36,12 +37,11 @@ export default function Header(): JSX.Element {
           onClick={isOpen ? onClose : onOpen}
         />
         <HStack spacing={8} alignItems="center">
-          <Heading as="h4" size="md">TPT-Loane</Heading>
-          <HStack
-            as="nav"
-            spacing={4}
-            display={{ base: 'none', md: 'flex' }}
-          >
+          <Drawerbar />
+          <Heading as="h4" size="md">
+            TPT-Loane
+          </Heading>
+          <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
             {NAV_ITEMS.map(navItem => (
               <Link
                 key={navItem.href}
