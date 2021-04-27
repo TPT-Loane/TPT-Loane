@@ -50,6 +50,7 @@ rules:
         'allow':
           [
             '**/assets/*',
+            '**/styles/*',
             '**/components/layouts/*',
             '**/pages/*',
           ],
