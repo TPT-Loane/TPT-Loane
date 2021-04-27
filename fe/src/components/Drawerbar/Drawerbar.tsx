@@ -11,7 +11,7 @@ import {
 } from '@chakra-ui/react';
 import { HamburgerIcon } from '@chakra-ui/icons';
 import React from 'react';
-import { SidebarContent } from '../Sidebar/SidebarContent';
+import { DrawerbarContent } from './DrawerbarContent';
 
 const Drawerbar: React.FC = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -33,7 +33,7 @@ const Drawerbar: React.FC = () => {
             <Text>TPT Loane</Text>
           </DrawerHeader>
           <DrawerBody className="scrollbar" paddingX={0}>
-            <SidebarContent />
+            <DrawerbarContent />
           </DrawerBody>
         </DrawerContent>
       </Drawer>

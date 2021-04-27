@@ -8,10 +8,12 @@ const Sidebar: React.FC = () => (
       display={{ base: 'none', xl: 'block' }}
       w="14.5em"
       minW="14.5em"
-      maxH="80vh"
+      maxH="93.5vh"
       top="4em"
-      zIndex={1}
+      bottom="3.5em"
+      zIndex={2}
       position="sticky"
+      overflowY="auto"
       bg={useColorModeValue('gray.100', 'gray.900')}
     >
       <SidebarContent />

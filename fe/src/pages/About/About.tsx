@@ -1,9 +1,11 @@
+import { Flex, Text } from '@chakra-ui/react';
+
 function About(): JSX.Element {
   // @TODO - Add some actual content here.
   return (
-    <div>
-      <h1>About Page</h1>
-    </div>
+    <Flex w="100%" minH="100vh" justifyContent="center" flexDirection="column" alignItems="center">
+      <Text fontSize="xl">About Page</Text>
+    </Flex>
   );
 }
 
