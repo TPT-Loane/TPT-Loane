@@ -1,4 +1,4 @@
-# Pull request template
+# Pull request guidline
 
 ## Header
 Pull request header should be the issue header and the issue number.
@@ -26,3 +26,13 @@ Name the branch same as the issue header.
 **Header:** Add contributing.md guide page #10
 
 **Description:** Added pull_request_template.
+
+# Pull request templet
+
+Add to description
+```
+- [] Bug fix (non-breaking change which fixes an issue)
+- [] New feature (non-breaking change which adds functionality)
+- [] Breaking change (fix or feature that would cause existing functionality to not work as expected)
+- [] This change requires a documentation update
+```
