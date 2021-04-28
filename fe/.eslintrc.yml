@@ -5,67 +5,57 @@ extends:
   - airbnb-typescript
   - airbnb/hooks
   - plugin:@typescript-eslint/recommended
-parser: '@typescript-eslint/parser'
+parser: "@typescript-eslint/parser"
 parserOptions:
   ecmaFeatures:
     jsx: true
   ecmaVersion: 12
   sourceType: module
   files:
-    - '*.ts'
-    - '*.tsx'
+    - "*.ts"
+    - "*.tsx"
   project: tsconfig.json
 plugins:
   - react
-  - '@typescript-eslint'
+  - "@typescript-eslint"
 rules:
   comma-dangle:
     - error
     - only-multiline
   import/no-cycle: off
 
-  '@typescript-eslint/explicit-function-return-type': 'off'
-  '@typescript-eslint/no-unused-vars': warn
-  linebreak-style: 'off'
-  import/no-unresolved: 'off'
-  import/extensions: 'off'
-  react/react-in-jsx-scope: 'off'
+  "@typescript-eslint/explicit-function-return-type": "off"
+  "@typescript-eslint/no-unused-vars": warn
+  linebreak-style: "off"
+  import/no-unresolved: "off"
+  import/extensions: "off"
+  react/react-in-jsx-scope: "off"
   import/no-extraneous-dependencies:
     [
-      'error',
+      "error",
       {
-        'devDependencies': true,
-        'optionalDependencies': true,
-        'peerDependencies': true,
+        "devDependencies": true,
+        "optionalDependencies": true,
+        "peerDependencies": true,
       },
     ]
   import/prefer-default-export:
-    - 'off'
+    - "off"
     - extensions:
-        - '.ts'
+        - ".ts"
   import/no-internal-modules:
-    [
-      'error',
-      {
-        'allow':
-          [
-            '**/assets/*',
-            '**/styles/*',
-            '**/index.ts',
-          ],
-      },
-    ]
+    ["error", { "allow": ["**/assets/*", "**/styles/*", "**/index.ts"] }]
   react/jsx-filename-extension:
-    - 'off'
+    - "off"
     - extensions:
-        - '.js'
-        - '.jsx'
-  react/destructuring-assignment: 'off'
-  jsx-a11y/no-static-element-interactions: 'off'
-  prefer-template: 'off'
-  no-plusplus: 'off'
-  eol-last: 'error'
-  react/prop-types: 'off'
+        - ".js"
+        - ".jsx"
+  react/destructuring-assignment: "off"
+  jsx-a11y/no-static-element-interactions: "off"
+  prefer-template: "off"
+  no-plusplus: "off"
+  eol-last: "error"
+  react/prop-types: "off"
   arrow-parens:
     - Error
     - as-needed
@@ -74,8 +64,8 @@ rules:
     - code: 135
   no-empty-function: warn
   no-empty: warn
-  '@typescript-eslint/no-empty-function': warn
-  prefer-destructuring: 'off'
+  "@typescript-eslint/no-empty-function": warn
+  prefer-destructuring: "off"
   jsx-a11y/click-events-have-key-events: off
   react-hooks/rules-of-hooks: off
   react/require-default-props: off
