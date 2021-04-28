@@ -51,8 +51,7 @@ rules:
           [
             '**/assets/*',
             '**/styles/*',
-            '**/components/layouts/*',
-            '**/pages/*',
+            '**/index.ts',
           ],
       },
     ]
