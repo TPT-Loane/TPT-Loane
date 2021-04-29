@@ -22,6 +22,16 @@ jobs:
         - "npm run build" # builds front end
       name: "build"
 
+    - stage: back-end
+      name: "lint"
+      script:
+        - "cd be"
+        - "npm run lint" # Runs back end linter
+    - script:
+        - "cd be"
+        - "npm run build" # builds back end
+      name: "build"
+
     - stage: test # If not here, will run 'make tests' in the root folder.
       script: skip
 
@@ -35,8 +45,10 @@ branches:
 stages:
   - install-cache
   - front-end
+  - back-end
   - test
 
 cache:
   directories:
     - "fe/node_modules"
+    - "be/node_modules"
