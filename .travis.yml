@@ -6,16 +6,12 @@ node_js:
 
 jobs:
   include:
-    - stage: front-end-cache #Installs dependencies needed in cache so they wouldn't be repeated several times, to lessen run time.
-      name: "front-end npm"
+    - stage: install-cache #Installs dependencies needed in cache so they wouldn't be repeated several times, to lessen run time.
+      name: "install npm dependencies"
       script:
         - "cd fe"
         - "npm ci"
-
-    - stage: back-end-cache #Installs dependencies needed in cache so they wouldn't be repeated several times, to lessen run time.
-      name: "back-end npm"
-      script:
-        - "cd be"
+        - "cd ../be"
         - "npm ci"
 
     - stage: front-end
@@ -49,8 +45,7 @@ branches:
     - main
 
 stages:
-  - front-end-cache
-  - back-end-cache
+  - install-cache
   - front-end
   - back-end
   - test
