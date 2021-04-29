@@ -17,6 +17,8 @@ The front end is made with React, Chakra UI and Sass.
 
 ## Important variables
 
+[Found in '.env.example' file.](./.env.example)
+
 Development Front end URL (docker): [localhost:3000](http://localhost:3000)
 
 ## Running the development front end
@@ -24,7 +26,7 @@ Development Front end URL (docker): [localhost:3000](http://localhost:3000)
 Running the front end in docker:
 
 ```bash
-cd ../../../                                        # navigate into the project root
+cd ..                                               # navigate into the project root
 docker-compose --profile www-dev up --build -d      # run it in a detached docker container
 
 # connect to localhost:3000 to access the site
@@ -45,7 +47,7 @@ npm run dev                         # run development server
 Stopping the front end in docker:
 
 ```bash
-cd ../../../                        # navigate into the project root
+cd ..                               # navigate into the project root
 docker-compose down                 # stop the container
 ```
 

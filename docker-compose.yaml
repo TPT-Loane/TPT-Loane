@@ -6,10 +6,22 @@ services:
       - all
       - www-dev
     build:
-      context: ./fe/
+      context: fe/
       dockerfile: docker/www-dev.dockerfile
     ports:
       - 3000:3000
+    env_file:
+      - fe/.env
+  be-dev:
+    # back end development server
+    profiles:
+      - all
+      - be-dev
+    build:
+      context: be/
+      dockerfile: docker/be-dev.dockerfile
+    env_file:
+      - be/.env
   db-dev:
     # development database
     profiles:
@@ -23,7 +35,8 @@ services:
     ports:
       - 7842:5432
     volumes:
-      - ./be/db/dev-db/postgres-data:/var/lib/postgresql/data
+        # database persistance location
+      - ./docker/volumes/postgres-data:/var/lib/postgresql/data
         # copies SQL script to create example tables
       - ./be/db/dev-db/sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
         # copies SQL script to fill example tables
