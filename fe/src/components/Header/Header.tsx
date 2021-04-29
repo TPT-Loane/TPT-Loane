@@ -7,8 +7,8 @@ import {
   Text,
 } from '@chakra-ui/react';
 import { Link as RouteLink } from 'react-router-dom';
-import { NAV_ITEMS } from '../../utils/nav';
-import Drawerbar from '../Sidebar/Drawerbar';
+import { NAV_ITEMS } from '../../utils';
+import { Drawerbar } from '../Sidebar';
 
 export default function Header(): JSX.Element {
   return (

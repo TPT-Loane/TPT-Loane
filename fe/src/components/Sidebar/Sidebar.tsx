@@ -1,6 +1,6 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
 import React from 'react';
-import { SidebarContent } from './SidebarElements/SidebarContent';
+import { SidebarContent } from './SidebarContent';
 
 const Sidebar: React.FC = () => (
   <>
