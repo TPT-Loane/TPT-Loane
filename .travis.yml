@@ -28,6 +28,10 @@ jobs:
 # install:
 #  - "cd fe; npm install; cd .."
 
+branches:
+  only:
+    - main
+
 stages:
   - install-cache
   - front-end
