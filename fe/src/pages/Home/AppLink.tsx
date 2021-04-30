@@ -1,12 +1,15 @@
+import { Link } from '@chakra-ui/react';
+
 const AppLink = (): JSX.Element => (
-  <a
+  <Link
     className="App-link"
     href="https://reactjs.org"
     target="_blank"
     rel="noopener noreferrer"
+    fontSize="2xl"
   >
     Learn React
-  </a>
+  </Link>
 );
 
 export default AppLink;
