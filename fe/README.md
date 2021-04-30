@@ -19,7 +19,7 @@ The front end is made with React, Chakra UI and Sass.
 
 [Found in '.env.example' file.](./.env.example)
 
-Development Front end URL (docker): [localhost:3000](http://localhost:3000)
+Development front end URL (docker): [localhost:3000](http://localhost:3000)
 
 ## Running the development front end
 

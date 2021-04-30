@@ -59,10 +59,4 @@ leftover databases from previous dev runs using the command above.
 
 ## Troubleshooting
 
-If you get error (on windows)...
-
-```bash
-docker.errors.DockerException: Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')
-```
-
-...then your docker engine isn't running
+(There are currently no known errors related to running the database.)

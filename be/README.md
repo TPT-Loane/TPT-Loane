@@ -18,9 +18,11 @@
 
 [Found in '.env.example' file.](./.env.example)
 
+Development back end URL (docker): [localhost:3001](http://localhost:3001)
+
 ## Running the development back end
 
-Running the front end in docker:
+Running the back end in docker:
 
 ```bash
 cd ..                                               # navigate into the project root
