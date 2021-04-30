@@ -1,17 +1,17 @@
 version: '3.9'
 services:
-  www-dev:
+  fe-dev:
     # front end development server
     profiles:
       - all
-      - www-dev
+      - fe-dev
     build:
       context: fe/
-      dockerfile: docker/www-dev.dockerfile
+      dockerfile: docker/fe-dev.dockerfile
     ports:
       - 3000:3000
-    env_file:
-      - fe/.env
+    volumes:
+      - ./fe/:/app/fe
   be-dev:
     # back end development server
     profiles:
@@ -20,8 +20,14 @@ services:
     build:
       context: be/
       dockerfile: docker/be-dev.dockerfile
-    env_file:
-      - be/.env
+    ports:
+      - 3001:3000
+    volumes:
+      - ./be/:/app/be
+    environment:
+      - DATABASE_IP=db-dev
+      - DATABASE_PORT=5432
+      - SERVER_PORT=3000
   db-dev:
     # development database
     profiles:
@@ -29,9 +35,6 @@ services:
       - db-dev
     image: postgres:13 # Uses Debian, use 'postgres:13-alpine' for lighter version
     restart: always
-    environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
     ports:
       - 7842:5432
     volumes:
