@@ -22,7 +22,7 @@ rules:
   comma-dangle:
     - error
     - only-multiline
-  import/no-cycle: off
+  import/no-cycle: 'off'
 
   '@typescript-eslint/explicit-function-return-type': 'off'
   '@typescript-eslint/no-unused-vars': warn
@@ -44,17 +44,7 @@ rules:
     - extensions:
         - '.ts'
   import/no-internal-modules:
-    [
-      'error',
-      {
-        'allow':
-          [
-            '**/assets/*',
-            '**/components/layouts/*',
-            '**/pages/*',
-          ],
-      },
-    ]
+    ['error', { 'allow': ['**/assets/*', '**/styles/*', '**/index.ts'] }]
   react/jsx-filename-extension:
     - 'off'
     - extensions:
@@ -76,7 +66,7 @@ rules:
   no-empty: warn
   '@typescript-eslint/no-empty-function': warn
   prefer-destructuring: 'off'
-  jsx-a11y/click-events-have-key-events: off
-  react-hooks/rules-of-hooks: off
-  react/require-default-props: off
-  react/jsx-props-no-spreading: off
+  jsx-a11y/click-events-have-key-events: 'off'
+  react-hooks/rules-of-hooks: 'off'
+  react/require-default-props: 'off'
+  react/jsx-props-no-spreading: 'off'
