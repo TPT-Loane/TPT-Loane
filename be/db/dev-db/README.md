@@ -2,7 +2,7 @@
 
 This folder contains the nessecary files needed to launch a docker instance with
 postgresql and example data that can be accessed with a database manager such
-as [dbeaver](https://dbeaver.io/)[(github)](https://github.com/dbeaver/dbeaver).
+as [dbeaver](https://dbeaver.io/) [(github)](https://github.com/dbeaver/dbeaver).
 
 ## Table of contents
 
@@ -30,7 +30,7 @@ User for database: 'postgres'
 
 Pass for database: 'postgres'
 
-database in database: 'postgres'
+Database in database: 'postgres'
 
 ## Running the development database in docker
 
@@ -48,8 +48,7 @@ docker-compose --profile dev-db --profile adminer up --build -d     # run it in 
 ```bash
 cd ../../../                        # navigate into the project root
 docker-compose down                 # stop the container (data is still persistent)
-rm -rf be/db/dev-db/postgres-data   # destroy any data that persists (simply
-                                    # removes the folder)
+rm -rf docker/volumes/postgres-data # destroy any data that persists (simply removes the folder)
 ```
 
 ## Adding example data and tables

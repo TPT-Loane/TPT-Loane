@@ -29,7 +29,7 @@ Running the front end in docker:
 cd ..                                               # navigate into the project root
 docker-compose --profile www-dev up --build -d      # run it in a detached docker container
 
-# connect to localhost:3000 to access the site
+# connect to localhost:3000 to access front end
 ```
 
 Running the front end locally:
@@ -39,7 +39,7 @@ cd TPT-Loane/fe/                    # navigate into this directory
 npm i                               # install dependencies
 npm run dev                         # run development server
 
-# connect to localhost:3000 to access the site
+# connect to localhost:3000 to access front end
 ```
 
 ## Stopping the development front end

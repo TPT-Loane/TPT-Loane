@@ -38,6 +38,8 @@ npm i                               # install dependencies
 npm run start                       # run development server
 npm run start:dev                   # run development server (watch mode)
 npm run start:prod                  # run the production server
+
+# connect to localhost:3001 to access back end
 ```
 
 ### Database migrations

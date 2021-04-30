@@ -16,6 +16,12 @@ Loan and borrow!
 
   - [Important variables](#important-variables)
 
+    - [Front end specific](./fe/README.md#important-variables)
+
+    - [Back end specific](./be/README.md#important-variables)
+
+    - [Database specific](./be/db/dev-db/README.md#accessing-the-database)
+
   - [Running the development services](#running-the-development-services)
 
   - [Stopping the development services](#stopping-the-development-services)
@@ -38,7 +44,7 @@ Loan and borrow!
 
 [Back end specific](./be/README.md#important-variables)
 
-[database specific](./be/db/dev-db/README.md#accessing-the-database)
+[Database specific](./be/db/dev-db/README.md#accessing-the-database)
 
 ### Running the development services
 
@@ -61,8 +67,7 @@ Stopping the project in docker:
 
 ```bash
 docker-compose down                 # stop the containers (database persists)
-rm -rf docker/volumes/postgres-data # destroy any data that persists (simply
-                                    # removes the folder)
+rm -rf docker/volumes/postgres-data # destroy any data that persists (simply removes the folder)
 ```
 
 ## Troubleshooting
@@ -77,7 +82,7 @@ rm -rf docker/volumes/postgres-data # destroy any data that persists (simply
 
 If you get error (on windows)...
 
-```bash
+```text
 docker.errors.DockerException: Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')
 ```
 
