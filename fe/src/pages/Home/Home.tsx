@@ -13,64 +13,96 @@ interface Product {
   imageUrl: string,
 }
 
-// @todo - Remove this fake data when its replaced with products from API.
-const PRODUCTS_CARD_ITEMS: Array<Product> = [
+// @todo - Remove this interface after we have a type for ProductCardItem as "single source of truth".
+interface ProductCardItem {
+  product: Product,
+  // These would be ProductCard specific props..
+  quantity: number,
+  // etc..
+}
+
+// @todo - Remove this fake data when its replaced with items from API.
+const PRODUCTS_CARD_ITEMS: Array<ProductCardItem> = [
   {
-    id: 0,
-    name: 'HP Pavilion 300H',
-    description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
-    isAvailable: true,
-    imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    product: {
+      id: 0,
+      name: 'HP Pavilion 300H',
+      description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
+      isAvailable: true,
+      imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    },
+    quantity: 16,
   },
   {
-    id: 1,
-    name: 'Laptop 150G',
-    // eslint-disable-next-line
-    description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
-    isAvailable: true,
-    imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    product: {
+      id: 1,
+      name: 'Laptop 150G',
+      // eslint-disable-next-line
+      description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
+      isAvailable: true,
+      imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    },
+    quantity: 8,
   },
   {
-    id: 2,
-    name: 'MacBook Air 400T',
-    description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
-    isAvailable: false,
-    imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    product: {
+      id: 2,
+      name: 'MacBook Air 400T',
+      description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
+      isAvailable: false,
+      imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    },
+    quantity: 0,
   },
   {
-    id: 3,
-    name: 'Teapot UltraBook',
-    description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
-    isAvailable: false,
-    imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    product: {
+      id: 3,
+      name: 'Teapot UltraBook',
+      description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
+      isAvailable: false,
+      imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    },
+    quantity: 0,
   },
   {
-    id: 4,
-    name: 'Nikon 150G',
-    description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
-    isAvailable: true,
-    imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    product: {
+      id: 4,
+      name: 'Nikon 150G',
+      description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
+      isAvailable: true,
+      imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    },
+    quantity: 2,
   },
   {
-    id: 5,
-    name: 'Mac 800 Keyboard',
-    description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
-    isAvailable: true,
-    imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    product: {
+      id: 5,
+      name: 'Mac 800 Keyboard',
+      description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
+      isAvailable: true,
+      imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    },
+    quantity: 5,
   },
   {
-    id: 6,
-    name: 'Samsung 70000',
-    description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
-    isAvailable: false,
-    imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    product: {
+      id: 6,
+      name: 'Samsung 70000',
+      description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
+      isAvailable: false,
+      imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    },
+    quantity: 0,
   },
   {
-    id: 7,
-    name: 'Nikon 600P',
-    description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
-    isAvailable: true,
-    imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    product: {
+      id: 7,
+      name: 'Nikon 600P',
+      description: 'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
+      isAvailable: true,
+      imageUrl: 'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+    },
+    quantity: 4,
   },
 ];
 
@@ -88,9 +120,9 @@ function Home(): JSX.Element {
         {PRODUCTS_CARD_ITEMS.map(productCardItem => (
           <Box
             m={1}
-            key={product.id}
+            key={productCardItem.product.id}
           >
-            <ProductCard product={product} />
+            <ProductCard productCardItem={productCardItem} />
           </Box>
         ))}
       </SimpleGrid>
