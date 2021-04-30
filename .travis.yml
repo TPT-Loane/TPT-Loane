@@ -7,32 +7,34 @@ node_js:
 jobs:
   include:
     - stage: install-cache #Installs dependencies needed in cache so they wouldn't be repeated several times, to lessen run time.
-      name: "install npm dependencies"
       script:
         - "cd fe"
         - "npm ci"
-        - "cd ../be"
+      name: "install FE npm dependencies"
+    - script:
+        - "cd be"
         - "npm ci"
+      name: "install BE npm dependencies"
 
-    - stage: front-end
-      name: "lint"
+    - stage: lint
       script:
         - "cd fe"
         - "npm run lint" # Runs front end linter
+      name: "lint FE"
     - script:
-        - "cd fe"
-        - "npm run build" # builds front end
-      name: "build"
-
-    - stage: back-end
-      name: "lint"
-      script:
         - "cd be"
         - "npm run lint" # Runs back end linter
+      name: "lint BE"
+
+    - stage: build
+      script:
+        - "cd fe"
+        - "npm run build" # builds front end
+      name: "build FE"
     - script:
         - "cd be"
         - "npm run build" # builds back end
-      name: "build"
+      name: "build BE"
 
     - stage: test # If not here, will run 'make tests' in the root folder.
       script: skip
@@ -46,8 +48,8 @@ branches:
 
 stages:
   - install-cache
-  - front-end
-  - back-end
+  - lint
+  - build
   - test
 
 cache:
