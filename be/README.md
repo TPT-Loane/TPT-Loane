@@ -1,54 +1,70 @@
-# TPT-Loane Backend
+# Back end
 
+## Table of contents
 
-## Installation
+- [Important variables](#important-variables)
 
-```bash
-$ npm install
-```
-## Database migrations 
+- [Running the development back end](#running-the-development-back-end)
 
-Generate migrations:  ```npm run gen-migration <ModelName>```
+- [Database migrations](#database-migrations)
 
-Run migrations: ```npm run migrate```
+- [Tests](#tests)
 
+- [Stopping the development back end](#stopping-the-development-back-end)
 
-## Running the app
+- [Troubleshooting](#troubleshooting)
 
-```bash
-# development
-$ npm run start
+## Important variables
 
-# watch mode
-$ npm run start:dev
+[Found in '.env.example' file.](./.env.example)
 
-# production mode
-$ npm run start:prod
-```
+Development back end URL (docker): [localhost:3001](http://localhost:3001)
 
-## Test
+## Running the development back end
+
+Running the back end in docker:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+cd ..                                               # navigate into the project root
+docker-compose --profile be-dev up --build -d       # run it in a detached docker container
 ```
 
-## Support
+Running the back end locally:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+```bash
+cd TPT-Loane/be/                    # navigate into this directory
+npm i                               # install dependencies
 
-## Stay in touch
+npm run start                       # run development server
+npm run start:dev                   # run development server (watch mode)
+npm run start:prod                  # run the production server
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+# connect to localhost:3001 to access back end
+```
 
-## License
+### Database migrations
 
-Nest is [MIT licensed](LICENSE).
+```bash
+npm run gen-migration <ModelName>   # generate migrations
+```
+
+### Tests
+
+```bash
+npm run test                        # unit tests
+npm run test:e2e                    # e2e tests
+npm run test:cov                    # test coverage
+```
+
+## Stopping the development back end
+
+Stopping the front end in docker:
+
+```bash
+cd ..                               # navigate into the project root
+docker-compose down                 # stop the container
+```
+
+## Troubleshooting
+
+(There are currently no known errors related to running the back end.)

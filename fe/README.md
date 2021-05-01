@@ -1,46 +1,56 @@
-# Getting Started with Create React App
+# Front end
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This folder contains all the files related to creating a front end for the
+project.
 
-## Available Scripts
+The front end is made with React, Chakra UI and Sass.
 
-In the project directory, you can run:
+## Table of contents
 
-### `npm start`
+- [Important variables](#important-variables)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- [Running the development front end](#running-the-development-front-end)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- [Stopping the development front end](#stopping-the-development-front-end)
 
-### `npm test`
+- [Troubleshooting](#troubleshooting)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Important variables
 
-### `npm run build`
+[Found in '.env.example' file.](./.env.example)
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Development front end URL (docker): [localhost:3000](http://localhost:3000)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Running the development front end
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Running the front end in docker:
 
-### `npm run eject`
+```bash
+cd ..                                               # navigate into the project root
+docker-compose --profile www-dev up --build -d      # run it in a detached docker container
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+# connect to localhost:3000 to access front end
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Running the front end locally:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+cd TPT-Loane/fe/                    # navigate into this directory
+npm i                               # install dependencies
+npm run dev                         # run development server
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+# connect to localhost:3000 to access front end
+```
 
-## Learn More
+## Stopping the development front end
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Stopping the front end in docker:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```bash
+cd ..                               # navigate into the project root
+docker-compose down                 # stop the container
+```
+
+## Troubleshooting
+
+(There are currently no known errors related to running the front end.)

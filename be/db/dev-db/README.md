@@ -2,11 +2,7 @@
 
 This folder contains the nessecary files needed to launch a docker instance with
 postgresql and example data that can be accessed with a database manager such
-as:
-
-[dbeaver](https://dbeaver.io/)
-
-[dbeaver github](https://github.com/dbeaver/dbeaver)
+as [dbeaver](https://dbeaver.io/) [(github)](https://github.com/dbeaver/dbeaver).
 
 ## Table of contents
 
@@ -23,25 +19,25 @@ as:
 ## Accessing the database
 
 Access the database using adminer at:
-'[localhost:8080](http://localhost:8080/?pgsql=db&username=postgres&db=postgres)'.
+'[localhost:8080](http://localhost:8080/?pgsql=db-dev&username=postgres&db=postgres)'.
 Make sure to select 'PostgreSQL' from the dropdown menu!
 
 Host machine port to access database: 7842
 
-Server for database: 'db'
+Server for database: 'db-dev'
 
 User for database: 'postgres'
 
 Pass for database: 'postgres'
 
-database in database: 'postgres'
+Database in database: 'postgres'
 
 ## Running the development database in docker
 
 ```bash
-cd TPT-Loane/be/db/dev-db/                          # navigate into this directory
-docker-compose up --build -d                        # run it in a detached docker container (without adminer)
-docker-compose --profile adminer up --build -d      # run it in a detached docker container (with adminer)
+cd ../../../                                                        # navigate into the project root
+docker-compose --profile dev-db up --build -d                       # run it in a detached docker container (without adminer)
+docker-compose --profile dev-db --profile adminer up --build -d     # run it in a detached docker container (with adminer)
 
 # connect to localhost:8080 to use with adminer or
 # access it with a database manager
@@ -50,10 +46,9 @@ docker-compose --profile adminer up --build -d      # run it in a detached docke
 ## Stopping the development database
 
 ```bash
-cd TPT-Loane/be/db/dev-db/       # navigate into this directory
-docker-compose down              # stop the container (data is still persistent)
-rm -rf postgres-data             # destroy any data that persists (simply
-                                 # removes the folder)
+cd ../../../                        # navigate into the project root
+docker-compose down                 # stop the container (data is still persistent)
+rm -rf docker/volumes/postgres-data # destroy any data that persists (simply removes the folder)
 ```
 
 ## Adding example data and tables
@@ -63,10 +58,4 @@ leftover databases from previous dev runs using the command above.
 
 ## Troubleshooting
 
-If you get error (on windows)...
-
-```bash
-docker.errors.DockerException: Error while fetching server API version: (2, 'CreateFile', 'The system cannot find the file specified.')
-```
-
-...then your docker engine isn't running
+(There are currently no known errors related to running the database.)
