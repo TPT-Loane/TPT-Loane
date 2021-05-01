@@ -2,15 +2,51 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type TestModel {
+type LoanItem {
+  id: Int!
   name: String!
+  desc: String!
+  loans: [Loan!]!
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Loan {
+  id: Int!
+  dateFrom: String!
+  dateTo: String!
+  loanItem: LoanItem!
+  loanItemId: Float!
+  createdAt: String!
+  updatedAt: String!
 }
 
 type Query {
-  item(id: String!): TestModel!
-  items: [TestModel!]!
+  loans: [Loan!]!
+  loanItem(id: Int!): LoanItem!
+  loanItems: [LoanItem!]!
 }
 
 type Mutation {
-  createItem(name: String!): TestModel!
+  createLoan(createLoanInput: CreateLoanInput!): Loan!
+  createLoanItem(createLoanItemInput: CreateLoanItemInput!): LoanItem!
+  updateLoanItem(updateLoanItemInput: UpdateLoanItemInput!): LoanItem!
+  deleteLoanItem(id: Float!): Boolean!
+}
+
+input CreateLoanInput {
+  loanItemId: Int!
+  dateFrom: String!
+  dateTo: String!
+}
+
+input CreateLoanItemInput {
+  name: String!
+  desc: String!
+}
+
+input UpdateLoanItemInput {
+  id: Float!
+  name: String!
+  desc: String!
 }
