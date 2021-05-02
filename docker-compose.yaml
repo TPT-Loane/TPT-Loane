@@ -17,6 +17,8 @@ services:
     profiles:
       - all
       - be-dev
+    depends_on:
+      - db-dev
     build:
       context: be/
       dockerfile: docker/be-dev.dockerfile
@@ -33,6 +35,7 @@ services:
     profiles:
       - all
       - db-dev
+      - be-dev
     image: postgres:13 # Uses Debian, use 'postgres:13-alpine' for lighter version
     restart: always
     ports:
@@ -40,10 +43,9 @@ services:
     volumes:
         # database persistance location
       - ./docker/volumes/postgres-data:/var/lib/postgresql/data
-        # copies SQL script to create example tables
-      - ./be/db/dev-db/sql/create_tables.sql:/docker-entrypoint-initdb.d/create_tables.sql
-        # copies SQL script to fill example tables
-      - ./be/db/dev-db/sql/fill_tables.sql:/docker-entrypoint-initdb.d/fill_tables.sql
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
   adminer:
     # adminer, so you don't have to install a database manager
     profiles:
