@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TestModel } from './models/test.model';
 import { AppController } from './app.controller';
-import { TestModule } from './service/test.module';
 import { ConfigModule } from '@nestjs/config';
+import { LoanItemsModule } from './loan-items/loan-items.module';
+import { LoansModule } from './loans/loans.module';
 
 @Module({
   imports: [
-    TestModule,
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       debug: false,
@@ -22,9 +21,11 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: ['dist/**/*.model.js', TestModel],
+      entities: ['dist/**/*.entity.js'],
       synchronize: true,
     }),
+    LoanItemsModule,
+    LoansModule,
   ],
   controllers: [AppController],
 })
