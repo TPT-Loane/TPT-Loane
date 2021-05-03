@@ -3,14 +3,12 @@
 This folder contains ready to read documentation. The 'src' folder contains the
 editable versions of these documents.
 
-## Creating graphs with graphviz
+## Graphs for helping with development
 
-Files with the `.gv` extension are [graphviz](https://www.graphviz.org/) files
-that can be used to create graphs with your text editor. The syntax is (in my
-opinion) pretty intuitive and should feel somewhat similar to html.
+### Loan life cycle
 
-Compiling your `.gv` file to a `.png` file:
+This is a graph to visualize the way loans should be handled. This contains
+basic actions that can be performed at different steps in the lifetime of an
+active loan.
 
-```bash
-dot input.gv -Tpng > output.png     # Compile a '.gv' file and output it as '.png'
-```
+![Overall flow digraph](./overall-flow-digraph.png)
