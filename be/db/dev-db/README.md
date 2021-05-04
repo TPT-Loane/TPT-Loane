@@ -1,8 +1,8 @@
 # Development database
 
 This folder contains the nessecary files needed to launch a docker instance with
-postgresql and example data that can be accessed with a database manager such
-as [dbeaver](https://dbeaver.io/) [(github)](https://github.com/dbeaver/dbeaver).
+postgresql that can be accessed with a database manager such as
+[dbeaver](https://dbeaver.io/) [(github)](https://github.com/dbeaver/dbeaver).
 
 ## Table of contents
 
@@ -39,8 +39,7 @@ cd ../../../                                                        # navigate i
 docker-compose --profile dev-db up --build -d                       # run it in a detached docker container (without adminer)
 docker-compose --profile dev-db --profile adminer up --build -d     # run it in a detached docker container (with adminer)
 
-# connect to localhost:8080 to use with adminer or
-# access it with a database manager
+# connect to localhost:8080 to use with adminer or access it with a database manager from localhost:7842
 ```
 
 ## Stopping the development database
@@ -53,8 +52,21 @@ rm -rf docker/volumes/postgres-data # destroy any data that persists (simply rem
 
 ## Adding example data and tables
 
-Modify the sql files included in the 'sql' folder. Make sure to remove any
-leftover databases from previous dev runs using the command above.
+The database gets initialized with data from the back end automagically. These
+are the instructions for how to do it semi-manually:
+
+```bash
+### Native
+### Make sure that the back end and database are running!
+
+cd ../../                           # navigate to the back end folder
+npm run gen-migration <ModelName>   # generate migrations
+
+### Docker
+### Make sure that 'db-dev' and 'be-dev' containers are running!
+
+docker exec tpt-loane_be-dev_1 npm run gen-migration <ModelName>    # generate migrations (docker)
+```
 
 ## Troubleshooting
 
