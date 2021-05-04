@@ -44,7 +44,7 @@ rules:
     - extensions:
         - '.ts'
   import/no-internal-modules:
-    ['error', { 'allow': ['**/assets/*', '**/styles/*', '**/index.ts'] }]
+    ['error', { 'allow': ['**/assets/*', '**/styles/*', '**/index.ts', 'react-icons/*'] }]
   react/jsx-filename-extension:
     - 'off'
     - extensions:

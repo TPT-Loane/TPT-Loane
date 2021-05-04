@@ -1,5 +1,4 @@
 import { Flex } from '@chakra-ui/react';
-// eslint-disable-next-line
 import { IoHome } from 'react-icons/io5';
 import React from 'react';
 import SidebarItem from './SidebarItem';

@@ -13,7 +13,11 @@ export default function Default({
     <>
       <Box position="relative" minHeight="100%">
         <Header />
-        <Flex position="sticky" flexDirection="row" pb={14}>
+        <Flex
+          // If you find a better fix to make this 100% of page height, let me know. - Georg
+          minH="100vh"
+          pb={14}
+        >
           <Sidebar />
           <Box w="100%">{children}</Box>
         </Flex>
