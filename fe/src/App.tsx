@@ -4,6 +4,7 @@ import About from './pages/About';
 import Login from './pages/Login';
 import Error from './pages/Error';
 import Default from './components/layouts/Default';
+import ProductDetails from './pages/ProductDetails';
 
 function App(): JSX.Element {
   return (
@@ -14,6 +15,7 @@ function App(): JSX.Element {
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/Login" component={Login} />
+            <Route path="/product/:id" component={ProductDetails} />
             <Route component={Error} />
           </Switch>
         </Default>
