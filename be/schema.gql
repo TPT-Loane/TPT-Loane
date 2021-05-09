@@ -6,11 +6,51 @@ type TestModel {
   name: String!
 }
 
+type Category {
+  """Example field (placeholder)"""
+  id: Int!
+
+  """Name of the Category"""
+  name: String!
+
+  """Can this category be used in a bundle (as an item)"""
+  bundelable: Boolean!
+
+  """Subcategories"""
+  subCategories: [Category!]!
+
+  """Parent categories"""
+  parentCategory: [Category!]
+}
+
 type Query {
   item(id: String!): TestModel!
   items: [TestModel!]!
+  categories: [Category!]!
 }
 
 type Mutation {
   createItem(name: String!): TestModel!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!, id: Int!): Category!
+  removeCategory(id: Int!): Category!
+}
+
+input CreateCategoryInput {
+  """Name of the category"""
+  name: String!
+
+  """Can this category be used in a bundle?"""
+  bundelable: Boolean!
+
+  """Id of the parent category"""
+  parentCategoryId: Float
+}
+
+input UpdateCategoryInput {
+  """Name of the category"""
+  name: String
+
+  """Can this category be used in a bundle?"""
+  bundelable: Boolean
 }
