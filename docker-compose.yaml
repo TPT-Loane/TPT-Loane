@@ -35,6 +35,7 @@ services:
     profiles:
       - all
       - db-dev
+      - adminer # include '--profile adminer' in your docker command to launch adminer alongside db
       - be-dev
     image: postgres:13 # Uses Debian, use 'postgres:13-alpine' for lighter version
     restart: always
