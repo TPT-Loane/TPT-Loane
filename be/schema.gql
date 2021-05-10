@@ -6,11 +6,59 @@ type TestModel {
   name: String!
 }
 
+type LoanItems {
+  id: Int!
+  name: String!
+  desc: String!
+  loans: [Loans!]!
+}
+
+type Loans {
+  id: Int!
+  dateFrom: String!
+  dateTo: String!
+  loanItemId: Int!
+  loanItems: LoanItems!
+}
+
 type Query {
   item(id: String!): TestModel!
   items: [TestModel!]!
+  findAllLoanItems: [LoanItems!]!
+  findOneLoanItem(id: Int!): LoanItems!
+  findAllLoans: [Loans!]!
+  findOneLoan(id: Int!): Loans!
 }
 
 type Mutation {
   createItem(name: String!): TestModel!
+  createLoanItem(createLoanItemInput: CreateLoanItemInput!): LoanItems!
+  updateLoanItem(updateLoanItemInput: UpdateLoanItemInput!): LoanItems!
+  removeLoanItem(id: Int!): LoanItems!
+  createLoan(createLoanInput: CreateLoanInput!): Loans!
+  updateLoan(updateLoanInput: UpdateLoanInput!): Loans!
+  removeLoan(id: Int!): Loans!
+}
+
+input CreateLoanItemInput {
+  name: String!
+  desc: String!
+}
+
+input UpdateLoanItemInput {
+  name: String!
+  desc: String!
+  id: Int!
+}
+
+input CreateLoanInput {
+  dateFrom: String!
+  dateTo: String!
+  loanItemId: Int!
+}
+
+input UpdateLoanInput {
+  dateFrom: String!
+  dateTo: String!
+  loanItemId: Int!
 }
