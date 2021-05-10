@@ -74,7 +74,6 @@ const ProductCard: React.FC<Props> = ({ productCardItem }: Props): JSX.Element =
 
       <Box p="6">
         <Flex mt="1" justifyContent="space-between" alignContent="center">
-          {/* @todo - Update this link to do something more logical (bring to product page?). */}
           <RouterLink to={link}>
             <Box
               fontSize="2xl"
