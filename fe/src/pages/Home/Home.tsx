@@ -1,5 +1,13 @@
-import { Box, SimpleGrid } from '@chakra-ui/react';
+import {
+  Box,
+  SimpleGrid,
+  List,
+  ListItem,
+} from '@chakra-ui/react';
+import { useState } from 'react';
 import ProductCard from '../../components/ProductCard';
+import ViewToggler from '../../components/ViewToggler';
+import { ViewType } from '../../utils';
 
 // @todo - Remove this interface after we have a type for Product as "single source of truth".
 interface Product {
@@ -37,8 +45,7 @@ const PRODUCTS_CARD_ITEMS: Array<ProductCardItem> = [
       id: 1,
       name: 'Laptop 150G',
       // eslint-disable-next-line
-      description:
-        'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
+      description: 'This is this product description..This is this product description..This is this product description..This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
       isAvailable: true,
       imageUrl:
         'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
@@ -120,15 +127,46 @@ const PRODUCTS_CARD_ITEMS: Array<ProductCardItem> = [
 ];
 
 function Home(): JSX.Element {
+  const [viewType, setViewType] = useState(ViewType.List);
+
   return (
-    <Box px={2} py={16}>
-      <SimpleGrid justifyItems="center" minChildWidth="19rem" spacing={1}>
-        {PRODUCTS_CARD_ITEMS.map(productCardItem => (
-          <Box m={1} key={productCardItem.product.id}>
-            <ProductCard productCardItem={productCardItem} />
-          </Box>
+    <Box
+      px={2}
+      py={16}
+    >
+      <Box display="inline-block" p={2} w="100%">
+        <ViewToggler view={viewType} setView={setViewType} />
+      </Box>
+
+      {(viewType === ViewType.List
+        ? (
+          <List>
+            {PRODUCTS_CARD_ITEMS.map(productCardItem => (
+              <ListItem
+                m={2}
+                key={productCardItem.product.id}
+              >
+                <ProductCard productCardItem={productCardItem} asListItem />
+              </ListItem>
+            ))}
+          </List>
+        )
+        : (
+          <SimpleGrid
+            justifyItems="center"
+            minChildWidth="19rem"
+            spacing={1}
+          >
+            {PRODUCTS_CARD_ITEMS.map(productCardItem => (
+              <Box
+                m={2}
+                key={productCardItem.product.id}
+              >
+                <ProductCard productCardItem={productCardItem} />
+              </Box>
+            ))}
+          </SimpleGrid>
         ))}
-      </SimpleGrid>
     </Box>
   );
 }
