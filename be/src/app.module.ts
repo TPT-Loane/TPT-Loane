@@ -6,6 +6,7 @@ import { ConfigModule } from '@nestjs/config';
 import { CategoryModule } from './category/category.module';
 import { NoteModule } from './note/note.module';
 import { ItemModule } from './item/item.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ItemModule } from './item/item.module';
     CategoryModule,
     NoteModule,
     ItemModule,
+    UserModule,
   ],
   exports: [NoteModule, ItemModule],
   controllers: [AppController],

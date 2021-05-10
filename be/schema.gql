@@ -36,58 +36,30 @@ type Item {
   regCode: String!
   createdAt: DateTime!
   notes: [Note!]!
+type User {
+  id: Float!
+  username: String!
+  phone: String!
+  email: String!
+  password: String!
+  registration_date: DateTime!
+  role: Float!
+  full_name: String!
+  personal_code: String!
 }
 
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
-  categories: [Category!]!
-  note(id: Float!): Note!
-  notes: [Note!]!
-  items: [Item!]!
-  item(id: Int!): Item!
+  userById(id: Float!): User!
+  userByPersonalCode(id: String!): User!
+  users: [User!]!
 }
 
 type Mutation {
-  createCategory(createCategoryInput: CreateCategoryInput!): Category!
-  updateCategory(updateCategoryInput: UpdateCategoryInput!, id: Int!): Category!
-  removeCategory(id: Int!): Category!
-  createNote(createNoteInput: CreateNoteInput!): Note!
-  removeNote(id: Int!): Note!
-  createItem(createItemInput: CreateItemInput!): Item!
-  updateItem(updateItemInput: UpdateItemInput!): Item!
-  removeItem(id: Int!): Item!
-}
-
-input CreateCategoryInput {
-  """Name of the category"""
-  name: String!
-
-  """Can this category be used in a bundle?"""
-  bundelable: Boolean!
-
-  """Id of the parent category"""
-  parentCategoryId: Float
-}
-
-input UpdateCategoryInput {
-  """Name of the category"""
-  name: String
-
-  """Can this category be used in a bundle?"""
-  bundelable: Boolean
-}
-
-input CreateNoteInput {
-  """Content of the note"""
-  content: String!
-
-  """Id of the item for relation"""
-  itemId: Int!
-}
-
-input CreateItemInput {
-  regCode: String!
-}
-
-input UpdateItemInput {
-  regCode: String
+  deleteUser(id: Float!): User!
+  createUser(personal_code: String!, role: Float!, fullname: String!, phone: String!, email: String!, password: String!, username: String!): User!
 }
