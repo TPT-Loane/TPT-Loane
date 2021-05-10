@@ -10,12 +10,17 @@ import { ViewType } from '../../utils';
 interface Props {
   view: ViewType;
   setView: React.Dispatch<React.SetStateAction<ViewType>>;
+  viewSwitchable: boolean;
 }
 
-const ProductCard: React.FC<Props> = ({ view, setView } : Props): JSX.Element => {
+const ProductCard: React.FC<Props> = ({ view, setView, viewSwitchable } : Props): JSX.Element => {
   const isView = (viewType: ViewType): boolean => view === viewType;
 
   const setViewType = (): void => {
+    if (!viewSwitchable) {
+      return;
+    }
+
     const newViewType: ViewType = isView(ViewType.List)
       ? ViewType.Grid
       : ViewType.List;
@@ -30,6 +35,7 @@ const ProductCard: React.FC<Props> = ({ view, setView } : Props): JSX.Element =>
         rounded="none"
         variant="solid"
         isActive={isView(ViewType.List)}
+        isDisabled={!viewSwitchable}
         onClick={isView(ViewType.Grid) ? setViewType : undefined}
       >
         <Icon as={BsListUl} />
@@ -39,6 +45,7 @@ const ProductCard: React.FC<Props> = ({ view, setView } : Props): JSX.Element =>
         rounded="none"
         variant="solid"
         isActive={isView(ViewType.Grid)}
+        isDisabled={!viewSwitchable}
         onClick={isView(ViewType.List) ? setViewType : undefined}
       >
         <Icon as={BsFillGrid3X3GapFill} />
