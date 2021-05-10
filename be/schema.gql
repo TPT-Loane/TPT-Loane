@@ -2,15 +2,30 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type TestModel {
-  name: String!
+type User {
+  id: Float!
+  username: String!
+  phone: String!
+  email: String!
+  password: String!
+  registration_date: DateTime!
+  role: Float!
+  full_name: String!
+  personal_code: String!
 }
 
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Query {
-  item(id: String!): TestModel!
-  items: [TestModel!]!
+  userById(id: Float!): User!
+  userByPersonalCode(id: String!): User!
+  users: [User!]!
 }
 
 type Mutation {
-  createItem(name: String!): TestModel!
+  deleteUser(id: Float!): User!
+  createUser(personal_code: String!, role: Float!, fullname: String!, phone: String!, email: String!, password: String!, username: String!): User!
 }
