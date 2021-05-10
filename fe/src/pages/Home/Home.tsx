@@ -3,6 +3,7 @@ import {
   SimpleGrid,
   List,
   ListItem,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import ProductCard from '../../components/ProductCard';
@@ -127,7 +128,12 @@ const PRODUCTS_CARD_ITEMS: Array<ProductCardItem> = [
 ];
 
 function Home(): JSX.Element {
-  const [viewType, setViewType] = useState(ViewType.List);
+  const [viewType, setViewType] = useState(ViewType.Grid);
+  const isViewSwitchable: boolean = useBreakpointValue({ base: false, lg: true }) || false;
+
+  if (!isViewSwitchable && (viewType !== ViewType.Grid)) {
+    setViewType(ViewType.Grid);
+  }
 
   return (
     <Box
@@ -135,7 +141,11 @@ function Home(): JSX.Element {
       py={16}
     >
       <Box display="inline-block" p={2} w="100%">
-        <ViewToggler view={viewType} setView={setViewType} />
+        <ViewToggler
+          view={viewType}
+          setView={setViewType}
+          viewSwitchable={isViewSwitchable}
+        />
       </Box>
 
       {(viewType === ViewType.List

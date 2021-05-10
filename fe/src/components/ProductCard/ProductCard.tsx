@@ -106,7 +106,9 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
               fontWeight="semibold"
               isTruncated
             >
-              {productCardItem.product.name}
+              <RouterLink to={link}>
+                {productCardItem.product.name}
+              </RouterLink>
             </Text>
           </Tooltip>
           <Text
@@ -155,7 +157,6 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
             fontWeight="semibold"
             whiteSpace="pre-wrap"
           >
-            {/* @todo - Update this link to do something more logical (bring to product page?). */}
             <RouterLink to={link}>
               {productCardItem.product.name}
             </RouterLink>
