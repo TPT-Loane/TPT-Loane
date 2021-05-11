@@ -5,15 +5,15 @@ import {
   Icon,
 } from '@chakra-ui/react';
 import { BsListUl, BsFillGrid3X3GapFill } from 'react-icons/bs';
+import { HomeContext } from '../../pages/Home';
 import { ViewType } from '../../utils';
 
 interface Props {
-  view: ViewType;
-  setView: React.Dispatch<React.SetStateAction<ViewType>>;
   viewSwitchable: boolean;
 }
 
-const ProductCard: React.FC<Props> = ({ view, setView, viewSwitchable } : Props): JSX.Element => {
+const ViewToggler: React.FC<Props> = ({ viewSwitchable } : Props): JSX.Element => {
+  const { view, setView } = React.useContext(HomeContext);
   const isView = (viewType: ViewType): boolean => view === viewType;
 
   const setViewType = (): void => {
@@ -27,6 +27,12 @@ const ProductCard: React.FC<Props> = ({ view, setView, viewSwitchable } : Props)
 
     setView(newViewType);
   };
+
+  React.useEffect(() => {
+    if (!viewSwitchable && (view !== ViewType.Grid)) {
+      setView(ViewType.Grid);
+    }
+  }, [view, setView, viewSwitchable]);
 
   return (
     <Stack spacing={0} direction="row" alignContent="end">
@@ -54,4 +60,4 @@ const ProductCard: React.FC<Props> = ({ view, setView, viewSwitchable } : Props)
   );
 };
 
-export default ProductCard;
+export default ViewToggler;
