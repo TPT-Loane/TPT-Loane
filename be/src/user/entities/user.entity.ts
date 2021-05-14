@@ -1,5 +1,5 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, Unique } from 'typeorm';
 import { Role } from '../roles/user.roles';
 
 @ObjectType()
@@ -10,11 +10,11 @@ export class User {
   id: number;
 
   @Field()
-  @Column()
+  @Column({ unique: true })
   username: string;
 
   @Field()
-  @Column()
+  @Column({ unique: true })
   phone: string;
 
   @Field()
@@ -38,6 +38,6 @@ export class User {
   full_name: string;
 
   @Field()
-  @Column()
+  @Column({ unique: true })
   personal_code: string;
 }

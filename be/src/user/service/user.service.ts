@@ -1,9 +1,11 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
 import { CreateUserDTO } from '../dto/user.create.dto';
 import { UserDTO } from '../dto/user.dto';
 import { User } from '../entities/user.entity';
+import * as bcrypt from 'bcrypt';
+import { toUserDTO } from '../utils/user.dtomapper';
 
 @Injectable()
 export class UserService {
@@ -11,33 +13,38 @@ export class UserService {
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
 
-  findById(id: number): Promise<User> {
-    return this.userRepository.findOne(id);
+  async findById(id: number): Promise<UserDTO> {
+    const user = await this.userRepository.findOne(id);
+    return toUserDTO(user);
   }
 
-  findByUserName(username: string): Promise<User> {
-    return this.userRepository.findOne({ where: { username: username } });
+  async findByUserName(username: string): Promise<UserDTO> {
+    const user = await this.userRepository.findOne({ where: { username } });
+    return toUserDTO(user);
   }
 
-  findByPhoneNumber(phone: string): Promise<User> {
-    return this.userRepository.findOne({ where: { phone: phone } });
+  async findByPhoneNumber(phone: string): Promise<UserDTO> {
+    const user = await this.userRepository.findOne({ where: { phone } });
+    return toUserDTO(user);
   }
 
-  findByPersonalCode(personal_code: string): Promise<User> {
-    return this.userRepository.findOne({
-      where: { personal_code: personal_code },
+  async findByPersonalCode(personal_code: string): Promise<UserDTO> {
+    const user = await this.userRepository.findOne({
+      where: { personal_code },
     });
+    return toUserDTO(user);
   }
 
-  findAll(): Promise<User[]> {
+  findAll(): Promise<UserDTO[]> {
     return this.userRepository.find();
   }
 
-  create(createUseDto: CreateUserDTO): Promise<User> {
-    const hashed = createUseDto.password;
-    return this.userRepository.save({
+  async create(createUseDto: CreateUserDTO): Promise<UserDTO> {
+    const salt = 10;
+    const hash = await bcrypt.hash(createUseDto.password, salt);
+    const user = await this.userRepository.save({
       username: createUseDto.username,
-      password: hashed,
+      password: hash,
       email: createUseDto.email,
       phone: createUseDto.phone,
       role: createUseDto.role,
@@ -45,9 +52,40 @@ export class UserService {
       registration_date: createUseDto.registration_date,
       personal_code: createUseDto.personal_code,
     });
+    return toUserDTO(user);
   }
 
-  async delete(id: number) {
-    this.userRepository.delete(id);
+  async delete(id: number): Promise<boolean> {
+    const result = await this.userRepository.delete(id);
+    return result.affected ? true : false;
+  }
+
+  async updatePassword(
+    previousPassword: string,
+    password: string,
+    id: number,
+  ): Promise<boolean> {
+    try {
+      const userdata = await this.userRepository.findOne(id);
+      if (await bcrypt.compare(previousPassword, userdata.password)) {
+        const salt = 10;
+        const hash = await bcrypt.hash(password, salt);
+        const result = await getConnection()
+          .createQueryBuilder()
+          .update(User)
+          .set({ password: hash })
+          .where('id = :id', { id })
+          .returning('*')
+          .execute()
+          .then((response) => {
+            return response.raw[0];
+          });
+        return result ? true : false;
+      } else {
+        return false;
+      }
+    } catch (err) {
+      throw new Error(err);
+    }
   }
 }
