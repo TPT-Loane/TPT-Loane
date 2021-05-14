@@ -2,7 +2,6 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateNoteInput } from './dto/create-note.input';
-import { UpdateNoteInput } from './dto/update-note.input';
 import { Note } from './entities/note.entity';
 
 @Injectable()
@@ -23,15 +22,8 @@ export class NoteService {
     return this.notesRepository.findOne(id);
   }
 
-  update(updateNoteInput: UpdateNoteInput) {
-    return this.notesRepository.save(updateNoteInput);
-  }
-
   remove(id: number) {
     return this.notesRepository.delete(id);
   }
-
-  //  getLoans(loanId: number): Promise<Loans> {
-  //    return this.loansService.findOne(loanId)
-  //  }
+  
 }

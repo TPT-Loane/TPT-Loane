@@ -10,7 +10,7 @@ export class Note {
     id: number;
 
     @Field()
-    @Column({ length: 255, nullable: false })
+    @Column({ nullable: false })
     content: string;
 
     @Field()
