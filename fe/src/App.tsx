@@ -28,7 +28,7 @@ function App(): JSX.Element {
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
             <Route path="/Login" component={Login} />
-            <Route path="/ProductPage" component={ProductPage} />
+            <Route path="/Product/create" component={ProductPage} />
             <Route path="/product/:id" component={ProductDetails} />
             <Route component={Error} />
           </Switch>

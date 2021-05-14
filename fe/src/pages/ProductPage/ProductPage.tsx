@@ -12,13 +12,13 @@ import {
   Form,
 } from 'formik';
 
-interface MyFormValues {
+interface ProductFormValues {
   name: string;
   description: string;
 }
 
 function ProductPage(): JSX.Element {
-  const initialValues: MyFormValues = { name: '', description: '' };
+  const initialValues: ProductFormValues = { name: '', description: '' };
   return (
     <Flex direction="column" align="center">
       <Text fontSize="30px" mb="30px">Product</Text>
@@ -26,6 +26,7 @@ function ProductPage(): JSX.Element {
         <Formik
           initialValues={initialValues}
           onSubmit={values => {
+            // eslint-disable-next-line
             console.log({ values });
           }}
         >
@@ -35,25 +36,29 @@ function ProductPage(): JSX.Element {
             <Form onSubmit={handleSubmit}>
               <FormLabel>Item name</FormLabel>
               <Input
-                mb="30px"
+                mb={3}
                 w="100%"
                 type="text"
                 name="name"
+                placeholder="name"
                 value={values.name}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                isRequired
               />
               <FormLabel>Description</FormLabel>
               <Textarea
-                mb="30px"
+                mb={3}
                 w="100%"
                 type="text"
                 name="description"
+                placeholder="description"
                 value={values.description}
                 onChange={handleChange}
                 onBlur={handleBlur}
+                isRequired
               />
-              <Button type="submit">Submit</Button>
+              <Button type="submit">Create</Button>
             </Form>
           )}
         </Formik>
