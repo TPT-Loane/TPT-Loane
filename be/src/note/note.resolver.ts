@@ -1,4 +1,4 @@
-import { Resolver, Mutation, Args, Query } from '@nestjs/graphql';
+import { Resolver, Mutation, Args, Query, Int } from '@nestjs/graphql';
 import { Inject } from '@nestjs/common';
 import { NoteService } from './note.service';
 import { Note } from './entities/note.entity';
@@ -17,8 +17,14 @@ export class NoteResolver {
   async notes() {
     return await this.noteService.findAll();
   }
+
   @Mutation(returns => Note)
   async createNote(@Args('createNoteInput') createNoteInput: CreateNoteInput) {
     return this.noteService.createNote(createNoteInput);
+  }
+
+  @Mutation(returns => Note)
+  async removeNote(@Args('id', { type: () => Int }) id: number) {
+    return this.noteService.remove(id);
   }
 }
