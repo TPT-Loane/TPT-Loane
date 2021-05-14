@@ -1,10 +1,9 @@
 import { Role } from '../roles/user.roles';
 import { IsNotEmpty, IsEmail } from 'class-validator';
-import { Field, InputType, ObjectType } from '@nestjs/graphql';
+import { Field, InputType } from '@nestjs/graphql';
 
-@ObjectType()
 @InputType()
-export class CreateUserDTO {
+export class CreateUserInputDTO {
   @IsNotEmpty() @Field() username: string;
   @IsNotEmpty() @Field() password: string;
 
@@ -16,6 +15,5 @@ export class CreateUserDTO {
   @IsNotEmpty() @Field() phone: string;
   @IsNotEmpty() @Field() full_name: string;
   @IsNotEmpty() @Field() role: Role;
-  @IsNotEmpty() @Field() registration_date: Date;
   @IsNotEmpty() @Field() personal_code: string;
 }
