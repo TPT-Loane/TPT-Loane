@@ -1,9 +1,7 @@
 import { InputType, Int, Field } from '@nestjs/graphql';
-import { Column } from 'typeorm';
 
 @InputType()
 export class CreateNoteInput {
-    @Field()
-    @Column({ nullable: false })
+    @Field({description: 'Content of the note'})
     content: string;
 }
