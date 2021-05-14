@@ -6,6 +6,7 @@ type TestModel {
   name: String!
 }
 
+<<<<<<< HEAD
 type Category {
   """Example field (placeholder)"""
   id: Int!
@@ -27,10 +28,29 @@ type Query {
   item(id: String!): TestModel!
   items: [TestModel!]!
   categories: [Category!]!
+=======
+type Note {
+  id: Int!
+  content: String!
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Query {
+  item(id: String!): TestModel!
+  items: [TestModel!]!
+  note(id: Float!): Note!
+  notes: [Note!]!
+>>>>>>> Make notes operations functional
 }
 
 type Mutation {
   createItem(name: String!): TestModel!
+<<<<<<< HEAD
   createCategory(createCategoryInput: CreateCategoryInput!): Category!
   updateCategory(updateCategoryInput: UpdateCategoryInput!, id: Int!): Category!
   removeCategory(id: Int!): Category!
@@ -53,4 +73,11 @@ input UpdateCategoryInput {
 
   """Can this category be used in a bundle?"""
   bundelable: Boolean
+=======
+  createNote(createNoteInput: CreateNoteInput!): Note!
+}
+
+input CreateNoteInput {
+  content: String!
+>>>>>>> Make notes operations functional
 }

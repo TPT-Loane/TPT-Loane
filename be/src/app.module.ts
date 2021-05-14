@@ -5,6 +5,7 @@ import { AppController } from './app.controller';
 import { TestModule } from './service/test.module';
 import { ConfigModule } from '@nestjs/config';
 import { CategoryModule } from './category/category.module';
+import { NoteModule } from './note/note.module';
 
 @Module({
   imports: [
@@ -26,6 +27,7 @@ import { CategoryModule } from './category/category.module';
       synchronize: true,
     }),
     CategoryModule,
+    NoteModule
   ],
   controllers: [AppController],
 })
