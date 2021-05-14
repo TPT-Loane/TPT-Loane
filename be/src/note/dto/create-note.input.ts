@@ -4,6 +4,6 @@ import { Column } from 'typeorm';
 @InputType()
 export class CreateNoteInput {
     @Field()
-    @Column({ length: 255, nullable: false })
+    @Column({ nullable: false })
     content: string;
 }
