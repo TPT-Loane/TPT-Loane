@@ -75,6 +75,7 @@ input UpdateCategoryInput {
   bundelable: Boolean
 =======
   createNote(createNoteInput: CreateNoteInput!): Note!
+  removeNote(id: Int!): Note!
 }
 
 input CreateNoteInput {
