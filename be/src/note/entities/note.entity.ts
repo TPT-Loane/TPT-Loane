@@ -1,8 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm';
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 
 @ObjectType()
-@Entity('items')
+@Entity('Note')
 export class Note {
 
     @Field(() => Int)
@@ -14,7 +14,7 @@ export class Note {
     content: string;
 
     @Field()
-    @Column({ nullable: false })
+    @CreateDateColumn({type: "timestamp"})
     createdAt: Date;
 
 //   @Field(() => Item)
