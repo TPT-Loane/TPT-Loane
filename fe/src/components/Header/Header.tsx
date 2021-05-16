@@ -14,7 +14,11 @@ import { HeaderLeftSide } from './HeaderLeftSide';
 >>>>>>> 8089ad7... Fe add possibility to switch between dark and light theme
 =======
   Text,
+<<<<<<< HEAD
 >>>>>>> 7abd4b9... FE Add possibility to switch between "dark" and "light" theme fix
+=======
+  useColorMode,
+>>>>>>> 4c3590b... Add possibility to switch between "dark" and "light" theme #69, but needs a little fix
 } from '@chakra-ui/react';
 import { Link as RouteLink } from 'react-router-dom';
 import { NAV_ITEMS } from '../../utils';
@@ -26,6 +30,7 @@ import ColorMode from '../ColorMode';
 >>>>>>> a08265d... Add possibility to switch between "dark" and "light" theme,
 
 export default function Header(): JSX.Element {
+  const { colorMode, toggleColorMode } = useColorMode();
   return (
     <Box
       bg={useColorModeValue('gray.100', 'gray.900')}
@@ -61,11 +66,23 @@ export default function Header(): JSX.Element {
             ))}
           </HStack>
         </HStack>
+<<<<<<< HEAD
         <HStack spacing={12} ml="auto">
           <ColorMode />
         </HStack>
         <HStack />
 >>>>>>> 2276a53... Add possibility to switch between "dark" and "light" theme #69
+=======
+        <HStack spacing={12}>
+          {/* eslint-disable-next-line react/button-has-type */}
+          <button onClick={toggleColorMode}>
+            Toggle
+            {' '}
+            {colorMode === 'light' ? 'Dark' : 'Light'}
+          </button>
+        </HStack>
+        <HStack />
+>>>>>>> 4c3590b... Add possibility to switch between "dark" and "light" theme #69, but needs a little fix
       </Flex>
     </Box>
   );
