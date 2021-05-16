@@ -1,0 +1,68 @@
+digraph overall_flow {
+    /* Graph title */
+    labelloc="t";
+    label=<<b>Overall flow</b>>;
+
+    nodesep=0.8; /* Graph width */
+    ranksep=1; /* Graph height */
+    rankdir="TB"; /* Graph direction TB=Top to Bottom LR=Left To Right */
+
+    compound=true; /* Allow drawing arrows from and to clusters */
+    forcelabels=true /* Do not remove xlabels that overlap with nodes */
+
+    /* Properties */
+    //splines=false; /* force sharp arrows (no curves) */
+    //splines=ortho; /* force lines with 90 degree corners */
+    concentrate=true; /* Allow edges to merge */
+    overlap=true; /* Allow edges to overlap (required for concentrate to work) */
+    node [shape="box", fontsize=11];
+    edge [fontsize=11];
+
+    /* Nodes and edges */
+    start [label="Start", shape=circle];
+    start -> login;
+
+    /* Login */
+    login [label="Log in screen"];
+
+    login -> dashboard [label="User logs in"];
+
+    /* Dashboard */
+    dashboard [label="Dashboard"];
+
+    dashboard -> new_loan [label="User creates a loan"];
+
+    /* New loan */
+    new_loan [label="New loan\n form", shape=diamond];
+
+    new_loan -> finish_cancel [label="Cancelled"];
+    new_loan -> reserve_items [label="Loan gets created"];
+
+    /* Reserve items */
+    reserve_items [label="Items get\n reserved", shape=diamond];
+
+    reserve_items -> finish_cancel [label="Cancelled"];
+    reserve_items -> review [label="Reviewers get\n notified"];
+
+    /* Review */
+    review [label="Review", shape=diamond];
+
+    review -> finish_cancel [label="Cancelled"];
+    review -> approved [label="Reviewer approves"];
+
+    /* Approvals */
+    approved [label="Approved", shape=diamond];
+
+    approved -> finish_cancel [label="Cancelled"];
+    approved -> finish_good [label="All items\n returned"];
+    approved -> approved [label="Some items\n returned"];
+    approved -> review [label="Request time\n extension"];
+    review -> approved [label="Time extension rejected.\n Cannot extend loan time"];
+    approved -> finish_bad [label="Run out of\ time"];
+
+    /* Finishes */
+    finish_bad [label="Finish prematurely\n(loan ends without\n items getting returned)", shape=circle];
+    finish_cancel [label="Finish without\n items getting\n loaned", shape=circle];
+    {rank=same; finish_cancel, review}
+    finish_good [label="Finish\n Normally", shape=circle];
+}

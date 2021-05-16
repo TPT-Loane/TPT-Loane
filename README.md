@@ -10,6 +10,8 @@ Loan and borrow!
 
 - [Database](./be/db/)
 
+- [Documentation](./doc/)
+
 ## Table of contents
 
 - [Docker related](#docker-related)
