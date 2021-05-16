@@ -1,4 +1,8 @@
-import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import { HeaderLeftSide } from './HeaderLeftSide';
 
 export default function Header(): JSX.Element {
