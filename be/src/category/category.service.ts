@@ -15,13 +15,16 @@ export class CategoryService {
   ) {}
 
   async create(createCategoryInput: CreateCategoryInput) {
-    const parentCategory = await this.categoryRepo.findOne(
-      createCategoryInput.parentCategoryId,
-    );
-    if (!parentCategory) {
-      throw new NotFoundException(
-        `Category #${createCategoryInput.parentCategoryId} not found (parent parameter)`,
+    let parentCategory: Category;
+    if (createCategoryInput.parentCategoryId) {
+      parentCategory = await this.categoryRepo.findOne(
+        createCategoryInput.parentCategoryId,
       );
+      if (!parentCategory) {
+        throw new NotFoundException(
+          `Category #${createCategoryInput.parentCategoryId} not found (parent parameter)`,
+        );
+      }
     }
 
     const category = this.categoryRepo.create({
