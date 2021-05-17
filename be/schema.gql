@@ -2,14 +2,14 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type UserDTO {
+type User {
   id: Float!
   username: String!
-  email: String!
   phone: String!
-  full_name: String!
-  role: Float!
+  email: String!
   registration_date: DateTime!
+  role: Float!
+  full_name: String!
   personal_code: String!
 }
 
@@ -19,16 +19,16 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 scalar DateTime
 
 type Query {
-  userById(id: Float!): UserDTO!
-  userByPersonalCode(id: String!): UserDTO!
-  userByUsername(username: String!): UserDTO!
-  userByPhone(phone: String!): UserDTO!
-  users: [UserDTO!]!
+  userById(id: Float!): User!
+  userByPersonalCode(id: String!): User!
+  userByUsername(username: String!): User!
+  userByPhone(phone: String!): User!
+  users: [User!]!
 }
 
 type Mutation {
   deleteUser(id: Float!): Boolean!
-  createUser(user: CreateUserInputDTO!): UserDTO!
+  createUser(user: CreateUserInputDTO!): User!
   updatePassword(id: Float!, newpass: String!, previouspass: String!): Boolean!
 }
 

@@ -1,40 +1,35 @@
-import { Resolver, Mutation, Args, Query, Root } from '@nestjs/graphql';
+import { Resolver, Mutation, Args, Query } from '@nestjs/graphql';
 import { Inject } from '@nestjs/common';
 import { User } from '../entities/user.entity';
 import { UserService } from '../service/user.service';
-import { UserDTO } from '../dto/user.dto';
-import { CreateUserDTO } from '../dto/user.create.dto';
-import { Role } from '../roles/user.roles';
 import { CreateUserInputDTO } from '../dto/user.create.input.dto';
 
 @Resolver(() => User)
 export class UserResolver {
   constructor(@Inject(UserService) private readonly userService: UserService) {}
 
-  @Query(() => UserDTO)
-  async userById(@Args('id') id: number): Promise<UserDTO> {
+  @Query(() => User)
+  async userById(@Args('id') id: number): Promise<User> {
     return await this.userService.findById(id);
   }
 
-  @Query(() => UserDTO)
-  async userByPersonalCode(
-    @Args('id') personal_code: string,
-  ): Promise<UserDTO> {
+  @Query(() => User)
+  async userByPersonalCode(@Args('id') personal_code: string): Promise<User> {
     return await this.userService.findByPersonalCode(personal_code);
   }
 
-  @Query(() => UserDTO)
-  async userByUsername(@Args('username') username: string): Promise<UserDTO> {
+  @Query(() => User)
+  async userByUsername(@Args('username') username: string): Promise<User> {
     return await this.userService.findByUserName(username);
   }
 
-  @Query(() => UserDTO)
-  async userByPhone(@Args('phone') phone: string): Promise<UserDTO> {
+  @Query(() => User)
+  async userByPhone(@Args('phone') phone: string): Promise<User> {
     return await this.userService.findByPhoneNumber(phone);
   }
 
-  @Query(() => [UserDTO])
-  async users(): Promise<UserDTO[]> {
+  @Query(() => [User])
+  async users(): Promise<User[]> {
     return await this.userService.findAll();
   }
 
@@ -43,10 +38,10 @@ export class UserResolver {
     return await this.userService.delete(id);
   }
 
-  @Mutation(() => UserDTO)
+  @Mutation(() => User)
   async createUser(
     @Args('user') createUserInputDTO: CreateUserInputDTO,
-  ): Promise<UserDTO> {
+  ): Promise<User> {
     const date = new Date();
     return await this.userService.create({
       ...createUserInputDTO,

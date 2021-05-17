@@ -2,10 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { getConnection, Repository } from 'typeorm';
 import { CreateUserDTO } from '../dto/user.create.dto';
-import { UserDTO } from '../dto/user.dto';
 import { User } from '../entities/user.entity';
 import * as bcrypt from 'bcrypt';
-import { toUserDTO } from '../utils/user.dtomapper';
 
 @Injectable()
 export class UserService {
@@ -13,33 +11,33 @@ export class UserService {
     @InjectRepository(User) private userRepository: Repository<User>,
   ) {}
 
-  async findById(id: number): Promise<UserDTO> {
+  async findById(id: number): Promise<User> {
     const user = await this.userRepository.findOne(id);
-    return toUserDTO(user);
+    return user;
   }
 
-  async findByUserName(username: string): Promise<UserDTO> {
+  async findByUserName(username: string): Promise<User> {
     const user = await this.userRepository.findOne({ where: { username } });
-    return toUserDTO(user);
+    return user;
   }
 
-  async findByPhoneNumber(phone: string): Promise<UserDTO> {
+  async findByPhoneNumber(phone: string): Promise<User> {
     const user = await this.userRepository.findOne({ where: { phone } });
-    return toUserDTO(user);
+    return user;
   }
 
-  async findByPersonalCode(personal_code: string): Promise<UserDTO> {
+  async findByPersonalCode(personal_code: string): Promise<User> {
     const user = await this.userRepository.findOne({
       where: { personal_code },
     });
-    return toUserDTO(user);
+    return user;
   }
 
-  findAll(): Promise<UserDTO[]> {
+  findAll(): Promise<User[]> {
     return this.userRepository.find();
   }
 
-  async create(createUseDto: CreateUserDTO): Promise<UserDTO> {
+  async create(createUseDto: CreateUserDTO): Promise<User> {
     const salt = 10;
     const hash = await bcrypt.hash(createUseDto.password, salt);
     const user = await this.userRepository.save({
@@ -52,7 +50,7 @@ export class UserService {
       registration_date: createUseDto.registration_date,
       personal_code: createUseDto.personal_code,
     });
-    return toUserDTO(user);
+    return user;
   }
 
   async delete(id: number): Promise<boolean> {
