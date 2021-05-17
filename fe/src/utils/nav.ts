@@ -17,4 +17,8 @@ export const NAV_ITEMS: NavItemsType[] = [
     iconName: 'info',
     href: '/about',
   },
+  {
+    label: 'Create product',
+    href: '/Product/create',
+  },
 ];
