@@ -2,6 +2,7 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+<<<<<<< HEAD
 type TestModel {
   name: String!
 }
@@ -29,10 +30,14 @@ type Query {
   items: [TestModel!]!
   categories: [Category!]!
 =======
+=======
+>>>>>>> Add schema
 type Note {
   id: Int!
   content: String!
   createdAt: DateTime!
+  itemId: Int!
+  item: Item!
 }
 
 """
@@ -40,11 +45,17 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Item {
+  id: Int!
+  regCode: String!
+  createdAt: DateTime!
+  note: [Note!]
+}
+
 type Query {
-  item(id: String!): TestModel!
-  items: [TestModel!]!
   note(id: Float!): Note!
   notes: [Note!]!
+<<<<<<< HEAD
 >>>>>>> Make notes operations functional
 }
 
@@ -74,11 +85,36 @@ input UpdateCategoryInput {
   """Can this category be used in a bundle?"""
   bundelable: Boolean
 =======
+=======
+  items: [Item!]!
+  item(id: Int!): Item!
+}
+
+type Mutation {
+>>>>>>> Add schema
   createNote(createNoteInput: CreateNoteInput!): Note!
   removeNote(id: Int!): Note!
+  createItem(createItemInput: CreateItemInput!): Item!
+  updateItem(updateItemInput: UpdateItemInput!): Item!
+  removeItem(id: Int!): Item!
 }
 
 input CreateNoteInput {
+  """Content of the note"""
   content: String!
+<<<<<<< HEAD
 >>>>>>> Make notes operations functional
+=======
+
+  """Id of the item for relation"""
+  itemId: Int!
+}
+
+input CreateItemInput {
+  regCode: String!
+}
+
+input UpdateItemInput {
+  regCode: String!
+>>>>>>> Add schema
 }
