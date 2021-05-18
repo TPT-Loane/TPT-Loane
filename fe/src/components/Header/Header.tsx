@@ -73,6 +73,7 @@ export default function Header(): JSX.Element {
         </HStack>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         <HStack spacing={12} ml="auto">
           <ColorMode />
         </HStack>
@@ -88,6 +89,9 @@ export default function Header(): JSX.Element {
           </button>
 =======
         <HStack spacing={12} ml="auto">
+=======
+        <HStack spacing={12} ml="auto" title={colorMode === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}>
+>>>>>>> d7cc7a1... add on hover to header
           <IconButton
             icon={colorMode === 'light' ? <FaMoon /> : <FaSun />}
             onClick={toggleColorMode}
