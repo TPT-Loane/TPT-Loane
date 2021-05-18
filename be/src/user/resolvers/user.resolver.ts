@@ -40,7 +40,7 @@ export class UserResolver {
 
   @Mutation(() => User)
   async createUser(
-    @Args('user') createUserInputDTO: CreateUserInputDTO,
+    @Args('createUserInput') createUserInputDTO: CreateUserInputDTO,
   ): Promise<User> {
     const date = new Date();
     return await this.userService.create({
