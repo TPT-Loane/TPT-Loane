@@ -1,12 +1,9 @@
 import {
-  Box,
-  Flex,
-  Heading,
-  HStack,
-  useColorModeValue,
-  Text,
+  Box, Flex, Heading, HStack, useColorModeValue,
 } from '@chakra-ui/react';
-import { Link as RouteLink } from 'react-router-dom';
+import { IconName } from '@fortawesome/fontawesome-common-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link, Link as RouteLink } from 'react-router-dom';
 import { NAV_ITEMS } from '../../utils';
 import { Drawerbar } from '../Sidebar';
 
@@ -22,25 +19,31 @@ export default function Header(): JSX.Element {
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <HStack spacing={8} alignItems="center">
           <Drawerbar />
-          <Heading as="h4" size="md">
+          <Heading as={Link} size="md" to="/">
             TPT-Loane
           </Heading>
           <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
-            {NAV_ITEMS.map(navItem => (
-              <RouteLink key={navItem.href} to={navItem.href}>
-                <Box
-                  px={2}
-                  py={1}
-                  rounded="md"
-                  _hover={{
-                    textDecoration: 'none',
-                    bg: useColorModeValue('gray.200', 'gray.700'),
-                  }}
-                >
-                  <Text fontSize="xl">{navItem.label}</Text>
-                </Box>
-              </RouteLink>
-            ))}
+            {NAV_ITEMS.map(navItem => {
+              const { href, iconName } = navItem;
+              const newIconName: IconName = iconName as IconName;
+              return (
+                <RouteLink key={href} to={href}>
+                  <Box
+                    px={2}
+                    py={1}
+                    rounded="md"
+                    _hover={{
+                      textDecoration: 'none',
+                      bg: useColorModeValue('gray.200', 'gray.700'),
+                    }}
+                  >
+                    <Box textAlign="center" minW="2em">
+                      <FontAwesomeIcon icon={['fas', newIconName]} size="lg" />
+                    </Box>
+                  </Box>
+                </RouteLink>
+              );
+            })}
           </HStack>
         </HStack>
       </Flex>
