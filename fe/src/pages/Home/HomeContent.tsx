@@ -1,11 +1,14 @@
 import * as React from 'react';
 import {
   Box,
+  Flex,
   SimpleGrid,
+  Spacer,
   List,
   ListItem,
   useBreakpointValue,
 } from '@chakra-ui/react';
+import Paginator, { paginate } from '../../components/Paginator';
 import ProductCard from '../../components/ProductCard';
 import ViewToggler from '../../components/ViewToggler';
 import { HomeContext } from '.';
@@ -129,8 +132,11 @@ const PRODUCTS_CARD_ITEMS: Array<ProductCardItem> = [
 ];
 
 function HomeContent(): JSX.Element {
-  const { view } = React.useContext(HomeContext);
+  const { view, page } = React.useContext(HomeContext);
   const isViewSwitchable: boolean = useBreakpointValue({ base: false, lg: true }) || false;
+
+  const pageSize = 21;
+  const paginated = paginate(PRODUCTS_CARD_ITEMS, page, pageSize);
 
   return (
     <Box
@@ -138,14 +144,19 @@ function HomeContent(): JSX.Element {
       px={useBreakpointValue({ base: 2, md: 12 })}
       py={16}
     >
-      <Box display="inline-block" p={2} w="100%">
+      <Flex p={2} w="100%">
         <ViewToggler viewSwitchable={isViewSwitchable} />
-      </Box>
+        <Spacer />
+        <Paginator
+          currentPage={paginated.page}
+          pageCount={paginated.totalPages}
+        />
+      </Flex>
 
       {(view === ViewType.List
         ? (
           <List>
-            {PRODUCTS_CARD_ITEMS.map(productCardItem => (
+            {paginated.items.map(productCardItem => (
               <ListItem
                 m={2}
                 key={productCardItem.product.id}
@@ -161,7 +172,7 @@ function HomeContent(): JSX.Element {
             minChildWidth="19rem"
             spacing={1}
           >
-            {PRODUCTS_CARD_ITEMS.map(productCardItem => (
+            {paginated.items.map(productCardItem => (
               <Box
                 m={2}
                 key={productCardItem.product.id}
