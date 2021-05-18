@@ -52,7 +52,7 @@ export default function Header(): JSX.Element {
             ))}
           </HStack>
         </HStack>
-        <HStack spacing={12} ml="auto">
+        <HStack spacing={12} ml="auto" title={colorMode === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}>
           <IconButton
             icon={colorMode === 'light' ? <FaMoon /> : <FaSun />}
             onClick={toggleColorMode}
