@@ -1,8 +1,7 @@
-import { Field, ObjectType } from '@nestjs/graphql';
-import { IsNotEmpty } from 'class-validator';
+import { Field, InputType } from '@nestjs/graphql';
 
-@ObjectType()
+@InputType()
 export class UserLoginDTO {
-  @IsNotEmpty() @Field() readonly username: string;
-  @IsNotEmpty() @Field() readonly password: string;
+  @Field() readonly username: string;
+  @Field() readonly password: string;
 }
