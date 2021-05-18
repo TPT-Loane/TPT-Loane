@@ -1,12 +1,13 @@
-import { Resolver, Mutation, Args, Query, Int } from '@nestjs/graphql';
-import { Inject } from '@nestjs/common';
+import { Resolver, Mutation, Args, Query, Int, Parent, ResolveField } from '@nestjs/graphql';
+import { forwardRef, Inject } from '@nestjs/common';
 import { NoteService } from './note.service';
 import { Note } from './entities/note.entity';
 import { CreateNoteInput } from './dto/create-note.input';
+import { Item } from 'src/item/entities/item.entity';
 
 @Resolver(() => Note)
 export class NoteResolver {
-  constructor(@Inject(NoteService) private noteService: NoteService) {}
+  constructor(@Inject(forwardRef(() => NoteService)) private noteService: NoteService) {}
 
   @Query(returns => Note)
   async note(@Args('id') id: number): Promise<Note> {
@@ -26,5 +27,10 @@ export class NoteResolver {
   @Mutation(returns => Note)
   async removeNote(@Args('id', { type: () => Int }) id: number) {
     return this.noteService.remove(id);
+  }
+
+  @ResolveField(returns => Item)
+  item(@Parent() note: Note): Promise<Item> {
+    return this.noteService.getItem(note.itemId);
   }
 }
