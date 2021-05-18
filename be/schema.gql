@@ -28,7 +28,7 @@ type Query {
 
 type Mutation {
   deleteUser(id: Float!): Boolean!
-  createUser(user: CreateUserInputDTO!): User!
+  createUser(createUserInput: CreateUserInputDTO!): User!
   updatePassword(id: Float!, newpass: String!, previouspass: String!): Boolean!
 }
 
