@@ -7,14 +7,15 @@ import {
 import { HeaderLeftSide } from './HeaderLeftSide';
 =======
   Text,
-  useColorMode,
-  IconButton,
 } from '@chakra-ui/react';
 import { Link as RouteLink } from 'react-router-dom';
-import { FaMoon, FaSun } from 'react-icons/all';
 import { NAV_ITEMS } from '../../utils';
 import { Drawerbar } from '../Sidebar';
+<<<<<<< HEAD
 >>>>>>> 2276a53... Add possibility to switch between "dark" and "light" theme #69
+=======
+import ColorMode from '../ColorMode';
+>>>>>>> a08265d... Add possibility to switch between "dark" and "light" theme,
 
 export default function Header(): JSX.Element {
   return (
@@ -52,14 +53,7 @@ export default function Header(): JSX.Element {
             ))}
           </HStack>
         </HStack>
-        <HStack spacing={12} ml="auto" title={colorMode === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}>
-          <IconButton
-            icon={colorMode === 'light' ? <FaMoon /> : <FaSun />}
-            onClick={toggleColorMode}
-            aria-label="Switch color mode"
-            variant="outline"
-          />
-        </HStack>
+        <ColorMode />
         <HStack />
 >>>>>>> 2276a53... Add possibility to switch between "dark" and "light" theme #69
       </Flex>
