@@ -1,20 +1,13 @@
 import { Flex } from '@chakra-ui/react';
-import { IoHome } from 'react-icons/io5';
 import React from 'react';
-import SidebarItem from './SidebarItem';
 import SidebarItemLink from './SidebarItemLink';
 import { NAV_ITEMS } from '../../utils';
 
 export const DrawerbarContent: React.FC = () => (
   <Flex direction="column">
-    {NAV_ITEMS.map(navItem => (
-      <SidebarItem key={navItem.href}>
-        <SidebarItemLink
-          icon={<IoHome size={22} />}
-          title={navItem.label}
-          where={navItem.href}
-        />
-      </SidebarItem>
-    ))}
+    {NAV_ITEMS.map(navItem => {
+      const { iconName, href, label } = navItem;
+      return <SidebarItemLink icon={iconName} title={label} where={href} />;
+    })}
   </Flex>
 );
