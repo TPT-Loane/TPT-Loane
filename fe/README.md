@@ -54,3 +54,30 @@ docker-compose down                 # stop the container
 ## Troubleshooting
 
 (There are currently no known errors related to running the front end.)
+
+## Icons
+
+you can use Chakra Icons or Font Awesome icons.
+
+To use Font Awesome icons:
+
+add the icon you want to use to library in App.tsx
+
+library.add(faCoffee);
+
+then in your component import
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+use Like this (if far doesn't work use fas):
+Regular:
+<FontAwesomeIcon icon={["far", "coffee"]} />
+Solid:
+<FontAwesomeIcon icon={["fas", "coffee"]} />
+
+fas(font awesome solid)
+fas(font awesome regular
+
+You can find new icons [here](https://fontawesome.com/icons?d=gallery&p=2&m=free)
+
+Chakra Is easier, but there aren't many icons there:
+[chakra](https://chakra-ui.com/docs/media-and-icons/icon)
