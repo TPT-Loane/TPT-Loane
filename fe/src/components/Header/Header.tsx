@@ -1,7 +1,4 @@
-import {
-  Box, Flex, Heading, HStack, useColorModeValue,
-} from '@chakra-ui/react';
-import { IconName } from '@fortawesome/fontawesome-common-types';
+import { Box, Flex, Heading, HStack, useColorModeValue } from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link, Link as RouteLink } from 'react-router-dom';
 import { NAV_ITEMS } from '../../utils';
@@ -25,7 +22,7 @@ export default function Header(): JSX.Element {
           <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
             {NAV_ITEMS.map(navItem => {
               const { href, iconName } = navItem;
-              const newIconName: IconName = iconName as IconName;
+              const newIconName = iconName;
               return (
                 <RouteLink key={href} to={href}>
                   <Box
