@@ -47,7 +47,8 @@ const PRODUCTS_CARD_ITEMS: Array<ProductCardItem> = [
       id: 1,
       name: 'Laptop 150G',
       // eslint-disable-next-line
-      description: 'This is this product description..This is this product description..This is this product description..This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
+      description:
+        '\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
       isAvailable: true,
       imageUrl:
         'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
@@ -133,44 +134,32 @@ function HomeContent(): JSX.Element {
   const isViewSwitchable: boolean = useBreakpointValue({ base: false, lg: true }) || false;
 
   return (
-    <Box
-      maxW="75rem"
-      px={useBreakpointValue({ base: 2, md: 12 })}
-      py={16}
-    >
+    <Box maxW="75rem" px={useBreakpointValue({ base: 2, md: 12 })} py={16}>
       <Box display="inline-block" p={2} w="100%">
         <ViewToggler viewSwitchable={isViewSwitchable} />
       </Box>
 
-      {(view === ViewType.List
-        ? (
-          <List>
-            {PRODUCTS_CARD_ITEMS.map(productCardItem => (
-              <ListItem
-                m={2}
-                key={productCardItem.product.id}
-              >
-                <ProductCard productCardItem={productCardItem} asListItem />
-              </ListItem>
-            ))}
-          </List>
-        )
-        : (
-          <SimpleGrid
-            justifyItems="center"
-            minChildWidth="19rem"
-            spacing={1}
-          >
-            {PRODUCTS_CARD_ITEMS.map(productCardItem => (
-              <Box
-                m={2}
-                key={productCardItem.product.id}
-              >
-                <ProductCard productCardItem={productCardItem} />
-              </Box>
-            ))}
-          </SimpleGrid>
-        ))}
+      {view === ViewType.List ? (
+        <List>
+          {PRODUCTS_CARD_ITEMS.map(productCardItem => (
+            <ListItem m={2} key={productCardItem.product.id}>
+              <ProductCard productCardItem={productCardItem} asListItem />
+            </ListItem>
+          ))}
+        </List>
+      ) : (
+        <SimpleGrid
+          justifyItems="center"
+          minChildWidth="19rem"
+          spacing={1}
+        >
+          {PRODUCTS_CARD_ITEMS.map(productCardItem => (
+            <Box m={2} key={productCardItem.product.id}>
+              <ProductCard productCardItem={productCardItem} />
+            </Box>
+          ))}
+        </SimpleGrid>
+      )}
     </Box>
   );
 }

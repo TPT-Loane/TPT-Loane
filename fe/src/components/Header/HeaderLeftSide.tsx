@@ -1,4 +1,6 @@
-import { HStack, Heading, Box, useColorModeValue } from '@chakra-ui/react';
+import {
+  HStack, Heading, Box, useColorModeValue,
+} from '@chakra-ui/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
