@@ -135,8 +135,8 @@ function HomeContent(): JSX.Element {
   const { view, page } = React.useContext(HomeContext);
   const isViewSwitchable: boolean = useBreakpointValue({ base: false, lg: true }) || false;
 
-  const pageSize = 21;
-  const paginated = paginate(PRODUCTS_CARD_ITEMS, page, pageSize);
+  const ITEMS_COUNT_PER_PAGE = 21;
+  const paginated = paginate(PRODUCTS_CARD_ITEMS, page, ITEMS_COUNT_PER_PAGE);
 
   return (
     <Box
@@ -145,12 +145,12 @@ function HomeContent(): JSX.Element {
       py={16}
     >
       <Flex p={2} w="100%">
-        <ViewToggler viewSwitchable={isViewSwitchable} />
-        <Spacer />
         <Paginator
           currentPage={paginated.page}
           pageCount={paginated.totalPages}
         />
+        <Spacer />
+        <ViewToggler viewSwitchable={isViewSwitchable} />
       </Flex>
 
       {(view === ViewType.List
