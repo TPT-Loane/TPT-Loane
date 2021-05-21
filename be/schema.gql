@@ -2,12 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-<<<<<<< HEAD
-type TestModel {
-  name: String!
-}
-
-<<<<<<< HEAD
 type Category {
   """Example field (placeholder)"""
   id: Int!
@@ -25,13 +19,6 @@ type Category {
   parentCategory: [Category!]
 }
 
-type Query {
-  item(id: String!): TestModel!
-  items: [TestModel!]!
-  categories: [Category!]!
-=======
-=======
->>>>>>> Add schema
 type Note {
   id: Int!
   content: String!
@@ -53,18 +40,22 @@ type Item {
 }
 
 type Query {
+  categories: [Category!]!
   note(id: Float!): Note!
   notes: [Note!]!
-<<<<<<< HEAD
->>>>>>> Make notes operations functional
+  items: [Item!]!
+  item(id: Int!): Item!
 }
 
 type Mutation {
-  createItem(name: String!): TestModel!
-<<<<<<< HEAD
   createCategory(createCategoryInput: CreateCategoryInput!): Category!
   updateCategory(updateCategoryInput: UpdateCategoryInput!, id: Int!): Category!
   removeCategory(id: Int!): Category!
+  createNote(createNoteInput: CreateNoteInput!): Note!
+  removeNote(id: Int!): Note!
+  createItem(createItemInput: CreateItemInput!): Item!
+  updateItem(updateItemInput: UpdateItemInput!): Item!
+  removeItem(id: Int!): Item!
 }
 
 input CreateCategoryInput {
@@ -84,27 +75,11 @@ input UpdateCategoryInput {
 
   """Can this category be used in a bundle?"""
   bundelable: Boolean
-=======
-=======
-  items: [Item!]!
-  item(id: Int!): Item!
-}
-
-type Mutation {
->>>>>>> Add schema
-  createNote(createNoteInput: CreateNoteInput!): Note!
-  removeNote(id: Int!): Note!
-  createItem(createItemInput: CreateItemInput!): Item!
-  updateItem(updateItemInput: UpdateItemInput!): Item!
-  removeItem(id: Int!): Item!
 }
 
 input CreateNoteInput {
   """Content of the note"""
   content: String!
-<<<<<<< HEAD
->>>>>>> Make notes operations functional
-=======
 
   """Id of the item for relation"""
   itemId: Int!
@@ -116,5 +91,4 @@ input CreateItemInput {
 
 input UpdateItemInput {
   regCode: String!
->>>>>>> Add schema
 }

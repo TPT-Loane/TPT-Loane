@@ -18,9 +18,9 @@ export class Item {
   @CreateDateColumn({ type: "timestamp" })
   createdAt: Date;
 
-  @Field(() => Int)
-  @Column()
-  noteId: number;
+  // @Field(() => Int)
+  // @Column()
+  // noteId: number;
 
   @Field(() => [Note], {nullable: true})
   @OneToMany(() => Note, note => note.item)
