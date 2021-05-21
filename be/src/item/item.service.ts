@@ -9,7 +9,7 @@ import { Item } from './entities/item.entity';
 
 @Injectable()
 export class ItemService {
-  constructor(@InjectRepository(Item) private itemRepository: Repository<Item>, private noteService: NoteService) {}
+  constructor(@InjectRepository(Item) private itemRepository: Repository<Item>) {}
 
   createItem(createItemInput: CreateItemInput): Promise<Item> {
     const newItem = this.itemRepository.create(createItemInput);
@@ -33,7 +33,7 @@ export class ItemService {
     return this.itemRepository.delete(id);
   }
 
-  getNote(noteId: number): Promise<Note> {
-    return this.noteService.findOne(noteId);
-  }
+  // getNote(noteId: number): Promise<Note> {
+  //   return this.noteService.findOne(noteId);
+  // }
 }

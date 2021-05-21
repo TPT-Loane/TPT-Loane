@@ -29,6 +29,7 @@ import { ItemModule } from './item/item.module';
     NoteModule,
     ItemModule,
   ],
+  exports: [NoteModule, ItemModule],
   controllers: [AppController],
 })
 export class AppModule {}

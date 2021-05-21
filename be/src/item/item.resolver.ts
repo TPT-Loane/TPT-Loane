@@ -35,8 +35,8 @@ export class ItemResolver {
     return this.itemService.remove(id);
   }
 
-  @ResolveField(returns => Note)
-  note(@Parent() item: Item): Promise<Note> {
-    return this.itemService.getNote(item.noteId);
-  }
+  // @ResolveField(returns => Note)
+  // note(@Parent() item: Item): Promise<Note> {
+  //   return this.itemService.getNote(item.noteId);
+  // }
 }
