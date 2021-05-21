@@ -63,27 +63,27 @@ To use Font Awesome icons:
 
 add the icon you want to use to library in App.tsx
 
-```
+```jsx
 library.add(faCoffee);
 ```
 
 then in your component import
 
-```
+```jsx
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 ```
 
 use Like this (if far doesn't work use fas):
 Regular:
 
-```
-<FontAwesomeIcon icon={["far", "coffee"]} />
+```jsx
+<FontAwesomeIcon icon={['far', 'coffee']} />
 ```
 
 Solid:
 
-```
-<FontAwesomeIcon icon={["fas", "coffee"]} />
+```jsx
+<FontAwesomeIcon icon={['fas', 'coffee']} />
 ```
 
 fas(font awesome solid)
