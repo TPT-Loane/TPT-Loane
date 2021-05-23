@@ -5,6 +5,7 @@ import {
   HStack,
   useColorModeValue,
   Text,
+  useColorMode,
 } from '@chakra-ui/react';
 import { Link as RouteLink } from 'react-router-dom';
 import { NAV_ITEMS } from '../../utils';
@@ -13,6 +14,7 @@ import ColorMode from '../ColorMode';
 import { HeaderLeftSide } from './HeaderLeftSide';
 
 export default function Header(): JSX.Element {
+  const { colorMode } = useColorMode();
   return (
     <Box
       bg={useColorModeValue('gray.100', 'gray.900')}
