@@ -3,10 +3,14 @@ import {
   Flex,
   useColorModeValue,
 <<<<<<< HEAD
+<<<<<<< HEAD
 } from '@chakra-ui/react';
 import { HeaderLeftSide } from './HeaderLeftSide';
 =======
   Text,
+=======
+  Text, useColorMode,
+>>>>>>> 8089ad7... Fe add possibility to switch between dark and light theme
 } from '@chakra-ui/react';
 import { Link as RouteLink } from 'react-router-dom';
 import { NAV_ITEMS } from '../../utils';
@@ -18,6 +22,7 @@ import ColorMode from '../ColorMode';
 >>>>>>> a08265d... Add possibility to switch between "dark" and "light" theme,
 
 export default function Header(): JSX.Element {
+  const { colorMode } = useColorMode();
   return (
     <Box
       bg={useColorModeValue('gray.100', 'gray.900')}
@@ -53,7 +58,9 @@ export default function Header(): JSX.Element {
             ))}
           </HStack>
         </HStack>
-        <ColorMode />
+        <HStack spacing={12} ml="auto" title={colorMode === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}>
+          <ColorMode />
+        </HStack>
         <HStack />
 >>>>>>> 2276a53... Add possibility to switch between "dark" and "light" theme #69
       </Flex>

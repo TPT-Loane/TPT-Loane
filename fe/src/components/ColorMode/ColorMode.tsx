@@ -1,16 +1,14 @@
-import { FaMoon, FaSun } from 'react-icons/all';
-import { HStack, IconButton, useColorMode } from '@chakra-ui/react';
+import { SunIcon, MoonIcon } from '@chakra-ui/icons';
+import { IconButton, useColorMode } from '@chakra-ui/react';
 
 export default function ColorMode(): JSX.Element {
   const { colorMode, toggleColorMode } = useColorMode();
   return (
-    <HStack spacing={12} ml="auto" title={colorMode === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}>
-      <IconButton
-        icon={colorMode === 'light' ? <FaMoon /> : <FaSun />}
-        onClick={toggleColorMode}
-        aria-label="Switch color mode"
-        variant="outline"
-      />
-    </HStack>
+    <IconButton
+      icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+      onClick={toggleColorMode}
+      aria-label="Switch color mode"
+      variant="outline"
+    />
   );
 }
