@@ -2,14 +2,13 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
-import { TestModule } from './service/test.module';
 import { ConfigModule } from '@nestjs/config';
 import { CategoryModule } from './category/category.module';
 import { NoteModule } from './note/note.module';
+import { ItemModule } from './item/item.module';
 
 @Module({
   imports: [
-    TestModule,
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       debug: false,
@@ -27,8 +26,10 @@ import { NoteModule } from './note/note.module';
       synchronize: true,
     }),
     CategoryModule,
-    NoteModule
+    NoteModule,
+    ItemModule,
   ],
+  exports: [NoteModule, ItemModule],
   controllers: [AppController],
 })
 export class AppModule {}

@@ -28,8 +28,7 @@ export class CategoryService {
     }
 
     const category = this.categoryRepo.create({
-      bundelable: createCategoryInput.bundelable,
-      name: createCategoryInput.name,
+      ...createCategoryInput,
       parentCategory: parentCategory,
     });
 

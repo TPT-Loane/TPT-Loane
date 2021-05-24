@@ -2,11 +2,6 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type TestModel {
-  name: String!
-}
-
-<<<<<<< HEAD
 type Category {
   """Example field (placeholder)"""
   id: Int!
@@ -24,15 +19,11 @@ type Category {
   parentCategory: [Category!]
 }
 
-type Query {
-  item(id: String!): TestModel!
-  items: [TestModel!]!
-  categories: [Category!]!
-=======
 type Note {
   id: Int!
   content: String!
   createdAt: DateTime!
+  item: Item!
 }
 
 """
@@ -40,20 +31,30 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Item {
+  id: Int!
+  regCode: String!
+  createdAt: DateTime!
+  notes: [Note!]!
+}
+
 type Query {
-  item(id: String!): TestModel!
-  items: [TestModel!]!
+  categories: [Category!]!
   note(id: Float!): Note!
   notes: [Note!]!
->>>>>>> Make notes operations functional
+  items: [Item!]!
+  item(id: Int!): Item!
 }
 
 type Mutation {
-  createItem(name: String!): TestModel!
-<<<<<<< HEAD
   createCategory(createCategoryInput: CreateCategoryInput!): Category!
   updateCategory(updateCategoryInput: UpdateCategoryInput!, id: Int!): Category!
   removeCategory(id: Int!): Category!
+  createNote(createNoteInput: CreateNoteInput!): Note!
+  removeNote(id: Int!): Note!
+  createItem(createItemInput: CreateItemInput!): Item!
+  updateItem(updateItemInput: UpdateItemInput!): Item!
+  removeItem(id: Int!): Item!
 }
 
 input CreateCategoryInput {
@@ -73,12 +74,20 @@ input UpdateCategoryInput {
 
   """Can this category be used in a bundle?"""
   bundelable: Boolean
-=======
-  createNote(createNoteInput: CreateNoteInput!): Note!
-  removeNote(id: Int!): Note!
 }
 
 input CreateNoteInput {
+  """Content of the note"""
   content: String!
->>>>>>> Make notes operations functional
+
+  """Id of the item for relation"""
+  itemId: Int!
+}
+
+input CreateItemInput {
+  regCode: String!
+}
+
+input UpdateItemInput {
+  regCode: String
 }
