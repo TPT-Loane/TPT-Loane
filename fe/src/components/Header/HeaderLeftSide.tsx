@@ -1,7 +1,10 @@
 import {
-  HStack, Heading, Box, useColorModeValue,
+  HStack,
+  Heading,
+  Box,
+  useColorModeValue,
+  Text,
 } from '@chakra-ui/react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { NAV_ITEMS } from '../../utils';
@@ -15,8 +18,7 @@ export const HeaderLeftSide: React.FC = () => (
     </Heading>
     <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
       {NAV_ITEMS.map(navItem => {
-        const { href, iconName } = navItem;
-        const newIconName = iconName;
+        const { href, label } = navItem;
         return (
           <Link key={href} to={href}>
             <Box
@@ -28,9 +30,7 @@ export const HeaderLeftSide: React.FC = () => (
                 bg: useColorModeValue('gray.200', 'gray.700'),
               }}
             >
-              <Box textAlign="center" minW="2em">
-                <FontAwesomeIcon icon={['fas', newIconName]} size="lg" />
-              </Box>
+              <Text fontSize="xl">{label}</Text>
             </Box>
           </Link>
         );
