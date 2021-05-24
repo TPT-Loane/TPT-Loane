@@ -39,7 +39,7 @@ export class NoteService {
   async findOne(id: number) {
     const note = await this.notesRepository.findOne(id);
     if (!note) throw new NotFoundException(`Note #${id} not found`);
-    return this.notesRepository.findOne(id);
+    return note;
     
   }
 
