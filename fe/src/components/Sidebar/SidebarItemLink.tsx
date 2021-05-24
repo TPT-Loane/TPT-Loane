@@ -1,9 +1,11 @@
-import { Button } from '@chakra-ui/react';
-import React, { ReactElement } from 'react';
+import React from 'react';
+import { Box, Button, Text } from '@chakra-ui/react';
+import { IconName } from '@fortawesome/fontawesome-common-types';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link as RouteLink } from 'react-router-dom';
 
 interface SidebarItemLinkProps {
-  icon: ReactElement<string | undefined>;
+  icon: IconName;
   title: string;
   where: string;
 }
@@ -18,14 +20,16 @@ const SidebarItemLink: React.FC<SidebarItemLinkProps> = ({
     borderRadius={0}
     variant="ghost"
     justifyContent="flex-start"
-    leftIcon={icon}
-    iconSpacing="1.5em"
     pl="1.5em"
     fontSize="md"
     to={where}
     aria-label="Page"
+    minW="100%"
   >
-    {title}
+    <Box textAlign="center" minW="2em">
+      <FontAwesomeIcon icon={['fas', icon]} size="lg" />
+    </Box>
+    <Text ml="3">{title}</Text>
   </Button>
 );
 

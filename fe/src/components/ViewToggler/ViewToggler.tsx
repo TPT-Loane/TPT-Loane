@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Stack, Button, Icon } from '@chakra-ui/react';
-import { BsListUl, BsFillGrid3X3GapFill } from 'react-icons/bs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Stack, Button } from '@chakra-ui/react';
 import { HomeContext } from '../../pages/Home';
 import { ViewType } from '../../utils';
 
@@ -43,7 +43,7 @@ const ViewToggler: React.FC<Props> = ({
         onClick={isView(ViewType.Grid) ? setViewType : undefined}
         aria-label="List View"
       >
-        <Icon as={BsListUl} />
+        <FontAwesomeIcon icon={['fas', 'list-ul']} />
       </Button>
       <Button
         size="md"
@@ -54,7 +54,7 @@ const ViewToggler: React.FC<Props> = ({
         onClick={isView(ViewType.List) ? setViewType : undefined}
         aria-label="Grid View"
       >
-        <Icon as={BsFillGrid3X3GapFill} />
+        <FontAwesomeIcon icon={['fas', 'th']} />
       </Button>
     </Stack>
   );

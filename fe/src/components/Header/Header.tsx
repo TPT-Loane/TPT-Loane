@@ -1,14 +1,5 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  HStack,
-  useColorModeValue,
-  Text,
-} from '@chakra-ui/react';
-import { Link as RouteLink } from 'react-router-dom';
-import { NAV_ITEMS } from '../../utils';
-import { Drawerbar } from '../Sidebar';
+import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
+import { HeaderLeftSide } from './HeaderLeftSide';
 
 export default function Header(): JSX.Element {
   return (
@@ -20,6 +11,7 @@ export default function Header(): JSX.Element {
       top={0}
     >
       <Flex h={16} alignItems="center" justifyContent="space-between">
+<<<<<<< HEAD
         <HStack spacing={8} alignItems="center">
           <Drawerbar />
           <Heading as="h4" size="md">
@@ -51,6 +43,9 @@ export default function Header(): JSX.Element {
             ))}
           </HStack>
         </HStack>
+=======
+        <HeaderLeftSide />
+>>>>>>> main
       </Flex>
     </Box>
   );
