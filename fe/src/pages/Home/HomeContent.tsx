@@ -50,7 +50,8 @@ const PRODUCTS_CARD_ITEMS: Array<ProductCardItem> = [
       id: 1,
       name: 'Laptop 150G',
       // eslint-disable-next-line
-      description: 'This is this product description..This is this product description..This is this product description..This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
+      description:
+        '\nThis is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
       isAvailable: true,
       imageUrl:
         'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
@@ -136,14 +137,14 @@ function HomeContent(): JSX.Element {
   const isViewSwitchable: boolean = useBreakpointValue({ base: false, lg: true }) || false;
 
   const ITEMS_COUNT_PER_PAGE = 21;
-  const paginated = paginate(PRODUCTS_CARD_ITEMS, page, ITEMS_COUNT_PER_PAGE);
+  const paginated = paginate(
+    PRODUCTS_CARD_ITEMS,
+    page,
+    ITEMS_COUNT_PER_PAGE,
+  );
 
   return (
-    <Box
-      maxW="75rem"
-      px={useBreakpointValue({ base: 2, md: 12 })}
-      py={16}
-    >
+    <Box maxW="75rem" px={useBreakpointValue({ base: 2, md: 12 })} py={16}>
       <Flex p={2} w="100%">
         <Paginator
           currentPage={paginated.page}
@@ -153,35 +154,27 @@ function HomeContent(): JSX.Element {
         <ViewToggler viewSwitchable={isViewSwitchable} />
       </Flex>
 
-      {(view === ViewType.List
-        ? (
-          <List>
-            {paginated.items.map(productCardItem => (
-              <ListItem
-                m={2}
-                key={productCardItem.product.id}
-              >
-                <ProductCard productCardItem={productCardItem} asListItem />
-              </ListItem>
-            ))}
-          </List>
-        )
-        : (
-          <SimpleGrid
-            justifyItems="center"
-            minChildWidth="19rem"
-            spacing={1}
-          >
-            {paginated.items.map(productCardItem => (
-              <Box
-                m={2}
-                key={productCardItem.product.id}
-              >
-                <ProductCard productCardItem={productCardItem} />
-              </Box>
-            ))}
-          </SimpleGrid>
-        ))}
+      {view === ViewType.List ? (
+        <List>
+          {paginated.items.map(productCardItem => (
+            <ListItem m={2} key={productCardItem.product.id}>
+              <ProductCard productCardItem={productCardItem} asListItem />
+            </ListItem>
+          ))}
+        </List>
+      ) : (
+        <SimpleGrid
+          justifyItems="center"
+          minChildWidth="19rem"
+          spacing={1}
+        >
+          {paginated.items.map(productCardItem => (
+            <Box m={2} key={productCardItem.product.id}>
+              <ProductCard productCardItem={productCardItem} />
+            </Box>
+          ))}
+        </SimpleGrid>
+      )}
     </Box>
   );
 }
