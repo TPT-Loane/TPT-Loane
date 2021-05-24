@@ -23,7 +23,6 @@ type Note {
   id: Int!
   content: String!
   createdAt: DateTime!
-  itemId: Int!
   item: Item!
 }
 
@@ -36,7 +35,7 @@ type Item {
   id: Int!
   regCode: String!
   createdAt: DateTime!
-  note: [Note!]
+  notes: [Note!]!
 }
 
 type Query {
