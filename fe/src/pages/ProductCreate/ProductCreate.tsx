@@ -13,25 +13,33 @@ import {
   useField,
 } from 'formik';
 
-interface ProductFormValues {
+interface InputFieldProps {
   name: string;
-  description: string;
+  label: string;
+  placeholder: string;
+  textarea?: boolean;
 }
 
-const InputField = ({ ...props }) => {
+const InputField: React.FC<InputFieldProps> = ({ ...props }) => {
+  const { label, textarea } = props;
   const [field] = useField(props.name);
-  return (
-    <Input mb={3} w="100%" {...field} placeholder="name" isRequired />);
-};
 
-const TextAreaField = ({ ...props }) => {
-  const [field] = useField(props.name);
+  let InputOrTextarea: typeof Input | typeof Textarea = Input;
+  if (textarea) {
+    InputOrTextarea = Textarea;
+  }
   return (
-    <Textarea w="100%" {...field} placeholder="description" isRequired />);
+    <>
+      <FormLabel htmlFor={field.name}>{label}</FormLabel>
+      <InputOrTextarea mb={3} w="100%" {...field} {...props} id={field.name} isRequired />
+    </>
+  );
 };
 
 function ProductCreate(): JSX.Element {
-  const initialValues: ProductFormValues = { name: '', description: '' };
+  const initialValues: InputFieldProps = {
+    name: '', label: '', placeholder: '',
+  };
   return (
     <Flex direction="column" align="center">
       <Text fontSize="30px" mb="30px">Product</Text>
@@ -43,13 +51,13 @@ function ProductCreate(): JSX.Element {
             console.log({ values });
           }}
         >
-          <Form>
-            <FormLabel mb={3}>Item name</FormLabel>
-            <InputField name="name" type="text" />
-            <FormLabel>Description</FormLabel>
-            <TextAreaField name="description" type="text" />
-            <Button type="submit">Create</Button>
-          </Form>
+          {({ isSubmitting }) => (
+            <Form>
+              <InputField name="name" label="Item name" placeholder="Name" />
+              <InputField name="description" label="Description" placeholder="Description" textarea />
+              <Button type="submit" isLoading={isSubmitting}>Create</Button>
+            </Form>
+          )}
         </Formik>
       </Box>
     </Flex>
