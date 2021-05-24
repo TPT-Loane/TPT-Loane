@@ -38,8 +38,9 @@ export class NoteService {
 
   async findOne(id: number) {
     const note = await this.notesRepository.findOne(id);
-    if (note) return this.notesRepository.findOne(id);
-    throw new NotFoundException(`Note #${id} not found`);
+    if (!note) throw new NotFoundException(`Note #${id} not found`);
+    return this.notesRepository.findOne(id);
+    
   }
 
   remove(id: number) {

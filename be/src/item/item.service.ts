@@ -24,8 +24,8 @@ export class ItemService {
 
   async findOne(id: number) {
     const item = await this.itemRepository.findOne(id);
-    if (item) return this.itemRepository.findOne(id);
-    throw new NotFoundException(`Item #${id} not found`);
+    if (!item)  throw new NotFoundException(`Item #${id} not found`);   
+    return this.itemRepository.findOne(id);
   }
 
   async getItemByNoteId(noteId: number) {
