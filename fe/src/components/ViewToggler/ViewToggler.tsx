@@ -1,10 +1,6 @@
 import * as React from 'react';
-import {
-  Stack,
-  Button,
-  Icon,
-} from '@chakra-ui/react';
-import { BsListUl, BsFillGrid3X3GapFill } from 'react-icons/bs';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Stack, Button } from '@chakra-ui/react';
 import { HomeContext } from '../../pages/Home';
 import { ViewType } from '../../utils';
 
@@ -12,7 +8,7 @@ interface Props {
   viewSwitchable: boolean;
 }
 
-const ViewToggler: React.FC<Props> = ({ viewSwitchable } : Props): JSX.Element => {
+const ViewToggler: React.FC<Props> = ({ viewSwitchable }: Props): JSX.Element => {
   const { view, setView } = React.useContext(HomeContext);
   const isView = (viewType: ViewType): boolean => view === viewType;
 
@@ -21,15 +17,13 @@ const ViewToggler: React.FC<Props> = ({ viewSwitchable } : Props): JSX.Element =
       return;
     }
 
-    const newViewType: ViewType = isView(ViewType.List)
-      ? ViewType.Grid
-      : ViewType.List;
+    const newViewType: ViewType = isView(ViewType.List) ? ViewType.Grid : ViewType.List;
 
     setView(newViewType);
   };
 
   React.useEffect(() => {
-    if (!viewSwitchable && (view !== ViewType.Grid)) {
+    if (!viewSwitchable && view !== ViewType.Grid) {
       setView(ViewType.Grid);
     }
   }, [view, setView, viewSwitchable]);
@@ -44,7 +38,7 @@ const ViewToggler: React.FC<Props> = ({ viewSwitchable } : Props): JSX.Element =
         isDisabled={!viewSwitchable}
         onClick={isView(ViewType.Grid) ? setViewType : undefined}
       >
-        <Icon as={BsListUl} />
+        <FontAwesomeIcon icon={['fas', 'list-ul']} />
       </Button>
       <Button
         size="md"
@@ -54,7 +48,7 @@ const ViewToggler: React.FC<Props> = ({ viewSwitchable } : Props): JSX.Element =
         isDisabled={!viewSwitchable}
         onClick={isView(ViewType.List) ? setViewType : undefined}
       >
-        <Icon as={BsFillGrid3X3GapFill} />
+        <FontAwesomeIcon icon={['fas', 'th']} />
       </Button>
     </Stack>
   );
