@@ -25,9 +25,17 @@ export default function Header(): JSX.Element {
           <Heading as="h4" size="md">
             TPT-Loane
           </Heading>
-          <HStack as="nav" spacing={4} display={{ base: 'none', md: 'flex' }}>
+          <HStack
+            as="nav"
+            spacing={4}
+            display={{ base: 'none', md: 'flex' }}
+          >
             {NAV_ITEMS.map(navItem => (
-              <RouteLink key={navItem.href} to={navItem.href}>
+              <RouteLink
+                key={navItem.href}
+                to={navItem.href}
+                aria-label="Navbar route"
+              >
                 <Box
                   px={2}
                   py={1}

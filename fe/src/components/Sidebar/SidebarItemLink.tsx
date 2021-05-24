@@ -1,13 +1,11 @@
 import { Button } from '@chakra-ui/react';
 import React, { ReactElement } from 'react';
-import {
-  Link as RouteLink,
-} from 'react-router-dom';
+import { Link as RouteLink } from 'react-router-dom';
 
 interface SidebarItemLinkProps {
   icon: ReactElement<string | undefined>;
   title: string;
-  where:string;
+  where: string;
 }
 
 const SidebarItemLink: React.FC<SidebarItemLinkProps> = ({
@@ -25,6 +23,7 @@ const SidebarItemLink: React.FC<SidebarItemLinkProps> = ({
     pl="1.5em"
     fontSize="md"
     to={where}
+    aria-label="Page"
   >
     {title}
   </Button>

@@ -1,10 +1,19 @@
 import * as React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import {
-  Flex, Box, Image, useColorModeValue, Icon, Tooltip, Text,
+  Flex,
+  Box,
+  Image,
+  useColorModeValue,
+  Icon,
+  Tooltip,
+  Text,
 } from '@chakra-ui/react';
 import {
-  AddIcon, CheckIcon, CloseIcon, HamburgerIcon,
+  AddIcon,
+  CheckIcon,
+  CloseIcon,
+  HamburgerIcon,
 } from '@chakra-ui/icons';
 
 // @todo - Remove this interface after we have a type for Product as "single source of truth".
@@ -26,10 +35,13 @@ interface ProductCardItem {
 
 interface Props {
   productCardItem: ProductCardItem;
-  asListItem?: boolean, // Whether we display product as a detailed list item or just as product card.
+  asListItem?: boolean; // Whether we display product as a detailed list item or just as product card.
 }
 
-const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): JSX.Element => {
+const ProductCard: React.FC<Props> = ({
+  productCardItem,
+  asListItem,
+}: Props): JSX.Element => {
   const link = `product/${productCardItem.product.id.toString()}`;
   return (
     <Box
@@ -59,7 +71,9 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
       </Tooltip>
 
       <Tooltip
-        label={productCardItem.product.isAvailable ? 'Available' : 'Unavailable'}
+        label={
+          productCardItem.product.isAvailable ? 'Available' : 'Unavailable'
+        }
         bg="white"
         placement={asListItem ? 'right' : 'top'}
         color="gray.800"
@@ -106,7 +120,7 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
               fontWeight="semibold"
               isTruncated
             >
-              <RouterLink to={link}>
+              <RouterLink to={link} aria-label="Product Detail Page">
                 {productCardItem.product.name}
               </RouterLink>
             </Text>
@@ -131,10 +145,12 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
             {productCardItem.product.description}
           </Text>
           {/* @todo - Update this link/button to do something more logical. */}
-          <RouterLink to="#">
+          <RouterLink to="#" aria-label="Add Product">
             <Icon
               as={AddIcon}
-              display={productCardItem.product.isAvailable ? 'block' : 'none'}
+              display={
+                productCardItem.product.isAvailable ? 'block' : 'none'
+              }
               position="absolute"
               top={2}
               right={2}
@@ -145,10 +161,7 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
         </Box>
       </Flex>
 
-      <Box
-        display={asListItem ? 'none' : 'block'}
-        p={4}
-      >
+      <Box display={asListItem ? 'none' : 'block'} p={4}>
         <Flex mt="1" justifyContent="space-between" alignContent="center">
           <Text
             pr={2}
@@ -157,7 +170,7 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
             fontWeight="semibold"
             whiteSpace="pre-wrap"
           >
-            <RouterLink to={link}>
+            <RouterLink to={link} aria-label="Product Detail Page">
               {productCardItem.product.name}
             </RouterLink>
           </Text>
@@ -170,10 +183,12 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
             fontSize="1.2em"
           >
             {/* @todo - Update this link/button to do something more logical. */}
-            <RouterLink to="#">
+            <RouterLink to="#" aria-label="Add Product">
               <Icon
                 as={AddIcon}
-                display={productCardItem.product.isAvailable ? 'block' : 'none'}
+                display={
+                  productCardItem.product.isAvailable ? 'block' : 'none'
+                }
                 alignSelf="center"
                 h={7}
                 w={7}
