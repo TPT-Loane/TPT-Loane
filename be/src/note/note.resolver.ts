@@ -19,27 +19,27 @@ export class NoteResolver {
     @Inject(forwardRef(() => NoteService)) private noteService: NoteService,
   ) {}
 
-  @Query((returns) => Note)
+  @Query(() => Note)
   async note(@Args('id') id: number): Promise<Note> {
     return await this.noteService.findOne(id);
   }
 
-  @Query((returns) => [Note])
+  @Query(() => [Note])
   async notes() {
     return await this.noteService.findAll();
   }
 
-  @Mutation((returns) => Note)
+  @Mutation(() => Note)
   async createNote(@Args('createNoteInput') createNoteInput: CreateNoteInput) {
     return this.noteService.createNote(createNoteInput);
   }
 
-  @Mutation((returns) => Note)
+  @Mutation(() => Note)
   async removeNote(@Args('id', { type: () => Int }) id: number) {
     return this.noteService.remove(id);
   }
 
-  @ResolveField((returns) => Item)
+  @ResolveField(() => Item)
   item(@Parent() note: Note): Promise<Item> {
     return this.noteService.getItemByNoteId(note.id);
   }
