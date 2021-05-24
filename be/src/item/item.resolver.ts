@@ -1,4 +1,12 @@
-import { Resolver, Query, Mutation, Args, Int, Parent, ResolveField } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Int,
+  Parent,
+  ResolveField,
+} from '@nestjs/graphql';
 import { ItemService } from './item.service';
 import { Item } from './entities/item.entity';
 import { CreateItemInput } from './dto/create-item.input';
@@ -34,9 +42,4 @@ export class ItemResolver {
   removeItem(@Args('id', { type: () => Int }) id: number) {
     return this.itemService.remove(id);
   }
-
-  // @ResolveField(returns => Note)
-  // note(@Parent() item: Item): Promise<Note> {
-  //   return this.itemService.getNote(item.noteId);
-  // }
 }

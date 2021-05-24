@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Item } from 'src/item/entities/item.entity';
 import { ItemService } from 'src/item/item.service';
@@ -8,15 +8,30 @@ import { Note } from './entities/note.entity';
 
 @Injectable()
 export class NoteService {
-  constructor(@InjectRepository(Note) private notesRepository: Repository<Note>,private itemService: ItemService) { }
+  constructor(@InjectRepository(Note) private readonly notesRepository: Repository<Note>, private readonly itemRepository: ItemService) { }
 
-  createNote(createNoteInput: CreateNoteInput): Promise<Note> {
-    const newNote = this.notesRepository.create(createNoteInput);
+  async createNote(createNoteInput: CreateNoteInput) {
+    let item: Item;
+    if (createNoteInput.itemId) {
+      item = await this.itemRepository.findOne(
+        createNoteInput.itemId,
+      );
+      if (!item) {
+        throw new NotFoundException(
+          `Item with id #${createNoteInput.itemId} not found (parent parameter)`,
+        );
+      }
+    }
 
+    const newNote = this.notesRepository.create({
+      ...createNoteInput, 
+      item,
+    });
+    
     return this.notesRepository.save(newNote);
   }
 
-  findAll(): Promise<Note[]> {
+  findAll() {
     return this.notesRepository.find();
   }
 
@@ -28,8 +43,8 @@ export class NoteService {
     return this.notesRepository.delete(id);
   }
 
-  getItem(itemId: number): Promise<Item> {
-    return this.itemService.findOne(itemId);
+  getItemByNoteId(noteId: number) {
+    return this.itemRepository.getItemByNoteId(noteId);
   }
   
 }
