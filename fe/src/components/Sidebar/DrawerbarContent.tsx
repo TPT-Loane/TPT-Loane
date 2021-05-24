@@ -7,7 +7,14 @@ export const DrawerbarContent: React.FC = () => (
   <Flex direction="column">
     {NAV_ITEMS.map(navItem => {
       const { iconName, href, label } = navItem;
-      return <SidebarItemLink icon={iconName} title={label} where={href} />;
+      return (
+        <SidebarItemLink
+          keyContent={href}
+          icon={iconName}
+          title={label}
+          where={href}
+        />
+      );
     })}
   </Flex>
 );
