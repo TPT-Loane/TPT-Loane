@@ -40,7 +40,6 @@ export class NoteService {
     const note = await this.notesRepository.findOne(id);
     if (!note) throw new NotFoundException(`Note #${id} not found`);
     return note;
-    
   }
 
   remove(id: number) {
