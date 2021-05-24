@@ -8,14 +8,15 @@ import { Note } from './entities/note.entity';
 
 @Injectable()
 export class NoteService {
-  constructor(@InjectRepository(Note) private readonly notesRepository: Repository<Note>, private readonly itemRepository: ItemService) { }
+  constructor(
+    @InjectRepository(Note) private readonly notesRepository: Repository<Note>,
+    private readonly itemRepository: ItemService,
+  ) {}
 
   async createNote(createNoteInput: CreateNoteInput) {
     let item: Item;
     if (createNoteInput.itemId) {
-      item = await this.itemRepository.findOne(
-        createNoteInput.itemId,
-      );
+      item = await this.itemRepository.findOne(createNoteInput.itemId);
       if (!item) {
         throw new NotFoundException(
           `Item with id #${createNoteInput.itemId} not found (parent parameter)`,
@@ -24,10 +25,10 @@ export class NoteService {
     }
 
     const newNote = this.notesRepository.create({
-      ...createNoteInput, 
+      ...createNoteInput,
       item,
     });
-    
+
     return this.notesRepository.save(newNote);
   }
 
@@ -46,5 +47,4 @@ export class NoteService {
   getItemByNoteId(noteId: number) {
     return this.itemRepository.getItemByNoteId(noteId);
   }
-  
 }
