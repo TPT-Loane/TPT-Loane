@@ -6,7 +6,6 @@ type TestModel {
   name: String!
 }
 
-<<<<<<< HEAD
 type Category {
   """Example field (placeholder)"""
   id: Int!
@@ -24,11 +23,6 @@ type Category {
   parentCategory: [Category!]
 }
 
-type Query {
-  item(id: String!): TestModel!
-  items: [TestModel!]!
-  categories: [Category!]!
-=======
 type Note {
   id: Int!
   content: String!
@@ -40,20 +34,34 @@ A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date
 """
 scalar DateTime
 
+type Product {
+  id: Int!
+  name: String!
+  description: String!
+  specs: String!
+  category: [Category!]!
+  items: String!
+}
+
 type Query {
   item(id: String!): TestModel!
   items: [TestModel!]!
+  categories: [Category!]!
   note(id: Float!): Note!
   notes: [Note!]!
->>>>>>> Make notes operations functional
+  product(id: Int!): Product!
 }
 
 type Mutation {
   createItem(name: String!): TestModel!
-<<<<<<< HEAD
   createCategory(createCategoryInput: CreateCategoryInput!): Category!
   updateCategory(updateCategoryInput: UpdateCategoryInput!, id: Int!): Category!
   removeCategory(id: Int!): Category!
+  createNote(createNoteInput: CreateNoteInput!): Note!
+  removeNote(id: Int!): Note!
+  createProduct(createProductInput: CreateProductInput!): Product!
+  updateProduct(updateProductInput: UpdateProductInput!): Product!
+  removeProduct(id: Int!): Product!
 }
 
 input CreateCategoryInput {
@@ -73,12 +81,22 @@ input UpdateCategoryInput {
 
   """Can this category be used in a bundle?"""
   bundelable: Boolean
-=======
-  createNote(createNoteInput: CreateNoteInput!): Note!
-  removeNote(id: Int!): Note!
 }
 
 input CreateNoteInput {
+  """Content of the note"""
   content: String!
->>>>>>> Make notes operations functional
+}
+
+input CreateProductInput {
+  name: String!
+  description: String!
+  specs: String!
+}
+
+input UpdateProductInput {
+  name: String!
+  description: String!
+  specs: String!
+  id: Int!
 }
