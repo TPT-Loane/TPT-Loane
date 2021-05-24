@@ -1,0 +1,8 @@
+{
+    "scripts": {
+        "install-dep": "cd fe; npm ci; cd ../be; npm ci; cd ..",
+        "dockerup": "docker-compose --profile all up --build -d ",
+        "dockerdown": "docker-compose --profile all down --build -d ",
+        "start": "npm run install-dep; npm run dockerup"
+    }
+}
