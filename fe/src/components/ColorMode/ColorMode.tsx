@@ -6,6 +6,7 @@ export default function ColorMode(): JSX.Element {
   return (
     <IconButton
       icon={colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
+      title={colorMode === 'light' ? 'Switch to dark theme' : 'Switch to light theme'}
       onClick={toggleColorMode}
       aria-label="Switch color mode"
       variant="outline"
