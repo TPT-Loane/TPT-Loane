@@ -1,7 +1,5 @@
-import { InputType, Field } from '@nestjs/graphql';
+import { InputType, Field, PartialType } from '@nestjs/graphql';
+import { CreateItemInput } from './create-item.input';
 
 @InputType()
-export class UpdateItemInput {
-  @Field()
-  regCode: string;
-}
+export class UpdateItemInput extends PartialType(CreateItemInput)  {}
