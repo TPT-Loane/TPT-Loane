@@ -3,19 +3,29 @@
 # ------------------------------------------------------
 
 type Category {
-  """Example field (placeholder)"""
+  """
+  Example field (placeholder)
+  """
   id: Int!
 
-  """Name of the Category"""
+  """
+  Name of the Category
+  """
   name: String!
 
-  """Can this category be used in a bundle (as an item)"""
+  """
+  Can this category be used in a bundle (as an item)
+  """
   bundelable: Boolean!
 
-  """Subcategories"""
+  """
+  Subcategories
+  """
   subCategories: [Category!]!
 
-  """Parent categories"""
+  """
+  Parent categories
+  """
   parentCategory: [Category!]
 }
 
@@ -77,29 +87,43 @@ type Mutation {
 }
 
 input CreateCategoryInput {
-  """Name of the category"""
+  """
+  Name of the category
+  """
   name: String!
 
-  """Can this category be used in a bundle?"""
+  """
+  Can this category be used in a bundle?
+  """
   bundelable: Boolean!
 
-  """Id of the parent category"""
+  """
+  Id of the parent category
+  """
   parentCategoryId: Float
 }
 
 input UpdateCategoryInput {
-  """Name of the category"""
+  """
+  Name of the category
+  """
   name: String
 
-  """Can this category be used in a bundle?"""
+  """
+  Can this category be used in a bundle?
+  """
   bundelable: Boolean
 }
 
 input CreateNoteInput {
-  """Content of the note"""
+  """
+  Content of the note
+  """
   content: String!
 
-  """Id of the item for relation"""
+  """
+  Id of the item for relation
+  """
   itemId: Int!
 }
 
