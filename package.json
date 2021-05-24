@@ -2,7 +2,10 @@
     "scripts": {
         "install-dep": "cd fe; npm ci; cd ../be; npm ci; cd ..",
         "dockerup": "docker-compose --profile all up --build -d ",
+        "fe": "docker-compose --profile fe-dev up --build -d ",
+        "be": "docker-compose --profile be-dev up --build -d ",
+        "make-env": "cp fe/.env.example fe/.env ; cp be/.env.example be/.env",
         "dockerdown": "docker-compose --profile all down --build -d ",
-        "start": "npm run install-dep; npm run dockerup"
+        "start": "npm run make-env; npm run install-dep; npm run dockerup"
     }
 }
