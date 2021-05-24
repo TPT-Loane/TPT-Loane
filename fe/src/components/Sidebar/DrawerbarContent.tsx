@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { Box, Flex } from '@chakra-ui/react';
 import React from 'react';
 import SidebarItemLink from './SidebarItemLink';
 import { NAV_ITEMS } from '../../utils';
@@ -8,12 +8,9 @@ export const DrawerbarContent: React.FC = () => (
     {NAV_ITEMS.map(navItem => {
       const { iconName, href, label } = navItem;
       return (
-        <SidebarItemLink
-          keyContent={href}
-          icon={iconName}
-          title={label}
-          where={href}
-        />
+        <Box key={href}>
+          <SidebarItemLink icon={iconName} title={label} where={href} />
+        </Box>
       );
     })}
   </Flex>
