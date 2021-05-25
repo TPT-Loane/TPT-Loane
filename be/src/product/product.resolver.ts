@@ -13,13 +13,13 @@ export class ProductResolver {
     return this.productService.create(createProductInput);
   }
 
-  @Query(() => [Product], { name: 'product' })
-  findAllProducts() {
+  @Query(() => [Product])
+  products() {
     return this.productService.findAll();
   }
 
-  @Query(() => Product, { name: 'product' })
-  findOneProduct(@Args('id', { type: () => Int }) id: number) {
+  @Query(() => Product)
+  product(@Args('id', { type: () => Int }) id: number) {
     return this.productService.findOne(id);
   }
 
