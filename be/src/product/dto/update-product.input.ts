@@ -9,11 +9,9 @@ export class UpdateProductInput extends PartialType(CreateProductInput) {
   @Field(() => String)
   name: string;
 
-  
   @Field(() => String)
   description: string;
 
-  
   @Field(() => String)
   specs: string;
 }
