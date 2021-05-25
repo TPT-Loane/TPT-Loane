@@ -18,7 +18,7 @@ export class Product {
   @Field(() => String)
   description: string;
 
-  @Column({type: "json"})
+  @Column({type: "json", nullable: true})
   @Field(() => String)
   specs: string;
 

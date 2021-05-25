@@ -8,7 +8,7 @@ export class CreateProductInput {
   @Field(() => String)
   description: string;
 
-  @Field(() => String)
+  @Field(() => String, {nullable: true})
   specs: string;
 
 }
