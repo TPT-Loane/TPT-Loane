@@ -14,9 +14,7 @@ type Category {
 
   """Subcategories"""
   subCategories: [Category!]!
-
-  """Parent categories"""
-  parentCategory: [Category!]
+  parentCategory: Category
 }
 
 type Note {
