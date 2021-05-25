@@ -1,7 +1,7 @@
 dist: trusty
 language: node_js
 node_js:
-  - 11
+  - 14
 # latest 11.x node version , newer ones cause conflict with node-sass module
 
 jobs:
