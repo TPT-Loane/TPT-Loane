@@ -2,15 +2,121 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
-type TestModel {
+type Category {
+  """Example field (placeholder)"""
+  id: Int!
+
+  """Name of the Category"""
   name: String!
+
+  """Can this category be used in a bundle (as an item)"""
+  bundelable: Boolean!
+
+  """Subcategories"""
+  subCategories: [Category!]!
+
+  """Parent categories"""
+  parentCategory: [Category!]
+}
+
+type Note {
+  id: Int!
+  content: String!
+  createdAt: DateTime!
+  item: Item!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type Item {
+  id: Int!
+  regCode: String!
+  createdAt: DateTime!
+  notes: [Note!]!
+}
+
+type User {
+  id: Float!
+  username: String!
+  phone: String!
+  email: String!
+  registration_date: DateTime!
+  role: Float!
+  full_name: String!
+  personal_code: String!
 }
 
 type Query {
-  item(id: String!): TestModel!
-  items: [TestModel!]!
+  categories: [Category!]!
+  note(id: Float!): Note!
+  notes: [Note!]!
+  items: [Item!]!
+  item(id: Int!): Item!
+  userById(id: Float!): User!
+  userByPersonalCode(id: String!): User!
+  userByUsername(username: String!): User!
+  userByPhone(phone: String!): User!
+  users: [User!]!
 }
 
 type Mutation {
-  createItem(name: String!): TestModel!
+  createCategory(createCategoryInput: CreateCategoryInput!): Category!
+  updateCategory(updateCategoryInput: UpdateCategoryInput!, id: Int!): Category!
+  removeCategory(id: Int!): Category!
+  createNote(createNoteInput: CreateNoteInput!): Note!
+  removeNote(id: Int!): Note!
+  createItem(createItemInput: CreateItemInput!): Item!
+  updateItem(updateItemInput: UpdateItemInput!): Item!
+  removeItem(id: Int!): Item!
+  deleteUser(id: Float!): Boolean!
+  createUser(createUserInput: CreateUserInputDTO!): User!
+  updatePassword(id: Float!, newpass: String!, previouspass: String!): Boolean!
+}
+
+input CreateCategoryInput {
+  """Name of the category"""
+  name: String!
+
+  """Can this category be used in a bundle?"""
+  bundelable: Boolean!
+
+  """Id of the parent category"""
+  parentCategoryId: Float
+}
+
+input UpdateCategoryInput {
+  """Name of the category"""
+  name: String
+
+  """Can this category be used in a bundle?"""
+  bundelable: Boolean
+}
+
+input CreateNoteInput {
+  """Content of the note"""
+  content: String!
+
+  """Id of the item for relation"""
+  itemId: Int!
+}
+
+input CreateItemInput {
+  regCode: String!
+}
+
+input UpdateItemInput {
+  regCode: String
+}
+
+input CreateUserInputDTO {
+  username: String!
+  password: String!
+  email: String!
+  phone: String!
+  full_name: String!
+  role: Float!
+  personal_code: String!
 }

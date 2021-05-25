@@ -1,14 +1,15 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TestModel } from './models/test.model';
 import { AppController } from './app.controller';
-import { TestModule } from './service/test.module';
 import { ConfigModule } from '@nestjs/config';
+import { CategoryModule } from './category/category.module';
+import { NoteModule } from './note/note.module';
+import { ItemModule } from './item/item.module';
+import { UserModule } from './user/user.module';
 
 @Module({
   imports: [
-    TestModule,
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       debug: false,
@@ -22,10 +23,15 @@ import { ConfigModule } from '@nestjs/config';
       username: process.env.DATABASE_USER,
       password: process.env.DATABASE_PASSWORD,
       database: process.env.DATABASE_NAME,
-      entities: ['dist/**/*.model.js', TestModel],
+      autoLoadEntities: true, // models will be loaded automatically
       synchronize: true,
     }),
+    CategoryModule,
+    NoteModule,
+    ItemModule,
+    UserModule,
   ],
+  exports: [NoteModule, ItemModule],
   controllers: [AppController],
 })
 export class AppModule {}
