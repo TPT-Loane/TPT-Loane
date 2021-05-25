@@ -45,7 +45,7 @@ export class CategoryService {
     const category = await this.categoryRepo.findOne(id, {
       relations: ['parentCategory'],
     });
-    return category.parentCategory;
+    return category ? category.parentCategory : null;
   }
 
   async update(id: number, updateCategoryInput: UpdateCategoryInput) {
