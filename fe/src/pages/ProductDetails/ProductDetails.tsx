@@ -1,6 +1,8 @@
-import { CheckCircleIcon, NotAllowedIcon } from '@chakra-ui/icons';
 import {
-  AspectRatio, Flex, Heading, Image, Text,
+  CheckCircleIcon, NotAllowedIcon,
+} from '@chakra-ui/icons';
+import {
+  AspectRatio, Flex, Image, Text, Editable, EditablePreview, EditableInput, Button, useBoolean,
 } from '@chakra-ui/react';
 import React from 'react';
 // import { useParams } from 'react-router-dom';
@@ -24,10 +26,10 @@ const ProductDetails: React.FC = () => {
     quantity: 4,
   };
   // const { id } = useParams<RouteParams>();
-
+  const [isEditable, setIsEditable] = useBoolean();
   const { product, quantity } = data;
   const {
-    description, isAvailable, name, imageUrl,
+    description, name, isAvailable, imageUrl,
   } = product;
   return (
     <Flex
@@ -55,8 +57,14 @@ const ProductDetails: React.FC = () => {
         <Image src={imageUrl} alt="Product Image Main" objectFit="cover" />
       </AspectRatio>
       <Flex flexDirection="column">
-        <Heading textAlign="center">{name}</Heading>
-        <Text whiteSpace="pre-wrap">{description}</Text>
+        <Editable isPreviewFocusable={isEditable} defaultValue={name}>
+          <EditablePreview />
+          <EditableInput />
+        </Editable>
+        <Editable whiteSpace="pre-wrap" isPreviewFocusable={isEditable} defaultValue={description}>
+          <EditablePreview />
+          <EditableInput />
+        </Editable>
         <Flex flexDirection="row" justifyContent="flex-end" alignItems="center">
           <Text mr="0.5em">{quantity}</Text>
           {isAvailable ? (
@@ -65,6 +73,7 @@ const ProductDetails: React.FC = () => {
             <NotAllowedIcon w={8} h={8} color="red.500" />
           )}
         </Flex>
+        <Button m={1} onClick={setIsEditable.toggle}>Edit</Button>
       </Flex>
     </Flex>
   );
