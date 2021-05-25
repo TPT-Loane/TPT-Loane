@@ -41,6 +41,13 @@ export class CategoryService {
     });
   }
 
+  async findParent(id: number) {
+    const category = await this.categoryRepo.findOne(id, {
+      relations: ['parentCategory'],
+    });
+    return category.parentCategory;
+  }
+
   async update(id: number, updateCategoryInput: UpdateCategoryInput) {
     const category = await this.categoryRepo.preload({
       id,
