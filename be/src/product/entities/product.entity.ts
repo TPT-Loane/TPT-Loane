@@ -24,7 +24,7 @@ export class Product {
 
   @OneToMany(() => Category, (category) => category)
   @Field(() => [Category])
-  category: Category[];
+  categories: Category[];
 
   @OneToMany(() => Item, (item) => item)
   @Field(() => [Item])
