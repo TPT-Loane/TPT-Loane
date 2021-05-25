@@ -1,44 +1,18 @@
 import {
   Flex,
   Box,
-  Input,
   Text,
-  FormLabel,
   Button,
-  Textarea,
 } from '@chakra-ui/react';
 import {
   Formik,
   Form,
-  useField,
 } from 'formik';
-
-interface InputFieldProps {
-  name: string;
-  label: string;
-  placeholder: string;
-  textarea?: boolean;
-}
-
-const InputField: React.FC<InputFieldProps> = ({ ...props }) => {
-  const { label, textarea } = props;
-  const [field] = useField(props.name);
-
-  let InputOrTextarea: typeof Input | typeof Textarea = Input;
-  if (textarea) {
-    InputOrTextarea = Textarea;
-  }
-  return (
-    <>
-      <FormLabel htmlFor={field.name}>{label}</FormLabel>
-      <InputOrTextarea mb={3} w="100%" {...field} {...props} id={field.name} isRequired />
-    </>
-  );
-};
+import { InputField, InputFieldProps } from './InputField';
 
 function ProductCreate(): JSX.Element {
   const initialValues: InputFieldProps = {
-    name: '', label: '', placeholder: '',
+    name: '',
   };
   return (
     <Flex direction="column" align="center">
