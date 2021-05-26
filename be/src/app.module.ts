@@ -7,6 +7,7 @@ import { CategoryModule } from './category/category.module';
 import { NoteModule } from './note/note.module';
 import { ItemModule } from './item/item.module';
 import { UserModule } from './user/user.module';
+import { TestingModule } from './testing/testing.module';
 
 @Module({
   imports: [
@@ -30,6 +31,7 @@ import { UserModule } from './user/user.module';
     NoteModule,
     ItemModule,
     UserModule,
+    TestingModule,
   ],
   exports: [NoteModule, ItemModule],
   controllers: [AppController],
