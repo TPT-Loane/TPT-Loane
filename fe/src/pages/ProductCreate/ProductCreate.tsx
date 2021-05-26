@@ -28,7 +28,7 @@ function ProductCreate(): JSX.Element {
           {({ isSubmitting }) => (
             <Form>
               <InputField name="name" label="Item name" placeholder="Name" />
-              <InputField name="description" label="Description" placeholder="Description" textarea />
+              <InputField name="description" label="Description" placeholder="Description" textarea="true" />
               <Button type="submit" isLoading={isSubmitting}>Create</Button>
             </Form>
           )}

@@ -12,7 +12,7 @@ export interface InputFieldProps {
   name: string;
   label?: string;
   placeholder?: string;
-  textarea?: boolean;
+  textarea?: string;
 }
 
 export const InputField: React.FC<InputFieldProps> = ({ ...props }) => {
@@ -20,7 +20,7 @@ export const InputField: React.FC<InputFieldProps> = ({ ...props }) => {
   const [field] = useField(props.name);
 
   let InputOrTextarea: typeof Input | typeof Textarea = Input;
-  if (textarea) {
+  if (textarea === 'true') {
     InputOrTextarea = Textarea;
   }
   return (
