@@ -24,7 +24,7 @@ const InputField: React.FC<InputFieldProps> = ({ ...props }) => {
     <>
       <FormLabel htmlFor={field.name}>{label}</FormLabel>
       {name === 'password' ? (
-        <InputGroup isAttached>
+        <InputGroup>
           <Input
             {...field}
             {...props}
