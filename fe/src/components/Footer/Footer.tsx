@@ -28,7 +28,11 @@ export default function Footer(): JSX.Element {
       >
         <Text>© 2021 Tallinn Polytechnic School. All rights reserved</Text>
         <Stack direction="row" spacing={6}>
-          <Link href="https://www.tptlive.ee/" isExternal>
+          <Link
+            href="https://www.tptlive.ee/"
+            isExternal
+            aria-label="Tallinn Polytechnic School"
+          >
             Tallinn Polytechnic School
             <ExternalLinkIcon mx="2px" />
           </Link>

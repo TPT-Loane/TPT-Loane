@@ -1,1 +1,4 @@
 generated/
+reportWebVitals.ts
+service-worker.ts
+serviceWorkerRegistration.ts

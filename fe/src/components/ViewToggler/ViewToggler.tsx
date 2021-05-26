@@ -8,7 +8,9 @@ interface Props {
   viewSwitchable: boolean;
 }
 
-const ViewToggler: React.FC<Props> = ({ viewSwitchable }: Props): JSX.Element => {
+const ViewToggler: React.FC<Props> = ({
+  viewSwitchable,
+}: Props): JSX.Element => {
   const { view, setView } = React.useContext(HomeContext);
   const isView = (viewType: ViewType): boolean => view === viewType;
 
@@ -17,7 +19,9 @@ const ViewToggler: React.FC<Props> = ({ viewSwitchable }: Props): JSX.Element =>
       return;
     }
 
-    const newViewType: ViewType = isView(ViewType.List) ? ViewType.Grid : ViewType.List;
+    const newViewType: ViewType = isView(ViewType.List)
+      ? ViewType.Grid
+      : ViewType.List;
 
     setView(newViewType);
   };
@@ -37,6 +41,7 @@ const ViewToggler: React.FC<Props> = ({ viewSwitchable }: Props): JSX.Element =>
         isActive={isView(ViewType.List)}
         isDisabled={!viewSwitchable}
         onClick={isView(ViewType.Grid) ? setViewType : undefined}
+        aria-label="List View"
       >
         <FontAwesomeIcon icon={['fas', 'list-ul']} />
       </Button>
@@ -47,6 +52,7 @@ const ViewToggler: React.FC<Props> = ({ viewSwitchable }: Props): JSX.Element =>
         isActive={isView(ViewType.Grid)}
         isDisabled={!viewSwitchable}
         onClick={isView(ViewType.List) ? setViewType : undefined}
+        aria-label="Grid View"
       >
         <FontAwesomeIcon icon={['fas', 'th']} />
       </Button>

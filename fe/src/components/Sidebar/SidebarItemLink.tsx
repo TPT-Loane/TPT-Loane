@@ -1,7 +1,7 @@
+import React from 'react';
 import { Box, Button, Text } from '@chakra-ui/react';
 import { IconName } from '@fortawesome/fontawesome-common-types';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import React from 'react';
 import { Link as RouteLink } from 'react-router-dom';
 
 interface SidebarItemLinkProps {
@@ -23,6 +23,7 @@ const SidebarItemLink: React.FC<SidebarItemLinkProps> = ({
     pl="1.5em"
     fontSize="md"
     to={where}
+    aria-label="Page"
     minW="100%"
   >
     <Box textAlign="center" minW="2em">

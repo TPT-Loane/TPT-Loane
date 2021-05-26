@@ -1,10 +1,11 @@
 import { gql } from '@apollo/client';
 import * as Apollo from '@apollo/client';
+
 export type Maybe<T> = T | null;
 export type Exact<T extends { [key: string]: unknown }> = { [K in keyof T]: T[K] };
 export type MakeOptional<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]?: Maybe<T[SubKey]> };
 export type MakeMaybe<T, K extends keyof T> = Omit<T, K> & { [SubKey in K]: Maybe<T[SubKey]> };
-const defaultOptions =  {}
+const defaultOptions = {};
 /** All built-in and custom scalars, mapped to their actual values */
 export type Scalars = {
   ID: string;
@@ -19,7 +20,6 @@ export type Mutation = {
   createItem: TestModel;
 };
 
-
 export type MutationCreateItemArgs = {
   name: Scalars['String'];
 };
@@ -29,7 +29,6 @@ export type Query = {
   item: TestModel;
   items: Array<TestModel>;
 };
-
 
 export type QueryItemArgs = {
   id: Scalars['String'];
@@ -44,7 +43,6 @@ export type GetItemQueryVariables = Exact<{
   id: Scalars['String'];
 }>;
 
-
 export type GetItemQuery = (
   { __typename?: 'Query' }
   & { item: (
@@ -52,7 +50,6 @@ export type GetItemQuery = (
     & Pick<TestModel, 'name'>
   ) }
 );
-
 
 export const GetItemDocument = gql`
     query GetItem($id: String!) {
@@ -79,13 +76,13 @@ export const GetItemDocument = gql`
  * });
  */
 export function useGetItemQuery(baseOptions: Apollo.QueryHookOptions<GetItemQuery, GetItemQueryVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useQuery<GetItemQuery, GetItemQueryVariables>(GetItemDocument, options);
-      }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useQuery<GetItemQuery, GetItemQueryVariables>(GetItemDocument, options);
+}
 export function useGetItemLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<GetItemQuery, GetItemQueryVariables>) {
-          const options = {...defaultOptions, ...baseOptions}
-          return Apollo.useLazyQuery<GetItemQuery, GetItemQueryVariables>(GetItemDocument, options);
-        }
+  const options = { ...defaultOptions, ...baseOptions };
+  return Apollo.useLazyQuery<GetItemQuery, GetItemQueryVariables>(GetItemDocument, options);
+}
 export type GetItemQueryHookResult = ReturnType<typeof useGetItemQuery>;
 export type GetItemLazyQueryHookResult = ReturnType<typeof useGetItemLazyQuery>;
 export type GetItemQueryResult = Apollo.QueryResult<GetItemQuery, GetItemQueryVariables>;
