@@ -1,51 +1,70 @@
 import {
-  Input,
-  InputGroup,
-  InputRightElement,
+  Box,
   Button,
   Flex,
-  Text,
-  Box,
-  FormControl,
-  FormLabel,
+  Link,
+  useColorModeValue,
 } from '@chakra-ui/react';
-import { ViewIcon } from '@chakra-ui/icons';
-import { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
+import { Form, Formik } from 'formik';
+import InputField from '../../components/Input';
 
 function Login(): JSX.Element {
-  const [showPassword, setShowPassword] = useState(false);
-  const handlePasswordVisibility = () => setShowPassword(!showPassword);
+  const signInLink = useColorModeValue('pink.500', 'cyan.500');
   return (
-    <Flex direction="column" align="center">
-      <Text fontSize="30px" mb="30px">Login</Text>
-      <Box align="center">
-        <form>
-          <FormControl>
-            <FormLabel>Email</FormLabel>
-            <Input mb="30px" w="100%" type="email" placeholder="example@tptlive.ee" id="username" isRequired />
-          </FormControl>
-          <FormControl>
-            <FormLabel>Password</FormLabel>
-            <InputGroup>
-              <Input
-                mb="50px"
-                w="100%"
-                type={showPassword ? 'text' : 'password'}
-                placeholder="password"
-                id="password"
-                isRequired
+    <Flex
+      direction="column"
+      align="center"
+      justifyContent="center"
+      mt={12}
+    >
+      <Box w="20rem">
+        <Formik
+          initialValues={{ usernameOrEmail: '', password: '' }}
+          onSubmit={values => {
+            // eslint-disable-next-line
+            console.log(values);
+          }}
+        >
+          {({ isSubmitting }) => (
+            <Form>
+              <InputField
+                name="usernameOrEmail"
+                placeholder="Username or email"
+                label="Username or Email"
               />
-              <InputRightElement>
+              <InputField
+                name="password"
+                label="Password"
+                placeholder="Enter password"
+              />
+              <Box mt={2}>
+                New to TPT Loane?&nbsp;
+                <RouterLink to="register">
+                  {/* eslint-disable-next-line */}
+                  <Link textColor={signInLink}>Sign up</Link>
+                </RouterLink>
+              </Box>
+              <Box textAlign="end">
+                <RouterLink to="#">
+                  {/* eslint-disable-next-line */}
+                  <Link textColor={signInLink}>Forgot Password?</Link>
+                </RouterLink>
+              </Box>
+              <Box textAlign="center">
                 <Button
-                  onClick={handlePasswordVisibility}
+                  variant="outline"
+                  mt={4}
+                  type="submit"
+                  colorScheme="blue"
+                  isLoading={isSubmitting}
                 >
-                  {showPassword ? <ViewIcon name="view-off" /> : <ViewIcon name="view" />}
+                  Login
                 </Button>
-              </InputRightElement>
-            </InputGroup>
-          </FormControl>
-          <Button type="submit">Sign in</Button>
-        </form>
+              </Box>
+            </Form>
+          )}
+        </Formik>
       </Box>
     </Flex>
   );
