@@ -4,18 +4,6 @@ This folder contains the nessecary files needed to launch a docker instance with
 postgresql that can be accessed with a database manager such as
 [dbeaver](https://dbeaver.io/) [(github)](https://github.com/dbeaver/dbeaver).
 
-## Table of contents
-
-- [Accessing the database](#accessing-the-database)
-
-- [Running the development database in docker](#running-the-development-database-in-docker)
-
-- [Stopping the development database](#stopping-the-development-database)
-
-- [Adding example data and tables](#adding-example-data-and-tables)
-
-- [Troubleshooting](#troubleshooting)
-
 ## Accessing the database
 
 Access the database using adminer at:

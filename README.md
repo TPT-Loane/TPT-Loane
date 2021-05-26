@@ -12,31 +12,6 @@ Loan and borrow!
 
 - [Documentation](./doc/)
 
-## Table of contents
-
-- [Docker related](#docker-related)
-
-  - [Important variables](#important-variables)
-
-    - [Front end specific](./fe/README.md#important-variables)
-
-    - [Back end specific](./be/README.md#important-variables)
-
-    - [Database specific](./be/db/dev-db/README.md#accessing-the-database)
-
-  - [Running the development services](#running-the-development-services)
-
-  - [Stopping the development services](#stopping-the-development-services)
-
-- [Troubleshooting](#troubleshooting)
-
-  - [Front end specific](./fe/README.md#troubleshooting)
-
-  - [Back end specific](./be/README.md#troubleshooting)
-
-  - [Database specific](./be/db/dev-db/README.md#troubleshooting)
-
-  - [Docker not running](#docker-not-running)
 
 ## Docker related
 

@@ -1,4 +1,10 @@
-import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  HStack,
+  useColorModeValue,
+} from '@chakra-ui/react';
+import ColorMode from '../ColorMode';
 import { HeaderLeftSide } from './HeaderLeftSide';
 
 export default function Header(): JSX.Element {
@@ -12,6 +18,9 @@ export default function Header(): JSX.Element {
     >
       <Flex h={16} alignItems="center" justifyContent="space-between">
         <HeaderLeftSide />
+        <HStack spacing={12} ml="auto">
+          <ColorMode />
+        </HStack>
       </Flex>
     </Box>
   );
