@@ -29,6 +29,7 @@
                 "sourceVolume": "_Be"
             }],
             "name": "be-dev",
+            "image": "node:14",
             "portMappings": [{
                 "containerPort": 3000,
                 "hostPort": 3001
@@ -88,6 +89,7 @@
                 "sourceVolume": "_Fe"
             }],
             "name": "fe-dev",
+            "image": "node:14",
             "portMappings": [{
                 "containerPort": 3000,
                 "hostPort": 3000
