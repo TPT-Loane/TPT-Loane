@@ -49,6 +49,11 @@ type User {
   personal_code: String!
 }
 
+type Testing {
+  """Example field (placeholder)"""
+  exampleField: Int!
+}
+
 type Query {
   categories: [Category!]!
   note(id: Float!): Note!
@@ -60,6 +65,7 @@ type Query {
   userByUsername(username: String!): User!
   userByPhone(phone: String!): User!
   users: [User!]!
+  testing: [Testing!]!
 }
 
 type Mutation {
@@ -74,6 +80,8 @@ type Mutation {
   deleteUser(id: Float!): Boolean!
   createUser(createUserInput: CreateUserInputDTO!): User!
   updatePassword(id: Float!, newpass: String!, previouspass: String!): Boolean!
+  createTesting(createTestingInput: CreateTestingInput!): Testing!
+  AddFakeData: Testing!
 }
 
 input CreateCategoryInput {
@@ -119,4 +127,9 @@ input CreateUserInputDTO {
   full_name: String!
   role: Float!
   personal_code: String!
+}
+
+input CreateTestingInput {
+  """Example field (placeholder)"""
+  exampleField: Int!
 }
