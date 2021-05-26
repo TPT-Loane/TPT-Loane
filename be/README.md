@@ -1,19 +1,5 @@
 # Back end
 
-## Table of contents
-
-- [Important variables](#important-variables)
-
-- [Running the development back end](#running-the-development-back-end)
-
-- [Database migrations](#database-migrations)
-
-- [Tests](#tests)
-
-- [Stopping the development back end](#stopping-the-development-back-end)
-
-- [Troubleshooting](#troubleshooting)
-
 ## Important variables
 
 [Found in '.env.example' file.](./.env.example)
