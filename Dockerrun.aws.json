@@ -103,19 +103,19 @@
     "family": "",
     "volumes": [{
             "host": {
-                "sourcePath": "./fe/"
+                "sourcePath": "/var/app/current/fe/"
             },
             "name": "_Fe"
         },
         {
             "host": {
-                "sourcePath": "./be/"
+                "sourcePath": "/var/app/current/be/"
             },
             "name": "_Be"
         },
         {
             "host": {
-                "sourcePath": "./docker/volumes/postgres-data"
+                "sourcePath": "/var/app/current/docker/volumes/postgres-data"
             },
             "name": "_DockerVolumesPostgres-Data"
         }
