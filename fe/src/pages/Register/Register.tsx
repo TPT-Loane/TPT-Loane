@@ -3,7 +3,8 @@ import {
   Box,
   Button,
   Flex,
-  Link,
+  HStack,
+  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { Form, Formik } from 'formik';
@@ -63,11 +64,14 @@ function Register(): JSX.Element {
                 placeholder="Personal Code"
               />
               <Box mt={2}>
-                Already a Loaner?&nbsp;
-                <RouterLink to="login">
-                  {/* eslint-disable-next-line */}
-                  <Link textColor={signInLink}>Sign in</Link>
-                </RouterLink>
+                <HStack>
+                  <Text>Already a Loaner?</Text>
+                  <RouterLink to="login">
+                    <Text textColor={signInLink} cursor="pointer">
+                      Sign in
+                    </Text>
+                  </RouterLink>
+                </HStack>
               </Box>
               <Box textAlign="center">
                 <Button

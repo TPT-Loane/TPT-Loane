@@ -2,7 +2,8 @@ import {
   Box,
   Button,
   Flex,
-  Link,
+  HStack,
+  Text,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { Link as RouterLink } from 'react-router-dom';
@@ -39,16 +40,20 @@ function Login(): JSX.Element {
                 placeholder="Enter password"
               />
               <Box mt={2}>
-                New to TPT Loane?&nbsp;
-                <RouterLink to="register">
-                  {/* eslint-disable-next-line */}
-                  <Link textColor={signInLink}>Sign up</Link>
-                </RouterLink>
+                <HStack>
+                  <Text>New to TPT Loane?</Text>
+                  <RouterLink to="register">
+                    <Text textColor={signInLink} cursor="pointer">
+                      Sign up
+                    </Text>
+                  </RouterLink>
+                </HStack>
               </Box>
-              <Box textAlign="end">
+              <Box textAlign="end" mt={2}>
                 <RouterLink to="#">
-                  {/* eslint-disable-next-line */}
-                  <Link textColor={signInLink}>Forgot Password?</Link>
+                  <Text textColor={signInLink} cursor="pointer">
+                    Forgot Password?
+                  </Text>
                 </RouterLink>
               </Box>
               <Box textAlign="center">
