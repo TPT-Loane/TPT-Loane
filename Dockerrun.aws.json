@@ -1,0 +1,116 @@
+{
+    "containerDefinitions": [{
+            "essential": true,
+            "image": "adminer:4.8.0",
+            "name": "adminer",
+            "portMappings": [{
+                "containerPort": 8080,
+                "hostPort": 8080
+            }]
+        },
+        {
+            "environment": [{
+                    "name": "DATABASE_IP",
+                    "value": "db-dev"
+                },
+                {
+                    "name": "DATABASE_PORT",
+                    "value": "5432"
+                },
+                {
+                    "name": "SERVER_PORT",
+                    "value": "3000"
+                }
+            ],
+            "essential": true,
+            "mountPoints": [{
+                "containerPath": "/app/be",
+                "sourceVolume": "_Be"
+            }],
+            "name": "be-dev",
+            "portMappings": [{
+                "containerPort": 3000,
+                "hostPort": 3001
+            }]
+        },
+        {
+            "environment": [{
+                    "name": "POSTGRES_USER",
+                    "value": "postgres"
+                },
+                {
+                    "name": "POSTGRES_PASSWORD",
+                    "value": "postgres"
+                },
+                {
+                    "name": "DATABASE_NAME",
+                    "value": "postgres"
+                },
+                {
+                    "name": "DATABASE_IP",
+                    "value": "127.0.0.1"
+                },
+                {
+                    "name": "DATABASE_PORT",
+                    "value": "7842"
+                },
+                {
+                    "name": "SERVER_PORT",
+                    "value": "4501"
+                }
+            ],
+            "essential": true,
+            "image": "postgres:13",
+            "mountPoints": [{
+                "containerPath": "/var/lib/postgresql/data",
+                "sourceVolume": "_DockerVolumesPostgres-Data"
+            }],
+            "name": "db-dev",
+            "portMappings": [{
+                "containerPort": 5432,
+                "hostPort": 7842
+            }]
+        },
+        {
+            "environment": [{
+                    "name": "BROWSER",
+                    "value": "none"
+                },
+                {
+                    "name": "REACT_APP_BE_URI",
+                    "value": "http://localhost:<PORT>/graphql"
+                }
+            ],
+            "essential": true,
+            "mountPoints": [{
+                "containerPath": "/app/fe",
+                "sourceVolume": "_Fe"
+            }],
+            "name": "fe-dev",
+            "portMappings": [{
+                "containerPort": 3000,
+                "hostPort": 3000
+            }]
+        }
+    ],
+    "family": "",
+    "volumes": [{
+            "host": {
+                "sourcePath": "./fe/"
+            },
+            "name": "_Fe"
+        },
+        {
+            "host": {
+                "sourcePath": "./be/"
+            },
+            "name": "_Be"
+        },
+        {
+            "host": {
+                "sourcePath": "./docker/volumes/postgres-data"
+            },
+            "name": "_DockerVolumesPostgres-Data"
+        }
+    ]
+}
