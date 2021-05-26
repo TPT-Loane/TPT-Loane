@@ -5,16 +5,6 @@ project.
 
 The front end is made with React, Chakra UI and Sass.
 
-## Table of contents
-
-- [Important variables](#important-variables)
-
-- [Running the development front end](#running-the-development-front-end)
-
-- [Stopping the development front end](#stopping-the-development-front-end)
-
-- [Troubleshooting](#troubleshooting)
-
 ## Important variables
 
 [Found in '.env.example' file.](./.env.example)
