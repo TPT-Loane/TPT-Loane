@@ -4,6 +4,7 @@
             "essential": true,
             "image": "adminer:4.8.0",
             "name": "adminer",
+            "memoryReservation": 20,
             "portMappings": [{
                 "containerPort": 8080,
                 "hostPort": 8080
@@ -29,6 +30,7 @@
                 "sourceVolume": "_Be"
             }],
             "name": "be-dev",
+            "memoryReservation": 128,
             "image": "node:14",
             "portMappings": [{
                 "containerPort": 3000,
@@ -63,6 +65,7 @@
             ],
             "essential": true,
             "image": "postgres:13",
+            "memoryReservation": 128,
             "mountPoints": [{
                 "containerPath": "/var/lib/postgresql/data",
                 "sourceVolume": "_DockerVolumesPostgres-Data"
@@ -90,6 +93,7 @@
             }],
             "name": "fe-dev",
             "image": "node:14",
+            "memoryReservation": 128,
             "portMappings": [{
                 "containerPort": 3000,
                 "hostPort": 3000
