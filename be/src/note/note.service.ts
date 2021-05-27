@@ -19,7 +19,7 @@ export class NoteService {
       item = await this.itemRepository.findOne(createNoteInput.itemId);
       if (!item) {
         throw new NotFoundException(
-          `Item with id #${createNoteInput.itemId} not found (parent parameter)`,
+          `Item with id #${createNoteInput.itemId} not found`,
         );
       }
     }
@@ -46,7 +46,4 @@ export class NoteService {
     return this.notesRepository.delete(id);
   }
 
-  getItemByNoteId(noteId: number) {
-    return this.itemRepository.getItemByNoteId(noteId);
-  }
 }

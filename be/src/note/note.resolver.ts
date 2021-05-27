@@ -12,11 +12,13 @@ import { NoteService } from './note.service';
 import { Note } from './entities/note.entity';
 import { CreateNoteInput } from './dto/create-note.input';
 import { Item } from 'src/item/entities/item.entity';
+import { ItemService } from 'src/item/item.service';
 
 @Resolver(() => Note)
 export class NoteResolver {
   constructor(
-    @Inject(forwardRef(() => NoteService)) private noteService: NoteService,
+    @Inject(forwardRef(() => NoteService)) private noteService: NoteService, 
+    private readonly itemRepository: ItemService,
   ) {}
 
   @Query(() => Note)
@@ -41,6 +43,6 @@ export class NoteResolver {
 
   @ResolveField(() => Item)
   item(@Parent() note: Note): Promise<Item> {
-    return this.noteService.getItemByNoteId(note.id);
+    return this.itemRepository.getItemByNoteId(note.id);
   }
 }
