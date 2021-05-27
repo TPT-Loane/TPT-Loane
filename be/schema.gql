@@ -2,6 +2,19 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Bundle {
+  id: Int!
+  description: String!
+  createdAt: DateTime!
+  updateAt: DateTime!
+  categories: [Category!]!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
 type Category {
   """Example field (placeholder)"""
   id: Int!
@@ -17,6 +30,7 @@ type Category {
 
   """Parent categories"""
   parentCategory: [Category!]
+  bundles: [Bundle!]!
 }
 
 type Note {
@@ -25,11 +39,6 @@ type Note {
   createdAt: DateTime!
   item: Item!
 }
-
-"""
-A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
-"""
-scalar DateTime
 
 type Item {
   id: Int!
@@ -51,6 +60,8 @@ type User {
 
 type Query {
   categories: [Category!]!
+  bundles: [Bundle!]!
+  bundle(id: Int!): Bundle!
   note(id: Float!): Note!
   notes: [Note!]!
   items: [Item!]!
@@ -66,6 +77,9 @@ type Mutation {
   createCategory(createCategoryInput: CreateCategoryInput!): Category!
   updateCategory(updateCategoryInput: UpdateCategoryInput!, id: Int!): Category!
   removeCategory(id: Int!): Category!
+  createBundle(createBundleInput: CreateBundleInput!): Bundle!
+  updateBundle(updateBundleInput: UpdateBundleInput!, id: Int!): Bundle!
+  removeBundle(id: Int!): Bundle!
   createNote(createNoteInput: CreateNoteInput!): Note!
   removeNote(id: Int!): Note!
   createItem(createItemInput: CreateItemInput!): Item!
@@ -93,6 +107,14 @@ input UpdateCategoryInput {
 
   """Can this category be used in a bundle?"""
   bundelable: Boolean
+}
+
+input CreateBundleInput {
+  description: String!
+}
+
+input UpdateBundleInput {
+  description: String
 }
 
 input CreateNoteInput {
