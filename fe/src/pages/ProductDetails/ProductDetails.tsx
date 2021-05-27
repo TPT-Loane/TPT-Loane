@@ -1,8 +1,9 @@
 import {
-  CheckCircleIcon, NotAllowedIcon,
+  CheckCircleIcon, NotAllowedIcon, CheckIcon, CloseIcon, EditIcon,
 } from '@chakra-ui/icons';
 import {
-  AspectRatio, Flex, Image, Text, Editable, EditablePreview, EditableInput, Button, useBoolean,
+  AspectRatio, Flex, Image, Text, Editable, EditablePreview,
+  EditableInput, useBoolean, Textarea, IconButton, ButtonGroup,
 } from '@chakra-ui/react';
 import React from 'react';
 // import { useParams } from 'react-router-dom';
@@ -13,6 +14,7 @@ import React from 'react';
 
 const ProductDetails: React.FC = () => {
   // @todo - Remove mock data and make a graphql hook to get single item based on product id
+
   const data = {
     product: {
       id: 7,
@@ -25,12 +27,27 @@ const ProductDetails: React.FC = () => {
     },
     quantity: 4,
   };
+
   // const { id } = useParams<RouteParams>();
   const [isEditable, setIsEditable] = useBoolean();
   const { product, quantity } = data;
   const {
     description, name, isAvailable, imageUrl,
   } = product;
+
+  // Kaur tee sama sellega mis textiga
+  function EditableControls() {
+    return isEditable ? (
+      <ButtonGroup justifyContent="center" size="sm">
+        <IconButton onClick={setIsEditable.toggle} aria-label="Save" icon={<CheckIcon />} />
+        <IconButton onClick={setIsEditable.toggle} aria-label="Cancel" icon={<CloseIcon />} />
+      </ButtonGroup>
+    ) : (
+      <Flex justifyContent="center">
+        <IconButton onClick={setIsEditable.toggle} aria-label="Edit" size="sm" icon={<EditIcon />} />
+      </Flex>
+    );
+  }
   return (
     <Flex
       h="100%"
@@ -61,10 +78,8 @@ const ProductDetails: React.FC = () => {
           <EditablePreview />
           <EditableInput />
         </Editable>
-        <Editable whiteSpace="pre-wrap" isPreviewFocusable={isEditable} defaultValue={description}>
-          <EditablePreview />
-          <EditableInput />
-        </Editable>
+        <Text whiteSpace="pre-wrap" size="xl">{description}</Text>
+        <Textarea size="xl" isDisabled={!isEditable} defaultValue={description} />
         <Flex flexDirection="row" justifyContent="flex-end" alignItems="center">
           <Text mr="0.5em">{quantity}</Text>
           {isAvailable ? (
@@ -73,7 +88,7 @@ const ProductDetails: React.FC = () => {
             <NotAllowedIcon w={8} h={8} color="red.500" />
           )}
         </Flex>
-        <Button m={1} onClick={setIsEditable.toggle}>Edit</Button>
+        <EditableControls />
       </Flex>
     </Flex>
   );
