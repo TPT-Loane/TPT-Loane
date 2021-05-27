@@ -9,8 +9,8 @@ services:
       dockerfile: docker/prod.dockerfile
     restart: always
     ports:
-      - 3000:3000
-      - 3001:4501
+      - 80:4501
+      - 443:4501
     volumes:
       - ./be/:/app/be
       - ./fe/:/app/fe
