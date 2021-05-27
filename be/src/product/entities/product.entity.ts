@@ -4,7 +4,7 @@ import { Item } from 'src/item/entities/item.entity';
 import { Column, PrimaryGeneratedColumn, OneToMany, Entity } from 'typeorm';
 
 @ObjectType()
-@Entity('Product')
+@Entity('product')
 export class Product {
   @PrimaryGeneratedColumn()
   @Field(() => Int)
@@ -26,7 +26,7 @@ export class Product {
   @Field(() => [Category])
   categories: Category[];
 
-  @OneToMany(() => Item, (item) => item)
+  @OneToMany(() => Item, (item) => item.product)
   @Field(() => [Item])
   items: Item[];
 }
