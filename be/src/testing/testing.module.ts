@@ -9,6 +9,5 @@ import { UserModule } from 'src/user/user.module';
 @Module({
   imports: [ItemModule, CategoryModule, NoteModule, UserModule],
   providers: [TestingResolver, TestingService],
-  exports: [TestingService],
 })
 export class TestingModule {}
