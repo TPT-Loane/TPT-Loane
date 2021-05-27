@@ -17,10 +17,7 @@ export class TestingService {
     private readonly itemRepository: ItemService,
     private readonly noteRepo: NoteService,
     private readonly userRepo: UserService,
-  ) {
-    if (process.env.ADD_FAKE_DATA === 'TRUE') this.AddFakeData();
-    console.log('add fake data ', process.env.ADD_FAKE_DATA);
-  }
+  ) {}
 
   AddFakeData() {
     if (process.env.ADD_FAKE_DATA !== 'TRUE') {
