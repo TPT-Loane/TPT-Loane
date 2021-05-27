@@ -12,6 +12,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import Home from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
+import Register from './pages/Register';
+import ProductCreate from './pages/ProductCreate';
 import Error from './pages/Error';
 import Default from './components/layouts/Default';
 import ProductDetails from './pages/ProductDetails';
@@ -26,7 +28,9 @@ function App(): JSX.Element {
           <Switch>
             <Route exact path="/" component={Home} />
             <Route path="/about" component={About} />
-            <Route path="/Login" component={Login} />
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/create" component={ProductCreate} />
             <Route path="/product/:id" component={ProductDetails} />
             <Route component={Error} />
           </Switch>

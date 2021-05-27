@@ -1,3 +1,4 @@
+import { Link as RouterLink } from 'react-router-dom';
 import {
   Box,
   Button,
@@ -6,11 +7,10 @@ import {
   Text,
   useColorModeValue,
 } from '@chakra-ui/react';
-import { Link as RouterLink } from 'react-router-dom';
 import { Form, Formik } from 'formik';
 import InputField from '../../components/Input';
 
-function Login(): JSX.Element {
+function Register(): JSX.Element {
   const signInLink = useColorModeValue('pink.500', 'cyan.500');
   return (
     <Flex
@@ -21,40 +21,57 @@ function Login(): JSX.Element {
     >
       <Box w="20rem">
         <Formik
-          initialValues={{ usernameOrEmail: '', password: '' }}
+          initialValues={{
+            username: '',
+            fullname: '',
+            email: '',
+            password: '',
+            telephone: '',
+            personalcode: '',
+          }}
           onSubmit={values => {
             // eslint-disable-next-line
             console.log(values);
           }}
         >
+          {/* @todo maybe make numeric inputfields for personal code and phone number */}
           {({ isSubmitting }) => (
             <Form>
               <InputField
-                name="usernameOrEmail"
-                placeholder="Username or email"
-                label="Username or Email"
+                name="username"
+                label="Username"
+                placeholder="Username"
               />
+              <InputField
+                name="fullname"
+                label="Full name"
+                placeholder="Full name"
+              />
+              <InputField name="email" label="Email" placeholder="Email" />
               <InputField
                 name="password"
                 label="Password"
-                placeholder="Enter password"
+                placeholder="Password"
+              />
+              <InputField
+                name="telephone"
+                label="Telephone"
+                placeholder="Telephone number"
+              />
+              <InputField
+                name="personalcode"
+                label="Personal Code"
+                placeholder="Personal Code"
               />
               <Box mt={2}>
                 <HStack>
-                  <Text>New to TPT Loane?</Text>
-                  <RouterLink to="register">
+                  <Text>Already a Loaner?</Text>
+                  <RouterLink to="login">
                     <Text textColor={signInLink} cursor="pointer">
-                      Sign up
+                      Sign in
                     </Text>
                   </RouterLink>
                 </HStack>
-              </Box>
-              <Box textAlign="end" mt={2}>
-                <RouterLink to="#">
-                  <Text textColor={signInLink} cursor="pointer">
-                    Forgot Password?
-                  </Text>
-                </RouterLink>
               </Box>
               <Box textAlign="center">
                 <Button
@@ -64,7 +81,7 @@ function Login(): JSX.Element {
                   colorScheme="blue"
                   isLoading={isSubmitting}
                 >
-                  Login
+                  Register
                 </Button>
               </Box>
             </Form>
@@ -75,4 +92,4 @@ function Login(): JSX.Element {
   );
 }
 
-export default Login;
+export default Register;
