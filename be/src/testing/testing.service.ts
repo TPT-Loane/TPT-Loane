@@ -19,13 +19,13 @@ export class TestingService {
     private readonly userRepo: UserService,
   ) {}
 
-  AddFakeData() {
+  async AddFakeData() {
     if (process.env.ADD_FAKE_DATA !== 'TRUE') {
       throw new MethodNotAllowedException(`ADD_FAKE_DATA not set to TRUE`);
     }
     for (let i = 0; i < 3; i++) {
       const item: CreateItemInput = { regCode: faker.datatype.number() };
-      this.itemRepository.createItem(item);
+      const itemObj = await this.itemRepository.createItem(item);
 
       const category: CreateCategoryInput = {
         name: faker.name.findName(),
@@ -40,7 +40,10 @@ export class TestingService {
       this.categoryRepo.create(category);
       this.categoryRepo.create(category2);
 
-      const note: CreateNoteInput = { content: faker.lorem.text(), itemId: 1 };
+      const note: CreateNoteInput = {
+        content: faker.lorem.text(),
+        itemId: itemObj.id,
+      };
       this.noteRepo.createNote(note);
 
       const user: CreateUserDTO = {
