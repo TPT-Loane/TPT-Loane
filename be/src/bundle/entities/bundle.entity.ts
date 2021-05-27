@@ -1,7 +1,9 @@
-import { ObjectType, Field, Int } from '@nestjs/graphql';
-import { Column, CreateDateColumn, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
+import { ObjectType, Field, Int} from '@nestjs/graphql';
+import { Category } from 'src/category/entities/category.entity';
+import { Column, CreateDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from 'typeorm';
 
 @ObjectType()
+@Entity('bundle')
 export class Bundle {
   @Field(() => Int)
   @PrimaryGeneratedColumn()
@@ -19,9 +21,9 @@ export class Bundle {
   @UpdateDateColumn({ type: 'timestamp' })
   updateAt: Date;
 
-//   @Field(() => [Product])
-//   @ManyToMany(() => Product, (product) => product.item, {
-//     eager: true,
-//   })
-//   product: Product[];
+  @Field(() => [Category])
+  @ManyToMany(() => Category, category => category.bundles)
+  @JoinTable()
+  categories: Category[];
+
 }
