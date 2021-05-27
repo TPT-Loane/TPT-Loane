@@ -1,5 +1,6 @@
 import { Field, ObjectType } from "@nestjs/graphql";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Item } from "src/item/entities/item.entity";
+import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @ObjectType()
 @Entity()
@@ -11,4 +12,11 @@ export class LoanItem {
   @Field()
   @Column()
   returnDate: Date;
+
+  @Field(() => Item)
+  @ManyToOne(() => Item, (item) => item.loanItems, {
+    onDelete: "CASCADE",
+    cascade: true,
+  })
+  item: Item;
 }

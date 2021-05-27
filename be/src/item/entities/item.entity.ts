@@ -1,4 +1,5 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { LoanItem } from 'src/loanitem/entities/loanitem.entity';
 import { Note } from 'src/note/entities/note.entity';
 import {
   Column,
@@ -28,4 +29,10 @@ export class Item {
     eager: true,
   })
   notes: Note[];
+
+  @Field(() => [LoanItem])
+  @OneToMany(() => LoanItem, (loanitems) => loanitems.item, {
+    eager: true
+  })
+  loanItems: LoanItem[];
 }
