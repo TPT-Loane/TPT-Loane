@@ -2,8 +2,6 @@ version: '3.9'
 services:
   prod:
     # production server
-    profiles:
-      - prod
     build:
       context: ./
       dockerfile: docker/prod.dockerfile
@@ -12,8 +10,8 @@ services:
       - 80:4501
       - 443:4501
     volumes:
-      - ./be/:/app/be
-      - ./fe/:/app/fe
+      - ./app/be/:/app/be
+      - ./app/fe/:/app/fe
     environment:
       # Back end environment variables
       - DATABASE_IP=127.0.0.1
