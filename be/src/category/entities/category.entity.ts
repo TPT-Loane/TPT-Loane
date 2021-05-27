@@ -1,7 +1,9 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
+import { Bundle } from 'src/bundle/entities/bundle.entity';
 import {
   Column,
   Entity,
+  ManyToMany,
   ManyToOne,
   OneToMany,
   PrimaryGeneratedColumn,
@@ -40,4 +42,8 @@ export class Category {
     nullable: true,
   })
   parentCategory: Category;
+
+  @Field(() => [Bundle])
+  @ManyToMany(type => Bundle, bundle => bundle.categories)
+  bundles: Bundle[];
 }

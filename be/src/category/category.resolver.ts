@@ -1,12 +1,16 @@
-import { Resolver, Query, Mutation, Args, Int } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
 import { CategoryService } from './category.service';
 import { Category } from './entities/category.entity';
 import { CreateCategoryInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
+import { Bundle } from 'src/bundle/entities/bundle.entity';
+import { BundleService } from 'src/bundle/bundle.service';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 @Resolver(() => Category)
 export class CategoryResolver {
-  constructor(private readonly categoryService: CategoryService) {}
+  constructor(private readonly categoryService: CategoryService, private readonly bundleService: BundleService) {}
 
   @Mutation(() => Category)
   createCategory(
@@ -31,5 +35,10 @@ export class CategoryResolver {
   @Mutation(() => Category)
   removeCategory(@Args('id', { type: () => Int }) id: number) {
     return this.categoryService.remove(id);
+  }
+
+  @ResolveField(() => [Bundle], {name: "bundles"})
+  resolveBundles(@Parent() category: Category): Promise<Bundle[]> {
+    return this.bundleService.findBundlesByCategoryId(category.id);
   }
 }
