@@ -1,14 +1,9 @@
 import {
-  Flex,
-  Box,
-  Text,
-  Button,
+  Flex, Box, Text, Button,
 } from '@chakra-ui/react';
-import {
-  Formik,
-  Form,
-} from 'formik';
-import { InputField, InputFieldProps } from './InputField';
+import { Formik, Form } from 'formik';
+import InputField from '../../components/Input';
+import { InputFieldProps } from '../../utils/index';
 
 function ProductCreate(): JSX.Element {
   const initialValues: InputFieldProps = {
