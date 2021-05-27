@@ -58,3 +58,27 @@ services:
     restart: always
     ports:
       - 8080:8080
+  prod:
+    # production server
+    profiles:
+      - prod
+    build:
+      context: ./
+      dockerfile: docker/prod.dockerfile
+    restart: always
+    ports:
+      - 3000:3000
+      - 3001:4501
+    volumes:
+      - ./be/:/app/be
+      - ./fe/:/app/fe
+    environment:
+      # Back end environment variables
+      - DATABASE_IP=127.0.0.1
+      - DATABASE_PORT=7842
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=postgres
+      - SERVER_PORT=4501
+      # Front end environment variables
+      - BROWSER=none
+      - ESLINT_NO_DEV_ERRORS=true
