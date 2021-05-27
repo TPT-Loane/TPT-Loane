@@ -26,6 +26,7 @@ import { BundleModule } from './bundle/bundle.module';
       database: process.env.DATABASE_NAME,
       autoLoadEntities: true, // models will be loaded automatically
       synchronize: true,
+      logging: true
     }),
     CategoryModule,
     NoteModule,
