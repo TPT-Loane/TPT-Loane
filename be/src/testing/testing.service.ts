@@ -32,7 +32,13 @@ export class TestingService {
         bundelable: faker.datatype.boolean(),
         parentCategoryId: null,
       };
+      const category2: CreateCategoryInput = {
+        name: faker.name.findName(),
+        bundelable: faker.datatype.boolean(),
+        parentCategoryId: i + 1,
+      };
       this.categoryRepo.create(category);
+      this.categoryRepo.create(category2);
 
       const note: CreateNoteInput = { content: faker.lorem.text(), itemId: 1 };
       this.noteRepo.createNote(note);
