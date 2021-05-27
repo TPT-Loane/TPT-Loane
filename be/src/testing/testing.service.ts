@@ -32,10 +32,12 @@ export class TestingService {
         bundelable: faker.datatype.boolean(),
         parentCategoryId: null,
       };
+      const categoryObj = await this.categoryRepo.create(category);
+
       const category2: CreateCategoryInput = {
         name: faker.name.findName(),
         bundelable: faker.datatype.boolean(),
-        parentCategoryId: i + 1,
+        parentCategoryId: categoryObj.id,
       };
       this.categoryRepo.create(category);
       this.categoryRepo.create(category2);
