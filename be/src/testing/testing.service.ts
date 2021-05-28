@@ -55,7 +55,7 @@ export class TestingService {
         phone: faker.phone.phoneNumber(),
         full_name: faker.name.findName(),
         role: Math.floor(Math.random() * 2) === 1 ? Role.Admin : Role.User,
-        registration_date: faker.datatype.datetime(),
+        registration_date: faker.date.recent(),
         personal_code: faker.datatype.number(),
       };
       this.userRepo.create(user);
