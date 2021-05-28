@@ -1,7 +1,7 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Category } from 'src/category/entities/category.entity';
 import { Item } from 'src/item/entities/item.entity';
-import { Column, PrimaryGeneratedColumn, OneToMany, Entity } from 'typeorm';
+import { Column, PrimaryGeneratedColumn, OneToMany, Entity, ManyToMany, JoinTable } from 'typeorm';
 
 @ObjectType()
 @Entity('product')
@@ -22,7 +22,8 @@ export class Product {
   @Field(() => String)
   specs: string;
 
-  @OneToMany(() => Category, (category) => category)
+  @ManyToMany(() => Category, (category) => category.products)
+  @JoinTable()
   @Field(() => [Category])
   categories: Category[];
 
