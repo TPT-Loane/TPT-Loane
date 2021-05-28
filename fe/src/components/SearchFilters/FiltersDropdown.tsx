@@ -8,7 +8,7 @@ import { HomeContext } from '../../pages/Home';
 import { useGetCategoriesQuery } from '../../generated/graphql';
 
 interface Props {
-  activeFilters: Array<number> // Currently as array of category ids.
+  activeFilters: number[]; // Currently as array of category ids.
 }
 
 const FiltersDropdown: React.FC<Props> = ({ activeFilters }: Props): JSX.Element => {

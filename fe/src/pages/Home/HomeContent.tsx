@@ -33,7 +33,7 @@ interface ProductCardItem {
 }
 
 // @todo - Remove this fake data when its replaced with items from API.
-const PRODUCTS_CARD_ITEMS: Array<ProductCardItem> = [
+const PRODUCTS_CARD_ITEMS: ProductCardItem[] = [
   {
     product: {
       id: 0,

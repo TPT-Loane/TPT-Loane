@@ -8,8 +8,8 @@ interface HomeContextType {
   setPage: React.Dispatch<React.SetStateAction<number>>;
   searchTerm: string;
   setSearchTerm: React.Dispatch<React.SetStateAction<string>>;
-  filters: Array<number>;
-  setFilters: React.Dispatch<React.SetStateAction<Array<number>>>;
+  filters: number[];
+  setFilters: React.Dispatch<React.SetStateAction<number[]>>;
 }
 
 export const initHomeContext: HomeContextType = {
