@@ -1,5 +1,7 @@
 import React from 'react';
-import { IconButton, Input, InputGroup, InputRightAddon } from '@chakra-ui/react';
+import {
+  IconButton, Input, InputGroup, InputRightAddon,
+} from '@chakra-ui/react';
 import { SearchIcon } from '@chakra-ui/icons';
 import { HomeContext } from '../../pages/Home';
 
@@ -18,7 +20,7 @@ const SearchBar: React.FC<Props> = ({ keyWord }: Props): JSX.Element => {
 
   React.useEffect(() => {
     function handleKeyDown(event: KeyboardEvent) {
-      if (event.key === "Enter") {
+      if (event.key === 'Enter') {
         handleSearch();
       }
     }

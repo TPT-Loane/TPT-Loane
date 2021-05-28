@@ -24,7 +24,9 @@ export class TestingService {
       throw new MethodNotAllowedException(`ADD_FAKE_DATA not set to TRUE`);
     }
     for (let i = 0; i < 3; i++) {
-      const item: CreateItemInput = { regCode: faker.datatype.number().toString() };
+      const item: CreateItemInput = {
+        regCode: faker.datatype.number().toString(),
+      };
       const itemObj = await this.itemRepository.createItem(item);
 
       const category: CreateCategoryInput = {
