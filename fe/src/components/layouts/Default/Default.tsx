@@ -13,12 +13,17 @@ export default function Default({
 
   return (
     <Grid
-      templateColumns="0.5fr 1fr 1fr"
+      templateColumns={{
+        base: 'minmax(300px, auto) 1fr 1fr',
+        md: 'minmax(300px, auto) 1fr 1fr',
+        lg: 'minmax(300px, auto) 1fr 1fr',
+        xl: 'minmax(300px, auto) 1fr 1fr',
+      }}
       templateRows="0.1fr 1fr"
-      templateAreas='
-      "nav nav nav"
-      "sidebar main main"
-      '
+      templateAreas={{
+        base: '"nav nav nav" "main main main"',
+        md: '"nav nav nav" "sidebar main main"',
+      }}
       height="100vh"
     >
       <GridItem
@@ -28,7 +33,12 @@ export default function Default({
       >
         <Header />
       </GridItem>
-      <GridItem gridArea="sidebar" overflowY="auto">
+      <GridItem
+        gridArea="sidebar"
+        overflowY="auto"
+        bg={useColorModeValue('gray.200', 'gray.900')}
+        display={{ base: 'none', md: 'block' }}
+      >
         <Sidebar />
       </GridItem>
       <GridItem gridArea="main" overflow="auto">
@@ -41,7 +51,11 @@ export default function Default({
           <GridItem gridArea="main-content">
             <Box>{children}</Box>
           </GridItem>
-          <GridItem gridArea="main-footer">
+          <GridItem
+            gridArea="main-footer"
+            bg={useColorModeValue('gray.50', '#161721')}
+            color={useColorModeValue('gray.700', 'gray.200')}
+          >
             <Footer />
           </GridItem>
         </Grid>
