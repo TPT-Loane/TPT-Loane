@@ -35,6 +35,13 @@ const ProductDetails: React.FC = () => {
     description, name, isAvailable, imageUrl,
   } = product;
 
+  const [value, setValue] = React.useState(description);
+
+  const handleInputChange = (e: { target: { value: any; }; }) => {
+    const inputValue = e.target.value;
+    setValue(inputValue);
+  };
+
   // Kaur tee sama sellega mis textiga
   function EditableControls() {
     return isEditable ? (
@@ -46,6 +53,14 @@ const ProductDetails: React.FC = () => {
       <Flex justifyContent="center">
         <IconButton onClick={setIsEditable.toggle} aria-label="Edit" size="sm" icon={<EditIcon />} />
       </Flex>
+    );
+  }
+
+  function DescriptionText() {
+    return isEditable ? (
+      <Textarea onChange={handleInputChange} value={value} size="xl" isDisabled={!isEditable} />
+    ) : (
+      <Text whiteSpace="pre-wrap" size="xl">{value}</Text>
     );
   }
   return (
@@ -78,8 +93,7 @@ const ProductDetails: React.FC = () => {
           <EditablePreview />
           <EditableInput />
         </Editable>
-        <Text whiteSpace="pre-wrap" size="xl">{description}</Text>
-        <Textarea size="xl" isDisabled={!isEditable} defaultValue={description} />
+        <DescriptionText />
         <Flex flexDirection="row" justifyContent="flex-end" alignItems="center">
           <Text mr="0.5em">{quantity}</Text>
           {isAvailable ? (
