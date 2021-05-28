@@ -55,4 +55,14 @@ export class CategoryService {
     if (!category) throw new NotFoundException(`Category #${id} not found`);
     return this.categoryRepo.remove(category);
   }
+
+  async findCategoriesByProductId(productId: number) {
+    const findCategoriesByProductId = await this.connection
+      .getRepository(Category)
+      .createQueryBuilder("category")
+      .leftJoinAndSelect("category.products", "product")
+      .getMany();
+
+    return findCategoriesByProductId;
+  }
 }
