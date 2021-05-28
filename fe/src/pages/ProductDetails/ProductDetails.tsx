@@ -2,8 +2,7 @@ import {
   CheckCircleIcon, NotAllowedIcon, CheckIcon, CloseIcon, EditIcon,
 } from '@chakra-ui/icons';
 import {
-  AspectRatio, Flex, Image, Text, Editable, EditablePreview,
-  EditableInput, useBoolean, Textarea, IconButton, ButtonGroup,
+  AspectRatio, Flex, Image, Text, Textarea, IconButton, ButtonGroup, Input,
 } from '@chakra-ui/react';
 import React from 'react';
 // import { useParams } from 'react-router-dom';
@@ -20,47 +19,70 @@ const ProductDetails: React.FC = () => {
       id: 7,
       name: 'Nikon 600P',
       description:
-        'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
+          'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
       isAvailable: true,
       imageUrl:
-        'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+          'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
     },
     quantity: 4,
   };
 
   // const { id } = useParams<RouteParams>();
-  const [isEditable, setIsEditable] = useBoolean();
+  const [isEditable, setIsEditable] = React.useState(false);
+  const [name, setName] = React.useState(data.product.name);
+  const [description, setDescription] = React.useState(data.product.description);
   const { product, quantity } = data;
   const {
-    description, name, isAvailable, imageUrl,
+    isAvailable, imageUrl,
   } = product;
 
-  const [value, setValue] = React.useState(description);
-
-  const handleInputChange = (e: { target: { value: any; }; }) => {
-    const inputValue = e.target.value;
-    setValue(inputValue);
+  const cancelSave = () => {
+    setName(data.product.name);
+    setDescription(data.product.description);
+    setIsEditable(false);
+  };
+  const submitSave = () => {
+    setIsEditable(false);
   };
 
-  // Kaur tee sama sellega mis textiga
   function EditableControls() {
     return isEditable ? (
       <ButtonGroup justifyContent="center" size="sm">
-        <IconButton onClick={setIsEditable.toggle} aria-label="Save" icon={<CheckIcon />} />
-        <IconButton onClick={setIsEditable.toggle} aria-label="Cancel" icon={<CloseIcon />} />
+        <IconButton onClick={() => submitSave()} aria-label="Save" icon={<CheckIcon />} />
+        <IconButton onClick={() => cancelSave()} aria-label="Cancel" icon={<CloseIcon />} />
       </ButtonGroup>
     ) : (
       <Flex justifyContent="center">
-        <IconButton onClick={setIsEditable.toggle} aria-label="Edit" size="sm" icon={<EditIcon />} />
+        <IconButton onClick={() => setIsEditable(true)} aria-label="Edit" size="sm" icon={<EditIcon />} />
       </Flex>
     );
   }
 
   function DescriptionText() {
     return isEditable ? (
-      <Textarea onChange={handleInputChange} value={value} size="xl" isDisabled={!isEditable} />
+      <Textarea
+        onChange={e => setDescription(e.target.value)}
+        defaultValue={description}
+        size="xl"
+        isDisabled={!isEditable}
+        height="auto"
+        rows={8}
+      />
     ) : (
-      <Text whiteSpace="pre-wrap" size="xl">{value}</Text>
+      <Text whiteSpace="pre-wrap" size="xl">{description}</Text>
+    );
+  }
+
+  function NameText() {
+    return isEditable ? (
+      <Input
+        onChange={e => setName(e.target.value)}
+        defaultValue={name}
+        size="xl"
+        isDisabled={!isEditable}
+      />
+    ) : (
+      <Text whiteSpace="pre-wrap" size="xl">{name}</Text>
     );
   }
   return (
@@ -89,10 +111,7 @@ const ProductDetails: React.FC = () => {
         <Image src={imageUrl} alt="Product Image Main" objectFit="cover" />
       </AspectRatio>
       <Flex flexDirection="column">
-        <Editable isPreviewFocusable={isEditable} defaultValue={name}>
-          <EditablePreview />
-          <EditableInput />
-        </Editable>
+        <NameText />
         <DescriptionText />
         <Flex flexDirection="row" justifyContent="flex-end" alignItems="center">
           <Text mr="0.5em">{quantity}</Text>
