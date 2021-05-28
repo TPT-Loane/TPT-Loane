@@ -1,4 +1,12 @@
-import { Resolver, Query, Mutation, Args, Int, ResolveField, Parent } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Int,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { ProductService } from './product.service';
 import { Product } from './entities/product.entity';
 import { CreateProductInput } from './dto/create-product.input';
@@ -10,12 +18,16 @@ import { CategoryService } from 'src/category/category.service';
 
 @Resolver(() => Product)
 export class ProductResolver {
-  constructor(private readonly productService: ProductService,
+  constructor(
+    private readonly productService: ProductService,
     private readonly itemService: ItemService,
-    private readonly categoryService: CategoryService) {}
+    private readonly categoryService: CategoryService,
+  ) {}
 
   @Mutation(() => Product)
-  createProduct(@Args('createProductInput') createProductInput: CreateProductInput) {
+  createProduct(
+    @Args('createProductInput') createProductInput: CreateProductInput,
+  ) {
     return this.productService.create(createProductInput);
   }
 
@@ -30,8 +42,13 @@ export class ProductResolver {
   }
 
   @Mutation(() => Product)
-  updateProduct(@Args('updateProductInput') updateProductInput: UpdateProductInput) {
-    return this.productService.update(updateProductInput.id, updateProductInput);
+  updateProduct(
+    @Args('updateProductInput') updateProductInput: UpdateProductInput,
+  ) {
+    return this.productService.update(
+      updateProductInput.id,
+      updateProductInput,
+    );
   }
 
   @Mutation(() => Product)
@@ -44,7 +61,7 @@ export class ProductResolver {
     return this.itemService.getItemsByProductId(currProduct.id);
   }
 
-  @ResolveField(() => [Category], {name: "categories"})
+  @ResolveField(() => [Category], { name: 'categories' })
   resolveCategories(@Parent() product: Product): Promise<Category[]> {
     return this.categoryService.findCategoriesByProductId(product.id);
   }

@@ -7,7 +7,10 @@ import { ProductModule } from 'src/product/product.module';
 
 @Module({
   providers: [CategoryResolver, CategoryService],
-  imports: [TypeOrmModule.forFeature([Category]), forwardRef(() => ProductModule)],
+  imports: [
+    TypeOrmModule.forFeature([Category]),
+    forwardRef(() => ProductModule),
+  ],
   exports: [CategoryService],
 })
 export class CategoryModule {}

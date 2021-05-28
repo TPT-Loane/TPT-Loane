@@ -59,8 +59,8 @@ export class CategoryService {
   async findCategoriesByProductId(productId: number) {
     const findCategoriesByProductId = await this.connection
       .getRepository(Category)
-      .createQueryBuilder("category")
-      .leftJoinAndSelect("category.products", "product")
+      .createQueryBuilder('category')
+      .leftJoinAndSelect('category.products', 'product')
       .getMany();
 
     return findCategoriesByProductId;

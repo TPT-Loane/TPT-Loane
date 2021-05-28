@@ -12,9 +12,9 @@ export class ItemService {
   constructor(
     @InjectRepository(Item) private readonly itemRepository: Repository<Item>,
     private readonly connection: Connection,
-    private readonly productRepository: ProductService
+    private readonly productRepository: ProductService,
   ) {}
-  
+
   async createItem(createItemInput: CreateItemInput) {
     let product: Product;
     if (createItemInput.productId) {
@@ -40,7 +40,7 @@ export class ItemService {
 
   async findOne(id: number) {
     const item = await this.itemRepository.findOne(id);
-    if (!item)  throw new NotFoundException(`Item #${id} not found`);   
+    if (!item) throw new NotFoundException(`Item #${id} not found`);
     return item;
   }
 
@@ -73,7 +73,8 @@ export class ItemService {
       .where('product.id = :id', { id: productId })
       .getOne();
 
-      if(!product) throw new NotFoundException(`Product #${productId} not found`); 
+    if (!product)
+      throw new NotFoundException(`Product #${productId} not found`);
 
     return product.items ? product.items : [];
   }

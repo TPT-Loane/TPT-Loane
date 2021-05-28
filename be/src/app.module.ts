@@ -31,7 +31,7 @@ import { ProductModule } from './product/product.module';
     NoteModule,
     ItemModule,
     UserModule,
-    ProductModule
+    ProductModule,
   ],
   exports: [NoteModule, ItemModule],
   controllers: [AppController],
