@@ -7,7 +7,7 @@ import { LoanService } from "../service/loan.service";
 @Resolver(() => Loan)
 export class LoanResolver {
   constructor(
-    @Inject(LoanService) private loanService: LoanService,
+    @Inject(LoanService) private readonly loanService: LoanService,
   ) {}
 
   @Query(() => [Loan], { name: "loans" })
