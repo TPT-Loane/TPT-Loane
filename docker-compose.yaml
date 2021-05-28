@@ -12,11 +12,13 @@ services:
       - ./:/app
     environment:
       # Back end environment variables
-      - DATABASE_IP=127.0.0.1
-      - DATABASE_PORT=5432
-      - DATABASE_USER=postgres
-      - DATABASE_PASSWORD=postgres
       - SERVER_PORT=4501
+      - DATABASE_IP=$RDS_HOSTNAME
+      - DATABASE_PORT=$RDS_PORT
+      #- DATABASE_USER=$RDS_USER
+      - DATABASE_USER=postgres
+      - DATABASE_PASSWORD=$RDS_PASSWORD
+      - DATABASE_NAME=$RDS_DB_NAME
       # Front end environment variables
       - BROWSER=none
       - ESLINT_NO_DEV_ERRORS=true

@@ -20,11 +20,11 @@ import { join } from 'path';
     }),
     TypeOrmModule.forRoot({
       type: 'postgres',
-      host: process.env.RDS_HOSTNAME,
-      port: parseInt(process.env.RDS_PORT),
-      username: process.env.RDS_USER,
-      password: process.env.RDS_PASSWORD,
-      database: process.env.RDS_DB_NAME,
+      host: process.env.DATABASE_IP,
+      port: parseInt(process.env.DATABASE_PORT),
+      username: process.env.DATABASE_USER,
+      password: process.env.DATABASE_PASSWORD,
+      database: process.env.DATABASE_NAME,
       autoLoadEntities: true, // models will be loaded automatically
       synchronize: true,
     }),
