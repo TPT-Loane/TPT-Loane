@@ -36,6 +36,12 @@ type Item {
   notes: [Note!]!
 }
 
+type Loan {
+  id: Float!
+  user: User!
+  message: String!
+}
+
 type User {
   id: Float!
   username: String!
@@ -45,6 +51,7 @@ type User {
   role: Float!
   full_name: String!
   personal_code: String!
+  loans: [Loan!]!
 }
 
 type Query {
@@ -58,6 +65,9 @@ type Query {
   userByUsername(username: String!): User!
   userByPhone(phone: String!): User!
   users: [User!]!
+  loans: [Loan!]!
+  loan(id: Float!): Loan!
+  loansByUser(userId: Float!): [Loan!]!
 }
 
 type Mutation {
@@ -72,6 +82,7 @@ type Mutation {
   deleteUser(id: Float!): Boolean!
   createUser(createUserInput: CreateUserInputDTO!): User!
   updatePassword(id: Float!, newpass: String!, previouspass: String!): Boolean!
+  createOrUpdateLoan(userId: Float!, id: Float!, input: UpdateLoanDTO!): Loan!
 }
 
 input CreateCategoryInput {
@@ -117,4 +128,8 @@ input CreateUserInputDTO {
   full_name: String!
   role: Float!
   personal_code: String!
+}
+
+input UpdateLoanDTO {
+  message: String
 }
