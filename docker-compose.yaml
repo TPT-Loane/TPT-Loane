@@ -5,17 +5,15 @@ services:
     build:
       context: ./
       dockerfile: docker/prod.dockerfile
-    restart: always
     ports:
       - 80:4501
       - 443:4501
     volumes:
-      - ./app/be/:/app/be
-      - ./app/fe/:/app/fe
+      - ./:/app
     environment:
       # Back end environment variables
       - DATABASE_IP=127.0.0.1
-      - DATABASE_PORT=7842
+      - DATABASE_PORT=5432
       - DATABASE_USER=postgres
       - DATABASE_PASSWORD=postgres
       - SERVER_PORT=4501
