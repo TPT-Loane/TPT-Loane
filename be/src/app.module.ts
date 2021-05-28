@@ -7,6 +7,7 @@ import { CategoryModule } from './category/category.module';
 import { NoteModule } from './note/note.module';
 import { ItemModule } from './item/item.module';
 import { UserModule } from './user/user.module';
+import { TestingModule } from './testing/testing.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 
@@ -39,6 +40,7 @@ import { join } from 'path';
     NoteModule,
     ItemModule,
     UserModule,
+    TestingModule,
   ],
   exports: [NoteModule, ItemModule],
   // controllers: [AppController], // Uncommenting this will DESTROY earth!!

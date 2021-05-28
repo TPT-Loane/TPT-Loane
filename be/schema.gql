@@ -72,6 +72,7 @@ type Mutation {
   deleteUser(id: Float!): Boolean!
   createUser(createUserInput: CreateUserInputDTO!): User!
   updatePassword(id: Float!, newpass: String!, previouspass: String!): Boolean!
+  AddFakeData: Boolean!
 }
 
 input CreateCategoryInput {

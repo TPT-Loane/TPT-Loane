@@ -7,5 +7,6 @@ import { ItemModule } from 'src/item/item.module';
 @Module({
   imports: [TypeOrmModule.forFeature([Note]), ItemModule],
   providers: [NoteResolver, NoteService],
+  exports: [NoteService],
 })
 export class NoteModule {}
