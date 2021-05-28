@@ -34,6 +34,7 @@
     "@nestjs/platform-express": "^7.6.15",
     "@nestjs/serve-static": "^2.1.4",
     "@nestjs/typeorm": "^7.1.5",
+    "@types/faker": "^5.5.5",
     "apollo-server-express": "^2.23.0",
     "bcrypt": "^5.0.1",
     "faker": "^5.5.3",
