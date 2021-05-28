@@ -8,6 +8,9 @@ import { NoteModule } from './note/note.module';
 import { ItemModule } from './item/item.module';
 import { UserModule } from './user/user.module';
 import { TestingModule } from './testing/testing.module';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+
 
 @Module({
   imports: [
@@ -27,6 +30,13 @@ import { TestingModule } from './testing/testing.module';
       autoLoadEntities: true, // models will be loaded automatically
       synchronize: true,
     }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '../../../fe/', 'build/'),
+      exclude: ['/graphql', '/api*'],
+      serveStaticOptions: {
+        dotfiles: 'allow',
+      },
+    }),
     CategoryModule,
     NoteModule,
     ItemModule,
@@ -34,6 +44,6 @@ import { TestingModule } from './testing/testing.module';
     TestingModule,
   ],
   exports: [NoteModule, ItemModule],
-  controllers: [AppController],
+  // controllers: [AppController], // Uncommenting this will DESTROY earth!!
 })
 export class AppModule {}
