@@ -1,5 +1,6 @@
 import { Field, ObjectType } from '@nestjs/graphql';
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Loan } from 'src/loan/entities/loan.entity';
+import { Entity, Column, PrimaryGeneratedColumn, Unique, OneToMany } from 'typeorm';
 import { Role } from '../roles/user.roles';
 
 @ObjectType()
@@ -39,4 +40,12 @@ export class User {
   @Field()
   @Column({ unique: true })
   personal_code: string;
+
+  @Field(() => [Loan])
+  @OneToMany(() => Loan, (loans) => loans.user, { 
+    onDelete: 'CASCADE',
+    cascade: true,
+    eager: true,
+  })
+  loans: Loan[];
 }

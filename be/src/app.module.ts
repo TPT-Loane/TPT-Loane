@@ -9,6 +9,7 @@ import { ItemModule } from './item/item.module';
 import { UserModule } from './user/user.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { LoanModule } from './loan/loan.module';
 
 @Module({
   imports: [
@@ -39,6 +40,7 @@ import { join } from 'path';
     NoteModule,
     ItemModule,
     UserModule,
+    LoanModule,
   ],
   exports: [NoteModule, ItemModule],
   // controllers: [AppController], // Uncommenting this will DESTROY earth!!
