@@ -10,9 +10,7 @@ export class Loan {
     id: number;
 
     @Field(() => User)
-    @ManyToOne(() => User, (user) => user.loans, { 
-      onDelete: 'CASCADE',
-    })
+    @ManyToOne(() => User, (user) => user.loans)
     user: User;
     
     @Column()

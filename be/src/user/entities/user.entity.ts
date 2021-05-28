@@ -43,8 +43,6 @@ export class User {
 
   @Field(() => [Loan])
   @OneToMany(() => Loan, (loans) => loans.user, { 
-    onDelete: 'CASCADE',
-    cascade: true,
     eager: true,
   })
   loans: Loan[];
