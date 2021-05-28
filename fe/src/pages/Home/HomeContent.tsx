@@ -145,7 +145,7 @@ function HomeContent(): JSX.Element {
 
   return (
     <Box maxW="75rem" px={useBreakpointValue({ base: 2, md: 12 })} py={16}>
-      <Flex p={2} w="100%">
+      <Flex p={2}>
         <Paginator
           currentPage={paginated.page}
           pageCount={paginated.totalPages}

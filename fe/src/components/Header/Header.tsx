@@ -1,21 +1,20 @@
-import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
+import { Flex } from '@chakra-ui/react';
 import { HeaderLeftSide } from './HeaderLeftSide';
 import { HeaderRightSide } from './HeaderRightSide';
 
 export default function Header(): JSX.Element {
-  const me = 'Peeter';
+  const me = undefined;
   return (
-    <Box
-      bg={useColorModeValue('gray.100', 'gray.900')}
-      px={4}
-      position="sticky"
-      zIndex={3}
-      top={0}
+    <Flex
+      height="100%"
+      align="center"
+      maxW={{
+        base: 400, sm: 500, md: 700, lg: 900, xl: 1200,
+      }}
+      m="auto"
     >
-      <Flex h={16} align="center" maxW={1200} m="auto">
-        <HeaderLeftSide />
-        <HeaderRightSide me={me} />
-      </Flex>
-    </Box>
+      <HeaderLeftSide />
+      <HeaderRightSide me={me} />
+    </Flex>
   );
 }

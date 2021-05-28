@@ -7,8 +7,7 @@ export const SidebarContent: React.FC = () => (
     <SidebarItem>
       <Box boxSizing="border-box" my="1em" mx="1.5em">
         <Text color="gray.400" fontSize="xl">
-          Hello i am sidebar. Can you make me look pretty please! UwU and also
-          some content would be nice :)
+          Hello i am sidebar
         </Text>
       </Box>
     </SidebarItem>
