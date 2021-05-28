@@ -3,7 +3,6 @@ import {
   Button, Checkbox, Menu, MenuButton, MenuItem, MenuList,
 } from '@chakra-ui/react';
 import { ChevronDownIcon } from '@chakra-ui/icons';
-import { Category } from '../../utils';
 import { HomeContext } from '../../pages/Home';
 import { useGetCategoriesQuery } from '../../generated/graphql';
 
@@ -11,10 +10,12 @@ interface Props {
   activeFilters: number[]; // Currently as array of category ids.
 }
 
-const FiltersDropdown: React.FC<Props> = ({ activeFilters }: Props): JSX.Element => {
+const FiltersDropdown: React.FC<Props> = ({ activeFilters }: Props): JSX.Element|null => {
   const { setFilters } = React.useContext(HomeContext);
+
   const categoriesQuery = useGetCategoriesQuery();
-  const categories: Array<Category> = categoriesQuery.data ? categoriesQuery.data.categories : [];
+  const categories = categoriesQuery.data && categoriesQuery.data.categories;
+  if (!categories) return null;
 
   const updateFilters = (filter: string) => {
     const filterId = parseInt(filter, 10);
