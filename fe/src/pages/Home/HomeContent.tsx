@@ -134,8 +134,7 @@ const PRODUCTS_CARD_ITEMS: Array<ProductCardItem> = [
 
 function HomeContent(): JSX.Element {
   const { view, page } = React.useContext(HomeContext);
-  const isViewSwitchable: boolean =
-    useBreakpointValue({ base: false, lg: true }) || false;
+  const isViewSwitchable: boolean = useBreakpointValue({ base: false, lg: true }) || false;
 
   const ITEMS_COUNT_PER_PAGE = 21;
   const paginated = paginate(
