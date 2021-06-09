@@ -36,10 +36,10 @@ interface Paginated {
   nextPage: number|null;
   itemsCount: number;
   totalPages: number;
-  items: Array<ProductCardItem>;
+  items: ProductCardItem[];
 }
 
-export function paginate(items: Array<ProductCardItem>, currentPage: number, pageSize: number): Paginated {
+export function paginate(items: ProductCardItem[], currentPage: number, pageSize: number): Paginated {
   const offset = (currentPage - 1) * pageSize;
 
   const paginatedItems = items.slice(offset).slice(0, pageSize);
@@ -67,7 +67,7 @@ const Paginator: React.FC<Props> = ({ currentPage, pageCount }: Props): JSX.Elem
   const nextPage: number|null = currentPage + 1 < pageCount + 1 ? currentPage + 1 : null;
 
   // Page numbers starting from 1 (First page) - [1, 2, 3, ...]
-  const pages: Array<number> = new Array(pageCount);
+  const pages: number[] = new Array(pageCount);
   for (let i = 0; i < pages.length; i++) {
     if ((i >= left && i < right)) {
       pages[i] = i + 1;

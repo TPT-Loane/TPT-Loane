@@ -1,5 +1,13 @@
-query GetItem($id: String!) {
-  item(id: $id) {
+query GetCategories {
+  categories{
+    id
     name
+    bundelable
+    subCategories{
+      id
+    }
+    parentCategory {
+      id
+    }
   }
 }

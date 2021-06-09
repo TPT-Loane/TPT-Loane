@@ -24,7 +24,9 @@ export class TestingService {
       throw new MethodNotAllowedException(`ADD_FAKE_DATA not set to TRUE`);
     }
     for (let i = 0; i < 3; i++) {
-      const item: CreateItemInput = { regCode: faker.datatype.number() };
+      const item: CreateItemInput = {
+        regCode: faker.datatype.number().toString(),
+      };
       const itemObj = await this.itemRepository.createItem(item);
 
       const category: CreateCategoryInput = {
@@ -56,7 +58,7 @@ export class TestingService {
         full_name: faker.name.findName(),
         role: Math.floor(Math.random() * 2) === 1 ? Role.Admin : Role.User,
         registration_date: faker.date.recent(),
-        personal_code: faker.datatype.number(),
+        personal_code: faker.datatype.number().toString(),
       };
       this.userRepo.create(user);
 

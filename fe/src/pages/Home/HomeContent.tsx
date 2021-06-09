@@ -11,6 +11,7 @@ import {
 import Paginator, { paginate } from '../../components/Paginator';
 import ProductCard from '../../components/ProductCard';
 import ViewToggler from '../../components/ViewToggler';
+import SearchFilters from '../../components/SearchFilters';
 import { HomeContext } from '.';
 import { ViewType } from '../../utils';
 
@@ -32,7 +33,7 @@ interface ProductCardItem {
 }
 
 // @todo - Remove this fake data when its replaced with items from API.
-const PRODUCTS_CARD_ITEMS: Array<ProductCardItem> = [
+const PRODUCTS_CARD_ITEMS: ProductCardItem[] = [
   {
     product: {
       id: 0,
@@ -144,7 +145,11 @@ function HomeContent(): JSX.Element {
   );
 
   return (
-    <Box maxW="75rem" px={useBreakpointValue({ base: 2, md: 12 })} py={16}>
+    <Box maxW="75rem" px={useBreakpointValue({ base: 2, md: 12 })} py={8}>
+      <Flex p={2} w="100%">
+        <SearchFilters />
+      </Flex>
+
       <Flex p={2} w="100%">
         <Paginator
           currentPage={paginated.page}
