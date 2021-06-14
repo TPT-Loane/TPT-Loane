@@ -32,9 +32,16 @@ export class ProductService {
     id: number,
     updateProductInput: UpdateProductInput,
   ): Promise<Product> {
-    const product = await this.productRepository.findOne(id);
+    let product: any = await this.productRepository.findOne(id);
     if (!product) throw new NotFoundException(`Product #${id} not found`);
-    return this.productRepository.save(updateProductInput);
+    updateProductInput.categories.forEach(async (id) => {
+      await this.connection
+         .createQueryBuilder()
+         .relation(Product, 'categories')
+         .of(product)
+         .add(id);
+     });
+    return this.productRepository.save(product);
   }
 
   async remove(id: number) {
@@ -48,6 +55,7 @@ export class ProductService {
       .getRepository(Product)
       .createQueryBuilder('product')
       .leftJoinAndSelect('product.categories', 'category')
+      .where(`product_category.categoryId = ${categoryId}`)
       .getMany();
 
     return findProductsByCategoryId;
