@@ -30,7 +30,9 @@ export class Product {
   specs: string;
 
   @ManyToMany(() => Category, (category) => category.products)
-  @JoinTable()
+  @JoinTable({
+    joinColumn: {referencedColumnName: 'id'}
+  })
   @Field(() => [Category])
   categories: Category[];
 
