@@ -7,6 +7,6 @@ export class UpdateProductInput extends PartialType(CreateProductInput) {
   @Field(() => Int)
   id: number;
 
-  @Field(type => [GraphQLInt], { nullable: true })
+  @Field(() => [GraphQLInt], { nullable: true })
   categories: number[] | null;
 }

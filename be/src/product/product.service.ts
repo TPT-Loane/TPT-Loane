@@ -32,15 +32,15 @@ export class ProductService {
     id: number,
     updateProductInput: UpdateProductInput,
   ): Promise<Product> {
-    let product: any = await this.productRepository.findOne(id);
+    const product = await this.productRepository.findOne(id);
     if (!product) throw new NotFoundException(`Product #${id} not found`);
     updateProductInput.categories.forEach(async (id) => {
       await this.connection
-         .createQueryBuilder()
-         .relation(Product, 'categories')
-         .of(product)
-         .add(id);
-     });
+        .createQueryBuilder()
+        .relation(Product, 'categories')
+        .of(product)
+        .add(id);
+    });
     return this.productRepository.save(product);
   }
 

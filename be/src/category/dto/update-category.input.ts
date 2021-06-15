@@ -12,6 +12,6 @@ export class UpdateCategoryInput {
   })
   bundelable?: boolean;
 
-  @Field(type => [GraphQLInt], { nullable: true })
+  @Field(() => [GraphQLInt], { nullable: true })
   products: number[] | null;
 }

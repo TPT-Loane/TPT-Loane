@@ -42,15 +42,15 @@ export class CategoryService {
   }
 
   async update(id: number, updateCategoryInput: UpdateCategoryInput) {
-    let category: any = await this.categoryRepo.findOne(id);
+    const category = await this.categoryRepo.findOne(id);
     if (!category) throw new NotFoundException(`Category #${id} not found`);
     updateCategoryInput.products.forEach(async (id) => {
       await this.connection
-         .createQueryBuilder()
-         .relation(Category, 'products')
-         .of(category)
-         .add(id);
-     })
+        .createQueryBuilder()
+        .relation(Category, 'products')
+        .of(category)
+        .add(id);
+    });
     return this.categoryRepo.save(category);
   }
 
