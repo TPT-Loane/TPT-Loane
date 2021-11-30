@@ -17,6 +17,7 @@ import ProductCreate from './pages/ProductCreate';
 import Error from './pages/Error';
 import Default from './components/layouts/Default';
 import ProductDetails from './pages/ProductDetails';
+import Profile from './pages/Profile';
 
 library.add(faInfo, faHome, far, fas, faExternalLinkAlt, faListUl, faTh);
 
@@ -32,6 +33,7 @@ function App(): JSX.Element {
             <Route path="/register" component={Register} />
             <Route path="/create" component={ProductCreate} />
             <Route path="/product/:id" component={ProductDetails} />
+            <Route path="/profile" component={Profile} />
             <Route component={Error} />
           </Switch>
         </Default>
