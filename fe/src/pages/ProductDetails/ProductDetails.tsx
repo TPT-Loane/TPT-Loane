@@ -1,6 +1,8 @@
-import { CheckCircleIcon, NotAllowedIcon } from '@chakra-ui/icons';
 import {
-  AspectRatio, Flex, Heading, Image, Text,
+  CheckCircleIcon, NotAllowedIcon, CheckIcon, CloseIcon, EditIcon,
+} from '@chakra-ui/icons';
+import {
+  AspectRatio, Flex, Image, Text, Textarea, IconButton, ButtonGroup, Input,
 } from '@chakra-ui/react';
 import React from 'react';
 // import { useParams } from 'react-router-dom';
@@ -11,24 +13,78 @@ import React from 'react';
 
 const ProductDetails: React.FC = () => {
   // @todo - Remove mock data and make a graphql hook to get single item based on product id
+
   const data = {
     product: {
       id: 7,
       name: 'Nikon 600P',
       description:
-        'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
+          'This is this product description..\n\nStats for HP Pavilion 300H:\nCamera - Good\nQuality - Very bad\n',
       isAvailable: true,
       imageUrl:
-        'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
+          'https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg',
     },
     quantity: 4,
   };
-  // const { id } = useParams<RouteParams>();
 
+  // const { id } = useParams<RouteParams>();
+  const [isEditable, setIsEditable] = React.useState(false);
+  const [name, setName] = React.useState(data.product.name);
+  const [description, setDescription] = React.useState(data.product.description);
   const { product, quantity } = data;
   const {
-    description, isAvailable, name, imageUrl,
+    isAvailable, imageUrl,
   } = product;
+
+  const cancelSave = () => {
+    setName(data.product.name);
+    setDescription(data.product.description);
+    setIsEditable(false);
+  };
+  const submitSave = () => {
+    setIsEditable(false);
+  };
+
+  function EditableControls() {
+    return isEditable ? (
+      <ButtonGroup justifyContent="center" size="sm">
+        <IconButton onClick={() => submitSave()} aria-label="Save" icon={<CheckIcon />} />
+        <IconButton onClick={() => cancelSave()} aria-label="Cancel" icon={<CloseIcon />} />
+      </ButtonGroup>
+    ) : (
+      <Flex justifyContent="center">
+        <IconButton onClick={() => setIsEditable(true)} aria-label="Edit" size="sm" icon={<EditIcon />} />
+      </Flex>
+    );
+  }
+
+  function DescriptionText() {
+    return isEditable ? (
+      <Textarea
+        onChange={e => setDescription(e.target.value)}
+        defaultValue={description}
+        size="xl"
+        isDisabled={!isEditable}
+        height="auto"
+        rows={8}
+      />
+    ) : (
+      <Text whiteSpace="pre-wrap" size="xl">{description}</Text>
+    );
+  }
+
+  function NameText() {
+    return isEditable ? (
+      <Input
+        onChange={e => setName(e.target.value)}
+        defaultValue={name}
+        size="xl"
+        isDisabled={!isEditable}
+      />
+    ) : (
+      <Text whiteSpace="pre-wrap" size="xl">{name}</Text>
+    );
+  }
   return (
     <Flex
       h="100%"
@@ -55,8 +111,8 @@ const ProductDetails: React.FC = () => {
         <Image src={imageUrl} alt="Product Image Main" objectFit="cover" />
       </AspectRatio>
       <Flex flexDirection="column">
-        <Heading textAlign="center">{name}</Heading>
-        <Text whiteSpace="pre-wrap">{description}</Text>
+        <NameText />
+        <DescriptionText />
         <Flex flexDirection="row" justifyContent="flex-end" alignItems="center">
           <Text mr="0.5em">{quantity}</Text>
           {isAvailable ? (
@@ -65,6 +121,7 @@ const ProductDetails: React.FC = () => {
             <NotAllowedIcon w={8} h={8} color="red.500" />
           )}
         </Flex>
+        <EditableControls />
       </Flex>
     </Flex>
   );
