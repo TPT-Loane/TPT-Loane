@@ -11,10 +11,15 @@ import { CategoryService } from './category.service';
 import { Category } from './entities/category.entity';
 import { CreateCategoryInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
+import { Product } from 'src/product/entities/product.entity';
+import { ProductService } from 'src/product/product.service';
 
 @Resolver(() => Category)
 export class CategoryResolver {
-  constructor(private readonly categoryService: CategoryService) {}
+  constructor(
+    private readonly categoryService: CategoryService,
+    private readonly productService: ProductService,
+  ) {}
 
   @Mutation(() => Category)
   createCategory(
@@ -41,8 +46,8 @@ export class CategoryResolver {
     return this.categoryService.remove(id);
   }
 
-  @ResolveField('parentCategory', () => Category, { nullable: true })
-  async getParent(@Parent() currCat) {
-    return this.categoryService.findParent(currCat.id);
+  @ResolveField(() => [Product], { name: 'products' })
+  resolveProducts(@Parent() category: Category): Promise<Product[]> {
+    return this.productService.findProductsByCategoryId(category.id);
   }
 }

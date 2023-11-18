@@ -1,4 +1,5 @@
 import { Field, InputType } from '@nestjs/graphql';
+import { GraphQLInt } from 'graphql';
 
 @InputType()
 export class UpdateCategoryInput {
@@ -10,4 +11,7 @@ export class UpdateCategoryInput {
     nullable: true,
   })
   bundelable?: boolean;
+
+  @Field(() => [GraphQLInt], { nullable: true })
+  products: number[] | null;
 }
