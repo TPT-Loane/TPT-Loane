@@ -60,4 +60,8 @@ export class CategoryResolver {
   resolveBundles(@Parent() category: Category): Promise<Bundle[]> {
     return this.bundleService.findBundlesByCategoryId(category.id);
   }
+  @ResolveField('parentCategory', () => Category, { nullable: true })
+  async getParent(@Parent() currCat) {
+    return this.categoryService.findParent(currCat.id);
+  }
 }

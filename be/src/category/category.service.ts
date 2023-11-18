@@ -53,6 +53,13 @@ export class CategoryService {
 
     return findCategoriesByBundleId;
   }
+  
+  async findParent(id: number) {
+    const category = await this.categoryRepo.findOne(id, {
+      relations: ['parentCategory'],
+    });
+    return category ? category.parentCategory : null;
+  }
 
   async update(id: number, updateCategoryInput: UpdateCategoryInput) {
     const category = await this.categoryRepo.findOne(id);
