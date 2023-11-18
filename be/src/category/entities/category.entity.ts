@@ -1,5 +1,6 @@
 import { ObjectType, Field, Int } from '@nestjs/graphql';
 import { Product } from 'src/product/entities/product.entity';
+import { Bundle } from 'src/bundle/entities/bundle.entity';
 import {
   Column,
   Entity,
@@ -46,4 +47,8 @@ export class Category {
   @ManyToMany(() => Product, (product) => product.categories)
   @Field(() => [Product])
   products: Product[];
+  
+  @Field(() => [Bundle])
+  @ManyToMany(type => Bundle, bundle => bundle.categories)
+  bundles: Bundle[];
 }

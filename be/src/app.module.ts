@@ -12,6 +12,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
 import { ProductModule } from './product/product.module';
 import { LoanModule } from './loan/loan.module';
+import { BundleModule } from './bundle/bundle.module';
 
 @Module({
   imports: [
@@ -45,6 +46,7 @@ import { LoanModule } from './loan/loan.module';
     TestingModule,
     ProductModule,
     LoanModule,
+    BundleModule,
   ],
   exports: [NoteModule, ItemModule],
   // controllers: [AppController], // Uncommenting this will DESTROY earth!!

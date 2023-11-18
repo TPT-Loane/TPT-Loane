@@ -12,7 +12,7 @@ export class CategoryService {
     @InjectRepository(Category)
     private readonly categoryRepo: Repository<Category>,
     private readonly connection: Connection,
-  ) {}
+  ) { }
 
   async create(createCategoryInput: CreateCategoryInput) {
     let parentCategory: Category;
@@ -41,11 +41,17 @@ export class CategoryService {
     });
   }
 
-  async findParent(id: number) {
-    const category = await this.categoryRepo.findOne(id, {
-      relations: ['parentCategory'],
-    });
-    return category ? category.parentCategory : null;
+
+  async findCategoriesByBundleId(bundleId: number) {
+    const findCategoriesByBundleId = await this.connection
+      .getRepository(Category)
+      .createQueryBuilder("category")
+      .leftJoinAndSelect("category.bundles", "bundle")
+      .getMany();
+
+    console.log(findCategoriesByBundleId);
+
+    return findCategoriesByBundleId;
   }
 
   async update(id: number, updateCategoryInput: UpdateCategoryInput) {

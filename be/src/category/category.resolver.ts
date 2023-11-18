@@ -13,12 +13,17 @@ import { CreateCategoryInput } from './dto/create-category.input';
 import { UpdateCategoryInput } from './dto/update-category.input';
 import { Product } from 'src/product/entities/product.entity';
 import { ProductService } from 'src/product/product.service';
+import { Bundle } from 'src/bundle/entities/bundle.entity';
+import { BundleService } from 'src/bundle/bundle.service';
+import { Injectable } from '@nestjs/common';
 
+@Injectable()
 @Resolver(() => Category)
 export class CategoryResolver {
   constructor(
     private readonly categoryService: CategoryService,
     private readonly productService: ProductService,
+    private readonly bundleService: BundleService
   ) {}
 
   @Mutation(() => Category)
@@ -49,5 +54,10 @@ export class CategoryResolver {
   @ResolveField(() => [Product], { name: 'products' })
   resolveProducts(@Parent() category: Category): Promise<Product[]> {
     return this.productService.findProductsByCategoryId(category.id);
+  }
+  
+  @ResolveField(() => [Bundle], {name: "bundles"})
+  resolveBundles(@Parent() category: Category): Promise<Bundle[]> {
+    return this.bundleService.findBundlesByCategoryId(category.id);
   }
 }
