@@ -66,16 +66,17 @@ export class ItemService {
   }
 
   async getItemsByProductId(productId: number) {
-    const product = await this.connection
-      .getRepository(Product)
-      .createQueryBuilder('product')
-      .leftJoinAndSelect('product.items', 'item')
-      .where('product.id = :id', { id: productId })
-      .getOne();
+    const items = await this.connection
+      .getRepository(Item)
+      .createQueryBuilder('item')
+      .leftJoinAndSelect('item.notes', 'notes')
+      .leftJoinAndSelect('item.product', 'product')
+      .where('item.productId = :id', { id: productId })
+      .getMany();
 
-    if (!product)
+    if (!items)
       throw new NotFoundException(`Product #${productId} not found`);
 
-    return product.items ? product.items : [];
+    return items ? items : [];
   }
 }
