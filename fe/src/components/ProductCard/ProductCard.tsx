@@ -21,7 +21,7 @@ interface Props {
 }
 
 const ProductCard: React.FC<Props> = ({ productCardItem, asListItem }): JSX.Element => {
-  const link = `product/${productCardItem.id.toString()}`;
+  const link = `productDetail/${productCardItem.id.toString()}`;
   return (
     <Box
       bg={useColorModeValue('white', 'gray.800')}
