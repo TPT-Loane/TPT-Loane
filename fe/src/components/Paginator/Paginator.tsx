@@ -7,21 +7,12 @@ import {
 } from '@chakra-ui/icons';
 import { HomeContext } from '../../pages/Home';
 
-// @todo - Remove this interface after we have a type for Product as "single source of truth".
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  isAvailable: boolean;
-  imageUrl: string;
-}
-
 // @todo - Remove this interface after we have a type for ProductCardItem as "single source of truth".
 interface ProductCardItem {
-  product: Product;
-  // These would be ProductCard specific props..
+  name: string;
+  description: string;
+  id: number;
   quantity: number;
-  // etc..
 }
 
 interface Props {

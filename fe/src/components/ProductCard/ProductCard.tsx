@@ -4,24 +4,15 @@ import {
   Flex, Box, Image, useColorModeValue, Icon, Tooltip, Text,
 } from '@chakra-ui/react';
 import {
-  AddIcon, CheckIcon, CloseIcon, HamburgerIcon,
+  HamburgerIcon,
 } from '@chakra-ui/icons';
-
-// @todo - Remove this interface after we have a type for Product as "single source of truth".
-interface Product {
-  id: number;
-  name: string;
-  description: string;
-  isAvailable: boolean;
-  imageUrl: string;
-}
 
 // @todo - Remove this interface after we have a type for ProductCardItem as "single source of truth".
 interface ProductCardItem {
-  product: Product;
-  // These are ProductCard specific props.
+  name: string;
+  description: string;
+  id: number;
   quantity: number;
-  // etc..
 }
 
 interface Props {
@@ -29,8 +20,8 @@ interface Props {
   asListItem?: boolean, // Whether we display product as a detailed list item or just as product card.
 }
 
-const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): JSX.Element => {
-  const link = `product/${productCardItem.product.id.toString()}`;
+const ProductCard: React.FC<Props> = ({ productCardItem, asListItem }): JSX.Element => {
+  const link = `product/${productCardItem.id.toString()}`;
   return (
     <Box
       bg={useColorModeValue('white', 'gray.800')}
@@ -41,7 +32,7 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
       position="relative"
     >
       <Tooltip
-        label={productCardItem.product.description}
+        label={productCardItem.description}
         whiteSpace="pre-wrap"
         bg="white"
         placement="left-start"
@@ -58,7 +49,7 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
         />
       </Tooltip>
 
-      <Tooltip
+      {/* <Tooltip
         label={productCardItem.product.isAvailable ? 'Available' : 'Unavailable'}
         bg="white"
         placement={asListItem ? 'right' : 'top'}
@@ -72,14 +63,14 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
           left={2}
           fontSize="2xl"
         />
-      </Tooltip>
+      </Tooltip> */}
 
       <Flex>
         <Image
           w={asListItem ? '20rem' : 'auto'}
           h={asListItem ? '12rem' : 'auto'}
-          src={productCardItem.product.imageUrl}
-          alt={`Picture of ${productCardItem.product.name}`}
+          src="https://img.theweek.in/content/dam/week/news/sci-tech/2019/June/camera-photographer-photo-technology-shut.jpg"
+          alt={`Picture of ${productCardItem.name}`}
           roundedTopLeft="lg"
           roundedTopRight={asListItem ? 'none' : 'lg'}
           roundedBottomLeft={asListItem ? 'lg' : 'none'}
@@ -92,7 +83,7 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
           isTruncated
         >
           <Tooltip
-            label={productCardItem.product.name}
+            label={productCardItem.name}
             bg="white"
             placement="top-start"
             color="gray.800"
@@ -107,7 +98,7 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
               isTruncated
             >
               <RouterLink to={link}>
-                {productCardItem.product.name}
+                {productCardItem.name}
               </RouterLink>
             </Text>
           </Tooltip>
@@ -128,10 +119,10 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
               },
             }}
           >
-            {productCardItem.product.description}
+            {productCardItem.description}
           </Text>
           {/* @todo - Update this link/button to do something more logical. */}
-          <RouterLink to="#">
+          {/* <RouterLink to="#">
             <Icon
               as={AddIcon}
               display={productCardItem.product.isAvailable ? 'block' : 'none'}
@@ -141,7 +132,7 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
               h={7}
               w={7}
             />
-          </RouterLink>
+          </RouterLink> */}
         </Box>
       </Flex>
 
@@ -158,28 +149,9 @@ const ProductCard: React.FC<Props> = ({ productCardItem, asListItem } : Props): 
             whiteSpace="pre-wrap"
           >
             <RouterLink to={link}>
-              {productCardItem.product.name}
+              {productCardItem.name}
             </RouterLink>
           </Text>
-          <Tooltip
-            display={productCardItem.product.isAvailable ? 'flex' : 'none'}
-            label="Loan this product"
-            bg="white"
-            placement="top"
-            color="gray.800"
-            fontSize="1.2em"
-          >
-            {/* @todo - Update this link/button to do something more logical. */}
-            <RouterLink to="#">
-              <Icon
-                as={AddIcon}
-                display={productCardItem.product.isAvailable ? 'block' : 'none'}
-                alignSelf="center"
-                h={7}
-                w={7}
-              />
-            </RouterLink>
-          </Tooltip>
         </Flex>
       </Box>
     </Box>
