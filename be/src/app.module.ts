@@ -14,9 +14,11 @@ import { ProductModule } from './product/product.module';
 import { LoanModule } from './loan/loan.module';
 import { BundleModule } from './bundle/bundle.module';
 import { LoanItemModule } from './loanitem/loanitem.module';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
+    AuthModule,
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       debug: false,
