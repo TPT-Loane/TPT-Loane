@@ -10,9 +10,16 @@ import { UserModule } from './user/user.module';
 import { TestingModule } from './testing/testing.module';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ProductModule } from './product/product.module';
+import { LoanModule } from './loan/loan.module';
+import { BundleModule } from './bundle/bundle.module';
+import { LoanItemModule } from './loanitem/loanitem.module';
+import { AuthModule } from './auth/auth.module';
+import { LoanDecisionModule } from './loandecision/loanDecision.module';
 
 @Module({
   imports: [
+    AuthModule,
     ConfigModule.forRoot(),
     GraphQLModule.forRoot({
       debug: false,
@@ -41,6 +48,11 @@ import { join } from 'path';
     ItemModule,
     UserModule,
     TestingModule,
+    ProductModule,
+    LoanModule,
+    BundleModule,
+    LoanItemModule,
+    LoanDecisionModule
   ],
   exports: [NoteModule, ItemModule],
   // controllers: [AppController], // Uncommenting this will DESTROY earth!!

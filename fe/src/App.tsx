@@ -32,7 +32,7 @@ function App(): JSX.Element {
             <Route path="/login" component={Login} />
             <Route path="/register" component={Register} />
             <Route path="/create" component={ProductCreate} />
-            <Route path="/product/:id" component={ProductDetails} />
+            <Route path="/productDetail/:id" component={ProductDetails} />
             <Route path="/profile" component={Profile} />
             <Route component={Error} />
           </Switch>

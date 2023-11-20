@@ -12,7 +12,7 @@ export class CategoryService {
     @InjectRepository(Category)
     private readonly categoryRepo: Repository<Category>,
     private readonly connection: Connection,
-  ) {}
+  ) { }
 
   async create(createCategoryInput: CreateCategoryInput) {
     let parentCategory: Category;
@@ -41,6 +41,19 @@ export class CategoryService {
     });
   }
 
+
+  async findCategoriesByBundleId(bundleId: number) {
+    const findCategoriesByBundleId = await this.connection
+      .getRepository(Category)
+      .createQueryBuilder("category")
+      .leftJoinAndSelect("category.bundles", "bundle")
+      .getMany();
+
+    console.log(findCategoriesByBundleId);
+
+    return findCategoriesByBundleId;
+  }
+  
   async findParent(id: number) {
     const category = await this.categoryRepo.findOne(id, {
       relations: ['parentCategory'],
@@ -49,11 +62,15 @@ export class CategoryService {
   }
 
   async update(id: number, updateCategoryInput: UpdateCategoryInput) {
-    const category = await this.categoryRepo.preload({
-      id,
-      ...updateCategoryInput,
-    });
+    const category = await this.categoryRepo.findOne(id);
     if (!category) throw new NotFoundException(`Category #${id} not found`);
+    updateCategoryInput.products.forEach(async (id) => {
+      await this.connection
+        .createQueryBuilder()
+        .relation(Category, 'products')
+        .of(category)
+        .add(id);
+    });
     return this.categoryRepo.save(category);
   }
 
@@ -61,5 +78,16 @@ export class CategoryService {
     const category = await this.categoryRepo.findOne(id);
     if (!category) throw new NotFoundException(`Category #${id} not found`);
     return this.categoryRepo.remove(category);
+  }
+
+  async findCategoriesByProductId(productId: number) {
+    const findCategoriesByProductId = await this.connection
+      .getRepository(Category)
+      .createQueryBuilder('category')
+      .leftJoinAndSelect('category.products', 'product')
+      .where(`product_category.productId = ${productId}`)
+      .getMany();
+
+    return findCategoriesByProductId;
   }
 }

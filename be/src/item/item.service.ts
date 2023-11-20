@@ -1,5 +1,7 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
+import { Product } from 'src/product/entities/product.entity';
+import { ProductService } from 'src/product/product.service';
 import { Connection, Repository } from 'typeorm';
 import { CreateItemInput } from './dto/create-item.input';
 import { UpdateItemInput } from './dto/update-item.input';
@@ -10,10 +12,24 @@ export class ItemService {
   constructor(
     @InjectRepository(Item) private readonly itemRepository: Repository<Item>,
     private readonly connection: Connection,
+    private readonly productRepository: ProductService,
   ) {}
 
-  createItem(createItemInput: CreateItemInput): Promise<Item> {
-    const newItem = this.itemRepository.create(createItemInput);
+  async createItem(createItemInput: CreateItemInput) {
+    let product: Product;
+    if (createItemInput.productId) {
+      product = await this.productRepository.findOne(createItemInput.productId);
+      if (!product) {
+        throw new NotFoundException(
+          `Product with id #${createItemInput.productId} not found (parent parameter)`,
+        );
+      }
+    }
+
+    const newItem = this.itemRepository.create({
+      ...createItemInput,
+      product,
+    });
 
     return this.itemRepository.save(newItem);
   }
@@ -29,16 +45,16 @@ export class ItemService {
   }
 
   async getItemByNoteId(noteId: number) {
-    const note = await this.connection
+    const item = await this.connection
       .getRepository(Item)
       .createQueryBuilder('item')
       .leftJoinAndSelect('item.notes', 'note')
       .where('note.id = :id', { id: noteId })
       .getOne();
 
-    console.log(note);
+    console.log(item);
 
-    return note;
+    return item;
   }
 
   update(updateLoanItemInput: UpdateItemInput): Promise<Item> {
@@ -47,5 +63,20 @@ export class ItemService {
 
   remove(id: number) {
     return this.itemRepository.delete(id);
+  }
+
+  async getItemsByProductId(productId: number) {
+    const items = await this.connection
+      .getRepository(Item)
+      .createQueryBuilder('item')
+      .leftJoinAndSelect('item.notes', 'notes')
+      .leftJoinAndSelect('item.product', 'product')
+      .where('item.productId = :id', { id: productId })
+      .getMany();
+
+    if (!items)
+      throw new NotFoundException(`Product #${productId} not found`);
+
+    return items ? items : [];
   }
 }
