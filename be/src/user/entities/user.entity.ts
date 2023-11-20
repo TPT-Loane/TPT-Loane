@@ -2,6 +2,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 import { Loan } from 'src/loan/entities/loan.entity';
 import { Entity, Column, PrimaryGeneratedColumn, Unique, OneToMany } from 'typeorm';
 import { Role } from '../roles/user.roles';
+import { loanDecision } from 'src/loandecision/entities/loanDecision.entity';
 
 @ObjectType()
 @Entity({ name: 'users' })
@@ -46,4 +47,8 @@ export class User {
     eager: true,
   })
   loans: Loan[];
+
+  @Field(() => [loanDecision])
+  @OneToMany(() => loanDecision, (loanDecisions) => loanDecisions.Decider)
+  loanDecisions: loanDecision[];
 }

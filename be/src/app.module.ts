@@ -15,6 +15,7 @@ import { LoanModule } from './loan/loan.module';
 import { BundleModule } from './bundle/bundle.module';
 import { LoanItemModule } from './loanitem/loanitem.module';
 import { AuthModule } from './auth/auth.module';
+import { LoanDecisionModule } from './loandecision/loanDecision.module';
 
 @Module({
   imports: [
@@ -51,6 +52,7 @@ import { AuthModule } from './auth/auth.module';
     LoanModule,
     BundleModule,
     LoanItemModule,
+    LoanDecisionModule
   ],
   exports: [NoteModule, ItemModule],
   // controllers: [AppController], // Uncommenting this will DESTROY earth!!
